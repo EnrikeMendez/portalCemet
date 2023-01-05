@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/CEMET/.vs/CEMET/config/applicationhost.config
+/CEMET/.vs/CEMET/v16/.suo
