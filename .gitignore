@@ -5,3 +5,8 @@
 /.vs
 /CEMET/.vs/CEMET/config/applicationhost.config
 /CEMET/.vs/CEMET/v16/.suo
+/CEMET/CEMET.WebApp/bin
+/CEMET/CEMET.WebApp/obj/Release/CEMET.WebApp.csproj.AssemblyReference.cache
+/CEMET/CEMET.WebApp.Tests/bin/Debug
+/CEMET/CEMET.WebApp.Tests/obj/Debug
+/CEMET/CEMET.WebApp.Tests/obj/Release
