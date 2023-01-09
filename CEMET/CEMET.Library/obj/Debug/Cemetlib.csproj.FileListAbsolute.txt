@@ -1,0 +1,6 @@
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\bin\Debug\Cemetlib.dll
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\bin\Debug\Cemetlib.pdb
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\obj\Debug\Cemetlib.csproj.AssemblyReference.cache
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\obj\Debug\Cemetlib.csproj.CoreCompileInputs.cache
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\obj\Debug\Cemetlib.dll
+C:\Users\edua_\source\repos\Cemetlib\Cemetlib\obj\Debug\Cemetlib.pdb
