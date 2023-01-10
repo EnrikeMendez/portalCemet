@@ -101,3 +101,5 @@ C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\obj\Debug\CEMET.WebApp.csproj.
 C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\obj\Debug\CEMET.WebApp.csproj.CopyComplete
 C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\obj\Debug\q.dll
 C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\obj\Debug\q.pdb
+C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\bin\Cemetlib.dll
+C:\Users\edua_\source\repos\Cemetlib\CEMET.WebApp\bin\Cemetlib.pdb

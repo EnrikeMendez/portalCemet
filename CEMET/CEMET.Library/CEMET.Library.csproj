@@ -42,10 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\CatalogService.cs" />
     <Compile Include="Business\UserService.cs" />
     <Compile Include="Common\DB.cs" />
     <Compile Include="Common\Log.cs" />
     <Compile Include="Data\IUser.cs" />
+    <Compile Include="Model\Catalog.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
