@@ -477,8 +477,8 @@
 
                             <!-- Message -->
                             <div class="mb-3">
-                                <label for="message" class="form-label">Mensage</label>
-                                <textarea class="form-control" name="message" placeholder="Ingrese su mensage"
+                                <label for="message" class="form-label">Mensaje</label>
+                                <textarea class="form-control" name="message" placeholder="Ingrese su mensaje"
                                     required></textarea>
                                 <div class="invalid-feedback">
                                     Please enter a message in the textarea.
