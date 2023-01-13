@@ -167,6 +167,8 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\all.css" />
+    <Content Include="Content\all.min.css" />
     <Content Include="Content\assan\assets\css\splitting-text.css" />
     <Content Include="Content\assan\assets\css\splitting-text.min.css" />
     <Content Include="Content\assan\assets\css\theme-green.css" />
@@ -272,6 +274,14 @@
     <Content Include="Content\assan\assets\img\brands\Whatsapp.svg" />
     <Content Include="Content\assan\assets\img\brands\Yelp.svg" />
     <Content Include="Content\assan\assets\img\brands\Youtube.svg" />
+    <Content Include="Content\assan\assets\img\cemet\cemet.png" />
+    <Content Include="Content\assan\assets\img\cemet\image012.png" />
+    <Content Include="Content\assan\assets\img\cemet\metro2.jpeg" />
+    <Content Include="Content\assan\assets\img\cemet\metro3.jpeg" />
+    <Content Include="Content\assan\assets\img\cemet\metrologia.jpeg" />
+    <Content Include="Content\assan\assets\img\cemet\slider0.jpeg" />
+    <Content Include="Content\assan\assets\img\cemet\slider2.jpeg" />
+    <Content Include="Content\assan\assets\img\cemet\slider3.jpeg" />
     <Content Include="Content\assan\assets\img\companies\airbnb.svg" />
     <Content Include="Content\assan\assets\img\companies\behance.svg" />
     <Content Include="Content\assan\assets\img\companies\dribbble.svg" />
@@ -682,8 +692,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\logos\cemet-logo-1.jpg" />
+    <Content Include="Content\regular.css" />
+    <Content Include="Content\regular.min.css" />
     <Content Include="Content\site.css" />
+    <Content Include="Content\solid.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\svg-with-js.css" />
+    <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\v4-shims.css" />
+    <Content Include="Content\v4-shims.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="AltaNuevoServicio.aspx" />
     <Content Include="favicon.ico" />
@@ -712,9 +734,26 @@
     <Content Include="Content\assan\assets\vendor\masterslider\.DS_Store" />
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
+    <Content Include="Index.aspx" />
+    <Content Include="_Footer.ascx" />
+    <Content Include="_Header.ascx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\fontawesome\all.js" />
+    <Content Include="Scripts\fontawesome\all.min.js" />
+    <Content Include="Scripts\fontawesome\brands.js" />
+    <Content Include="Scripts\fontawesome\brands.min.js" />
+    <Content Include="Scripts\fontawesome\conflict-detection.js" />
+    <Content Include="Scripts\fontawesome\conflict-detection.min.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.js" />
+    <Content Include="Scripts\fontawesome\fontawesome.min.js" />
+    <Content Include="Scripts\fontawesome\regular.js" />
+    <Content Include="Scripts\fontawesome\regular.min.js" />
+    <Content Include="Scripts\fontawesome\solid.js" />
+    <Content Include="Scripts\fontawesome\solid.min.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.js" />
+    <Content Include="Scripts\fontawesome\v4-shims.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -745,9 +784,26 @@
     <Content Include="UserControls\Comun\SubirArchivo.ascx" />
     <Content Include="UserControls\Comun\TerminosYCondiciones.ascx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\PruebasCompletas.aspx" />
+    <Content Include="Views\PruebasParciales.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.eot" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -890,8 +946,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Forms.Master.cs">
+      <DependentUpon>Site.Forms.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Forms.Master.designer.cs">
+      <DependentUpon>Site.Forms.Master</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -928,6 +998,34 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="_Footer.ascx.cs">
+      <DependentUpon>_Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Footer.ascx.designer.cs">
+      <DependentUpon>_Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Header.ascx.cs">
+      <DependentUpon>_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Header.ascx.designer.cs">
+      <DependentUpon>_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PruebasCompletas.aspx.cs">
+      <DependentUpon>PruebasCompletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PruebasCompletas.aspx.designer.cs">
+      <DependentUpon>PruebasCompletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PruebasParciales.aspx.cs">
+      <DependentUpon>PruebasParciales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PruebasParciales.aspx.designer.cs">
+      <DependentUpon>PruebasParciales.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -937,6 +1035,7 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Site.Forms.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
