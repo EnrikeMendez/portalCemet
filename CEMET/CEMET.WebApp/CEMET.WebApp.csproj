@@ -736,6 +736,8 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Index.aspx" />
+    <Content Include="Views\Diagrama.aspx" />
+    <Content Include="Views\EvaluacionDePresolicitud.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="_Footer.ascx" />
@@ -1000,6 +1002,20 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Diagrama.aspx.cs">
+      <DependentUpon>Diagrama.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Diagrama.aspx.designer.cs">
+      <DependentUpon>Diagrama.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EvaluacionDePresolicitud.aspx.cs">
+      <DependentUpon>EvaluacionDePresolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\EvaluacionDePresolicitud.aspx.designer.cs">
+      <DependentUpon>EvaluacionDePresolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProgramacionDeRecoleccion.aspx.cs">
       <DependentUpon>ProgramacionDeRecoleccion.aspx</DependentUpon>
