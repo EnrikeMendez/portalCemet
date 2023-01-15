@@ -17,4 +17,8 @@
 
 /CEMET/.vs/CEMET.App/config/applicationhost.config
 /CEMET/.vs/CEMET.App/v16/.suo
-/CEMET/CEMET.Library/obj/Debug/CEMET.Library.csproj.CoreCompileInputs.cache
+/CEMET/CEMET.Library/bin
+/CEMET/CEMET.Library/bin/Debug
+/CEMET/CEMET.Library/bin/Release
+/CEMET/CEMET.Library/obj/Debug
+/CEMET/CEMET.Library/obj/Release
