@@ -7,23 +7,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="py-5 text-center">
-        <%--<h1 class="display-5">Display 5</h1>--%>
         <h1>Alta de nuevo servicio</h1>
     </div>
-
 
     <div class="d-flex align-items-center mb-3 mt-2">
         <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
         <div class="border-bottom flex-grow-1"></div>
-        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
     </div>
     <div class="row">
         <div class="form-group col-md-6">
             <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label">
-                            Tipo de servicio</asp:Label>
+                Tipo de servicio
+            </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" OnSelectedIndexChanged="TipoDeServicio_SelectedIndexChanged" AutoPostBack="True" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -32,7 +29,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -41,7 +37,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="NormaParticular" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
 
@@ -51,7 +46,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="MetodoDePrueba" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
 
@@ -61,7 +55,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="Categoria" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -69,7 +62,6 @@
                             Referencia de certificacion</asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="ReferenciaCertificacion" CssClass="form-control" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -77,7 +69,6 @@
                             Descripción del producto</asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -85,7 +76,6 @@
                             Marca</asp:Label>
             <div class="f">
                 <asp:TextBox runat="server" ID="Marca" CssClass="form-control" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -93,7 +83,6 @@
                             Modelo</asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="form-group col-md-6">
@@ -102,7 +91,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
         <div class="col-md-12">
@@ -120,7 +108,6 @@
                         </asp:Label>
                         <div class="">
                             <asp:DropDownList runat="server" ID="Voltaje" CssClass="form-select" />
-                            <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                         </div>
                     </div>
                 </div>
@@ -138,7 +125,6 @@
                                 </asp:Label>
                                 <div class="">
                                     <asp:DropDownList runat="server" ID="Corriente" CssClass="form-select" />
-                                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -147,7 +133,6 @@
                                 </asp:Label>
                                 <div class="">
                                     <asp:DropDownList runat="server" ID="Potencia" CssClass="form-select" />
-                                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +208,6 @@
                             Recolección</asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="ModalidadDeRecoleccion" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
     </div>
@@ -240,7 +224,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="ModalidadDeEntrega" CssClass="form-select" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="ModalidadDeEntrega" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>
     </div>

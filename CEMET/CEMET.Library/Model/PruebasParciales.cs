@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Model
 {
-    public class Catalog
+    public class PruebasParciales : AltaSolicitud
     {
-        public string Value { get; set; }
-        public string Text { get; set; }
+        
+        public int NormaParticular { get; set; }
+        public int MetodoPrueba { get; set; }
     }
 }

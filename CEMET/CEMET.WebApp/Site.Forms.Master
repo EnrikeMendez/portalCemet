@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - CEMET</title>
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <asp:PlaceHolder ID="head" runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:ContentPlaceHolder>
+    </asp:PlaceHolder>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />

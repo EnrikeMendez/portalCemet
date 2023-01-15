@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Presolicitud parcial | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasParciales.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudParcial" %>
+﻿<%@ Page Title="Presolicitud parcial | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PruebasParciales.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudParcial" %>
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>

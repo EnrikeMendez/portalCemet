@@ -43,15 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\CatalogService.cs" />
+    <Compile Include="Business\ServicioAltaDeSolicitud.cs" />
+    <Compile Include="Business\ServicioPruebasCompletas.cs" />
     <Compile Include="Business\UserService.cs" />
     <Compile Include="Common\DB.cs" />
     <Compile Include="Common\Log.cs" />
+    <Compile Include="Data\IAltaSolicitud.cs" />
     <Compile Include="Data\IUser.cs" />
+    <Compile Include="Model\AltaSolicitud.cs" />
     <Compile Include="Model\Catalog.cs" />
+    <Compile Include="Model\Cotizacion.cs" />
+    <Compile Include="Model\DiagramaMarcado.cs" />
+    <Compile Include="Model\PruebasCompletas.cs" />
+    <Compile Include="Model\PruebasParciales.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

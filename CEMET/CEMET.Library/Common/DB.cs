@@ -15,17 +15,15 @@ namespace Cemetlib.Common
         private SqlDataAdapter da = null;
         private DataTable dtRes = null;
         private string msj = string.Empty;
-
-
         private string GetConnectionString(string HOST = "", string PORT = "", string DB_NAME = "", string PASSWORD = "", string USER_ID = "")
         {
             string db_cadena = string.Empty;
 
-            HOST = "192.168.0.4";
-            PORT = "1521";
-            DB_NAME = "Orfeo2";
-            USER_ID = "web_adm";
-            PASSWORD = "va4ncMC3P";
+            HOST = "A2NWPLSK14SQL-v02.shr.prod.iad2.secureserver.net";
+            PORT = "1433";
+            DB_NAME = "ph11756620532_";
+            USER_ID = "usr_qa";
+            PASSWORD = "Usr_QA5=98";
 
             db_cadena = string.Format("DATA SOURCE = {0}:{1} / {2}; PASSWORD = {3}; USER ID = {4};",
                                       HOST, PORT, DB_NAME, PASSWORD, USER_ID);
@@ -174,6 +172,60 @@ namespace Cemetlib.Common
             }
 
             return dtRes;
+        }
+        public bool EjecutarSP(string nombreSP, List<SqlParameter> parametros)
+        {
+            bool res = true;
+            try
+            {
+                cnn = new SqlConnection();
+                cnn.ConnectionString = GetConnectionString();
+
+                cmd = new SqlCommand();
+                cmd.CommandText = nombreSP;
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                foreach (SqlParameter parametro in parametros)
+                {
+                    cmd.Parameters.Add(parametro);
+                }
+
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                ex.Source += "\t\n" + nombreSP;
+                Log.RegistraExcepcion(ex);
+                res = false;
+            }
+            finally
+            {
+                if (cnn != null)
+                {
+                    if (cnn.State == ConnectionState.Open)
+                    {
+                        cnn.Close();
+                    }
+                    cnn.Dispose();
+                    GC.SuppressFinalize(cnn);
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                    GC.SuppressFinalize(cmd);
+                }
+            }
+            return res;
+        }
+        public static SqlParameter CrearParametroSql(string nombreParametro, SqlDbType tipo, object argumento)
+        {
+            SqlParameter parameter = null;
+            parameter = new SqlParameter(nombreParametro, argumento == null ? DBNull.Value : argumento);
+            parameter.SqlDbType = tipo;
+            return parameter;
         }
     }
 }

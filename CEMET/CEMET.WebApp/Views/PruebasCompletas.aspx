@@ -1,13 +1,10 @@
-﻿<%@ Page Title="Presolicitud completa | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasCompletas.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudCompleta" %>
+﻿<%@ Page Title="Presolicitud completa | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PruebasCompletas.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudCompleta" %>
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="py-5 text-center">
-        <%--<h1 class="display-5">Display 5</h1>--%>
-        <h1>Alta de nuevo servicio</h1>
-    </div>
+
     <div class="container py-12">
 
         <div class="d-flex align-items-center mb-3 mt-2">
@@ -140,7 +137,7 @@
 
         <div class="row">
             <div class="col">
-                <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" /><%--OnClick="Unnamed_Click"--%>
+                <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="Unnamed_Click"/>
             </div>
         </div>
 
