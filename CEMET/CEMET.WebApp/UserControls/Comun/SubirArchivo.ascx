@@ -14,7 +14,7 @@
         <asp:Label runat="server" AssociatedControlID="FileUpload1" ID="UploadTitle" CssClass="form-label">
              Seleccione los archivos
         </asp:Label>
-        <asp:FileUpload ID="FileUpload1" CssClass="file-input-rename form-control" runat="server" AllowMultiple="true"></asp:FileUpload>
+        <asp:FileUpload ID="FileUpload1" CssClass="file-input-rename form-control" runat="server"></asp:FileUpload>
 
         <br />
 
@@ -28,4 +28,3 @@
         </p>
     </div>
 </div>
-

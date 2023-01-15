@@ -16,6 +16,9 @@ namespace CEMET.WebApp.UserControls.Comun
         const string ExtensionNotAllowedErrorMessageDefault = "El archivo {0} no se subió debido a que no tiene la extensión {1}.";
         const string NoFileMessageDefault = "No has especificado algún archivo para subir.";
         const string ClaseParaArchivoComoLinkDefault = "btn btn-link";
+        const string ClaseParaCampoRequeridoDefault = "required-field";
+        const string MensajeParaCampoRequeridoDefault = "La carga de documentos es requerido";
+        const string ClaseParaMensajeDeRequeridoDefault = "text-danger";
 
         public EventHandler OnClickEvent { get; set; }
         public string SavePath { get; set; }
@@ -29,7 +32,11 @@ namespace CEMET.WebApp.UserControls.Comun
         public string Etiqueta { get; set; }
         public string DescargarNombreFuncion { get; set; }
         public IDictionary<string, string> MapeoDeArchivos { get; private set; }
-
+        public bool EsRequerido { get; set; }
+        public string ClaseParaCampoRequerido { get; set; }
+        public bool CargaMultiple { get; set; }
+        public string MensajeParaCampoRequerido { get; set; }
+        public string ClaseParaMensajeDeRequerido { get; set; }
 
         /// <summary>
         /// Comma separated
@@ -41,14 +48,54 @@ namespace CEMET.WebApp.UserControls.Comun
         protected void Page_Load(object sender, EventArgs e)
         {
             UploadButton.Click += new EventHandler(UploadButton_Click);
+
             if (OnClickEvent != null)
             {
                 UploadButton.Click += OnClickEvent;
             }
 
-            if (!string.IsNullOrWhiteSpace(Etiqueta))
+            if (!IsPostBack)
             {
-                UploadTitle.Text = Etiqueta;
+                if (!string.IsNullOrWhiteSpace(Etiqueta))
+                {
+                    UploadTitle.Text = Etiqueta;
+                }
+
+                if (EsRequerido)
+                {
+                    var requeridCss = ClaseParaCampoRequerido ?? ClaseParaCampoRequeridoDefault;
+
+                    if (!string.IsNullOrWhiteSpace(UploadTitle.CssClass)
+                        && !UploadTitle.CssClass.Trim().Split(' ').Select(x => x.ToLower()).Any(x => x.Equals(requeridCss)))
+                    {
+                        UploadTitle.CssClass = UploadTitle.CssClass + " " + requeridCss;
+                    }
+                    else
+                    {
+                        UploadTitle.CssClass = requeridCss;
+                    }
+                }
+
+                FileUpload1.AllowMultiple = CargaMultiple;
+            }
+            else
+            {
+                if (EsRequerido && !FileUpload1.HasFiles)
+                {
+                    var msgReq = MensajeParaCampoRequerido ?? MensajeParaCampoRequeridoDefault;
+                    var cssMsgReq = ClaseParaMensajeDeRequerido ?? ClaseParaMensajeDeRequeridoDefault;
+                    var css = UploadStatusLabel.Attributes["class"] ?? string.Empty;
+
+                    if (!css.Trim().Split(' ').Select(x => x.ToLower()).Any(x => x.Equals(cssMsgReq)))
+                    {
+                        UploadStatusLabel.Attributes.Remove("class");
+                        UploadStatusLabel.Attributes.Add("class", (css + " " + cssMsgReq).Trim());
+                    }
+                    //.Add("class", cssMsgReq);
+                    UploadStatusLabel.InnerHtml = msgReq;
+                    return;
+                }
+
             }
         }
 
@@ -59,6 +106,9 @@ namespace CEMET.WebApp.UserControls.Comun
                 var messages = new List<string>();
                 var fileMapping = new Dictionary<string, string>();
                 var msg = string.Empty;
+
+                UploadStatusLabel.Attributes.CssStyle.Remove("class");
+
                 foreach (var file in FileUpload1.PostedFiles)
                 {
                     try

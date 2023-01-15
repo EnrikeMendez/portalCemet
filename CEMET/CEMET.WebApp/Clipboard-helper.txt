@@ -1,0 +1,3 @@
+﻿<asp:Label runat="server" AssociatedControlID="XXX" CssClass="form-label required-field">
+    
+</asp:Label>

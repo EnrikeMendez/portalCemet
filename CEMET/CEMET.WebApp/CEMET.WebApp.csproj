@@ -166,6 +166,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Clipboard-helper.txt" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
@@ -735,7 +736,7 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Index.aspx" />
-	<Content Include="Views\ProgramacionDeRecoleccion.aspx" />
+    <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="_Footer.ascx" />
     <Content Include="_Header.ascx" />
@@ -1000,7 +1001,7 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
-	<Compile Include="Views\ProgramacionDeRecoleccion.aspx.cs">
+    <Compile Include="Views\ProgramacionDeRecoleccion.aspx.cs">
       <DependentUpon>ProgramacionDeRecoleccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

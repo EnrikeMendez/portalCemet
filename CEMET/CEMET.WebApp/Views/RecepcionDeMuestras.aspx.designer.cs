@@ -69,15 +69,6 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList CantidadDeBultos;
 
         /// <summary>
-        /// CantidadDeBultosAEntregar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CantidadDeBultosAEntregar;
-
-        /// <summary>
         /// NumeroDeSolicitudDeRecoleccion control.
         /// </summary>
         /// <remarks>
@@ -202,5 +193,86 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList RegistroDeInspecciónVisual;
+
+        /// <summary>
+        /// CapturarAccesoriosDeMuestra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CapturarAccesoriosDeMuestra;
+
+        /// <summary>
+        /// NumeroDeAccesoriosRecibidos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumeroDeAccesoriosRecibidos;
+
+        /// <summary>
+        /// DescripcionAccesorio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DescripcionAccesorio;
+
+        /// <summary>
+        /// NumeroDeParteAccesorio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumeroDeParteAccesorio;
+
+        /// <summary>
+        /// CantidadAccesorio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CantidadAccesorio;
+
+        /// <summary>
+        /// NumeroDeIncidenciaAccesorio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NumeroDeIncidenciaAccesorio;
+
+        /// <summary>
+        /// ComentariosAccesorio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ComentariosAccesorio;
+
+        /// <summary>
+        /// CantidadDeFotografias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox CantidadDeFotografias;
+
+        /// <summary>
+        /// SubirArchivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo SubirArchivo;
     }
 }
