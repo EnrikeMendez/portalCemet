@@ -10,7 +10,7 @@
 </style>
 
 <div class="row pb-4">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6" runat="server">
         <asp:Label runat="server" AssociatedControlID="FileUpload1" ID="UploadTitle" CssClass="form-label">
              Seleccione los archivos
         </asp:Label>
@@ -23,7 +23,7 @@
             Text="Subir"
             runat="server"></asp:Button>
     </div>
-    <div class="col-md-6 bg-light">
+    <div class="col-md-6 bg-light" runat="server">
         <p id="UploadStatusLabel" runat="server">
         </p>
     </div>

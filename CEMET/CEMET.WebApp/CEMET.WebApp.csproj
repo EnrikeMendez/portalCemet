@@ -736,11 +736,14 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Index.aspx" />
+    <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
     <Content Include="Views\Diagrama.aspx" />
     <Content Include="Views\EvaluacionDePresolicitud.aspx" />
+    <Content Include="Views\NotificacionDeIngreso.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
+    <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
     <Content Include="_Footer.ascx" />
     <Content Include="_Header.ascx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -983,6 +986,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx.cs">
+      <DependentUpon>NotificacionSolicitudDeServicio.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx.designer.cs">
+      <DependentUpon>NotificacionSolicitudDeServicio.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Comun\SubirArchivo.ascx.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1025,6 +1035,13 @@
     <Compile Include="Views\EvaluacionDePresolicitud.aspx.designer.cs">
       <DependentUpon>EvaluacionDePresolicitud.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotificacionDeIngreso.aspx.cs">
+      <DependentUpon>NotificacionDeIngreso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\NotificacionDeIngreso.aspx.designer.cs">
+      <DependentUpon>NotificacionDeIngreso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProgramacionDeRecoleccion.aspx.cs">
       <DependentUpon>ProgramacionDeRecoleccion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1038,6 +1055,13 @@
     </Compile>
     <Compile Include="Views\RecepcionDeMuestras.aspx.designer.cs">
       <DependentUpon>RecepcionDeMuestras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResponsivaControlDeMuestras.aspx.cs">
+      <DependentUpon>ResponsivaControlDeMuestras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ResponsivaControlDeMuestras.aspx.designer.cs">
+      <DependentUpon>ResponsivaControlDeMuestras.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Footer.ascx.cs">
       <DependentUpon>_Footer.ascx</DependentUpon>

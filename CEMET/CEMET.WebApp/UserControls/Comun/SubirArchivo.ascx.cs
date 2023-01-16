@@ -37,6 +37,8 @@ namespace CEMET.WebApp.UserControls.Comun
         public bool CargaMultiple { get; set; }
         public string MensajeParaCampoRequerido { get; set; }
         public string ClaseParaMensajeDeRequerido { get; set; }
+        public bool ModoLectura { get; set; }
+
 
         /// <summary>
         /// Comma separated
@@ -77,6 +79,18 @@ namespace CEMET.WebApp.UserControls.Comun
                 }
 
                 FileUpload1.AllowMultiple = CargaMultiple;
+
+                if (ModoLectura)
+                {
+                    FileUpload1.Visible = false;
+                    UploadButton.Visible = false;
+                    //var cssC = docsContainer.Attributes["class"];
+                    //cssC = cssC.Replace("col-md-6", "col-md-12");
+                    //docsContainer.Attributes.Remove("class");
+                    //docsContainer.Attributes.Add("class", cssC);
+
+                    //btnContainer.Visible = false;
+                }
             }
             else
             {

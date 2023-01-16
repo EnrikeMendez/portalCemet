@@ -1,3 +1,10 @@
 ﻿<asp:Label runat="server" AssociatedControlID="XXX" CssClass="form-label required-field">
     
 </asp:Label>
+
+<asp:TextBox runat="server" ID="Sugerencias" CssClass="form-control" TextMode="MultiLine" Wrap="true" Rows="5" />
+
+     <div class="col-md-12 text-center mt-5">
+            <asp:Button runat="server" CssClass="btn btn-danger" Text="Validar" type="button" />
+            <asp:Button runat="server" CssClass="btn btn-danger" Text="Aceptar" type="button" />
+        </div>
