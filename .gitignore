@@ -24,3 +24,5 @@
 /CEMET/CEMET.Library/obj/Release
 /CEMET/CEMET.Library/CEMET.Library.csproj.user
 /CEMET/CEMET.WebApp.Tests/CEMET.WebApp.Tests.csproj.user
+*.testlog
+/CEMET/.vs/CEMET.App/v16/TestStore/0

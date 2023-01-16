@@ -707,6 +707,7 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
+    <Content Include="ControlTester.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="AltaNuevoServicio.aspx" />
     <Content Include="favicon.ico" />
@@ -736,6 +737,8 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Index.aspx" />
+    <Content Include="UserControls\Comun\Datepicker.ascx" />
+    <Content Include="UserControls\Comun\ModalPopUp.ascx" />
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
     <Content Include="Views\Diagrama.aspx" />
@@ -939,6 +942,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ControlTester.aspx.cs">
+      <DependentUpon>ControlTester.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlTester.aspx.designer.cs">
+      <DependentUpon>ControlTester.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -987,6 +997,20 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserControls\Comun\Datepicker.ascx.cs">
+      <DependentUpon>Datepicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\Datepicker.ascx.designer.cs">
+      <DependentUpon>Datepicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\ModalPopUp.ascx.cs">
+      <DependentUpon>ModalPopUp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\ModalPopUp.ascx.designer.cs">
+      <DependentUpon>ModalPopUp.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx.cs">
       <DependentUpon>NotificacionSolicitudDeServicio.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

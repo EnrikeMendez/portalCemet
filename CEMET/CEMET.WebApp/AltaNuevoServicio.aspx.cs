@@ -24,9 +24,9 @@ namespace CEMET.WebApp
                 FillCatalogs();
                 ShowFullTestForm();
             }
-            
-            
 
+
+           
 
             FichaTecnica.SavePath = Path.Combine(appPath, saveDir);
             //FichaTecnica.Extensiones = ".exe, .pdf";

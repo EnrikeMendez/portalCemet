@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
+<%@ Register Src="~/UserControls/Comun/Datepicker.ascx" TagPrefix="uc" TagName="Datepicker" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
