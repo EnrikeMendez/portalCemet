@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="ControlTester.aspx.cs" Inherits="CEMET.WebApp.ControlTester" %>
 
 <%@ Register Src="~/UserControls/Comun/Datepicker.ascx" TagPrefix="uc1" TagName="Datepicker" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
@@ -27,11 +28,11 @@
                 <asp:Button ID="OKButton" runat="server" Text="Close" />
             </asp:Panel>
 
-            <ajaxtoolkit:modalpopupextender id="mpe" runat="server" targetcontrolid="ClientButton"
+            <ajaxToolkit:modalpopupextender id="mpe" runat="server" targetcontrolid="ClientButton"
                 popupcontrolid="ModalPanel" okcontrolid="OKButton" />
         </div>
 
-        <asp:ScriptManager ID="asm" runat="server" />
+        <%--<asp:ScriptManager ID="asm" runat="server" />--%>
     </div>
 
     <asp:Button ID="ServerButton" runat="server" Text="Launch Modal Popup (Server)"
