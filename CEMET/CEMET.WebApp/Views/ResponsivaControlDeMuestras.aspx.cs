@@ -11,7 +11,8 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //form-check-input
+            ConfirmacionChkBx.InputAttributes.Add("class", "form-check-input");
         }
     }
 }
