@@ -744,6 +744,7 @@
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
+    <Content Include="Views\RevisionDeListaDeEvaluacion.aspx" />
     <Content Include="_Footer.ascx" />
     <Content Include="_Header.ascx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -1062,6 +1063,13 @@
     </Compile>
     <Compile Include="Views\ResponsivaControlDeMuestras.aspx.designer.cs">
       <DependentUpon>ResponsivaControlDeMuestras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RevisionDeListaDeEvaluacion.aspx.cs">
+      <DependentUpon>RevisionDeListaDeEvaluacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\RevisionDeListaDeEvaluacion.aspx.designer.cs">
+      <DependentUpon>RevisionDeListaDeEvaluacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Footer.ascx.cs">
       <DependentUpon>_Footer.ascx</DependentUpon>
