@@ -12,8 +12,8 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string appPath = Request.PhysicalApplicationPath;
-            string saveDir = @"Uploads\User";
+            //string appPath = Request.PhysicalApplicationPath;
+            //string saveDir = @"Uploads\User";
 
             //FichaTecnica.SavePath = Path.Combine(appPath, saveDir);
             //DocsAdicionales.SavePath = Path.Combine(appPath, saveDir);

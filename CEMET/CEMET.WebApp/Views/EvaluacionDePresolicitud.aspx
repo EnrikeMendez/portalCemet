@@ -80,7 +80,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th scope="row">6</th>
+                        <th scope="row">7</th>
                         <td>La muestra es funcional</td>
                         <td></td>
                         <td></td>
