@@ -1,4 +1,5 @@
-﻿using Cemetlib.Model;
+﻿using Cemetlib.Business;
+using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,34 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                FillCatalogs();
+            }
+        }
+        private void FillCatalogs()
+        {
+            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            FillDropDownList(TipoDeServicio, serviceTypeItems);
+            List<Catalog> catNorma = CatalogService.GetCatNorma();
+            FillDropDownList(Norma, catNorma);
+            List<Catalog> catCategoria = CatalogService.GetCatCategoria();
+            FillDropDownList(Categoria, catCategoria);
+            List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
+            FillDropDownList(PaisDeOrigen, catPaisOrigen);
+            List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
+            FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
+           
 
+            //List<Catalog> catDiasHabiles = CatalogService.GetCatDiasHabiles();
+            //FillDropDownList(ModalidadDeEntrega, catDiasHabiles);
+        }
+        private void FillDropDownList(DropDownList fillingDropDownList, List<Catalog> catalogElements)
+        {
+            fillingDropDownList.DataValueField = "Value";
+            fillingDropDownList.DataTextField = "Text";
+            fillingDropDownList.DataSource = catalogElements;
+            fillingDropDownList.DataBind();
         }
         private void CrearDto()
         {

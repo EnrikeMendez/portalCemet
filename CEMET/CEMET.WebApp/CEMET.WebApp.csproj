@@ -740,9 +740,12 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Index.aspx" />
+    <Content Include="UserControls\Comun\Cotizacion.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
+    <Content Include="UserControls\Comun\ModalidadEntrega.ascx" />
     <Content Include="UserControls\Comun\ModalPopUp.ascx" />
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
+    <Content Include="UserControls\Comun\Observaciones.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
     <Content Include="Views\Diagrama.aspx" />
     <Content Include="Views\EvaluacionDePresolicitud.aspx" />
@@ -1000,12 +1003,26 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserControls\Comun\Cotizacion.ascx.cs">
+      <DependentUpon>Cotizacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\Cotizacion.ascx.designer.cs">
+      <DependentUpon>Cotizacion.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Comun\Datepicker.ascx.cs">
       <DependentUpon>Datepicker.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\Comun\Datepicker.ascx.designer.cs">
       <DependentUpon>Datepicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\ModalidadEntrega.ascx.cs">
+      <DependentUpon>ModalidadEntrega.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\ModalidadEntrega.ascx.designer.cs">
+      <DependentUpon>ModalidadEntrega.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Comun\ModalPopUp.ascx.cs">
       <DependentUpon>ModalPopUp.ascx</DependentUpon>
@@ -1020,6 +1037,13 @@
     </Compile>
     <Compile Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx.designer.cs">
       <DependentUpon>NotificacionSolicitudDeServicio.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\Observaciones.ascx.cs">
+      <DependentUpon>Observaciones.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\Observaciones.ascx.designer.cs">
+      <DependentUpon>Observaciones.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Comun\SubirArchivo.ascx.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>

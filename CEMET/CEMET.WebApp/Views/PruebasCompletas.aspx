@@ -1,10 +1,16 @@
-﻿<%@ Page Title="Presolicitud completa | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PruebasCompletas.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudCompleta" %>
+﻿<%@ Page Title="Presolicitud completa | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasCompletas.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudCompleta" %>
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
+<%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc" TagName="Cotizacion" %>
+<%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+    <div class="py-5 text-center">
+        <%--<h1 class="display-5">Display 5</h1>--%>
+        <h1>Alta de nuevo servicio</h1>
+    </div>
     <div class="container py-12">
 
         <div class="d-flex align-items-center mb-3 mt-2">
@@ -12,72 +18,68 @@
             <div class="border-bottom flex-grow-1"></div>
             <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label">
-                            Tipo de servicio</asp:Label>
+        <div class="row d-flex align-items-end">
+            <div class="form-group col-md-6 p-3">
+                <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label required-field">
+                            Tipo de servicio:</asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" />
+                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="Norma" ID="lbl_Norma" CssClass="form-label required-field">
-                    Norma
+                    Norma:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" />
+                    <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="Categoria" ID="lbl_Categoria" CssClass="form-label required-field">
-                    Categoria
+                    Categoria:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="Categoria" CssClass="form-select" />
+                    <asp:DropDownList runat="server" ID="Categoria" CssClass="form-select" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="ReferenciaCertificacion" ID="lbl_ReferenciaCertificacion" CssClass="form-label required-field">
-                            Referencia de certificacion</asp:Label>
+            <div class="form-group col-md-6 p-3">
+                
                 <div class="">
-                    <asp:TextBox runat="server" ID="ReferenciaCertificacion" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="ReferenciaCertificacion" CssClass="form-control" placeholder="Referencia de certificación" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" ID="lbl_DescripcionDelProducto" CssClass="form-label required-field">
-                            Descripción del producto</asp:Label>
+            <div class="form-group col-md-6 p-3">
+                
                 <div class="">
-                    <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" placeholder="Descripción del producto" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="Marca" ID="lbl_Marca" CssClass="form-label">
-                            Marca</asp:Label>
-                <div class="f">
-                    <asp:TextBox runat="server" ID="Marca" CssClass="form-control" />
+            <div class="form-group col-md-6 p-3">
+                
+                <div class="">
+                    <asp:TextBox runat="server" ID="Marca" CssClass="form-control" placeholder="Marca" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="Modelo" ID="lbl_Modelo" CssClass="form-label">
-                            Modelo</asp:Label>
+            <div class="form-group col-md-6 p-3">
+                
                 <div class="">
-                    <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" placeholder="Modelo" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="PaisDeOrigen" ID="lbl_PaisDeOrigen" CssClass="form-label">
-                    Pais de Origen
+            <div class="form-group col-md-6 p-3">
+                <asp:Label runat="server" AssociatedControlID="PaisDeOrigen" ID="lbl_PaisDeOrigen" CssClass="form-label required-field">
+                    Pais de Origen:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" />
+                    <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
@@ -104,7 +106,44 @@
             VisualizaNombreDeArchivoComoLink="true"
             Extensiones=".jpg" DescargarNombreFuncion="DocsAdicionalesDownload_Click" />
 
+        <div class="row">
+            <div class="form-group col-md-6 p-3">
+                <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" ID="lbl_ModalidadDeRecoleccion" CssClass="form-label required-field">
+                    Modalidad de recolección:
+                </asp:Label>
+            </div>
+            <div class="form-group col-md-6 p-3">
+                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required=""/>
+            </div>
+        </div>
 
+
+
+        <div class="d-flex align-items-center mb-3 mt-4">
+            <h5 class="mb-0 me-3 me-md-4">
+                <asp:Label ID="Label2" runat="server">
+                    Modalidad de entrega
+                </asp:Label>
+            </h5>
+            <div class="border-bottom flex-grow-1"></div>
+
+        </div>
+
+        <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" />
+
+        <div class="d-flex align-items-center mb-3 mt-4">
+            <h5 class="mb-0 me-3 me-md-4">
+                <asp:Label ID="Label1" runat="server">
+                    Cotizacion
+                </asp:Label>
+            </h5>
+            <div class="border-bottom flex-grow-1"></div>
+
+        </div>
+
+        <uc:Cotizacion runat="server" ID="Cotizacion" />
+
+        <uc:Observaciones runat="server" ID="Observaciones" />
 
 
         <script type="text/javascript">
@@ -129,7 +168,7 @@
             }
         </script>
 
-        
+
 
         <uc:TerminosYCondiciones runat="server" ID="TermYCond" />
 
@@ -137,7 +176,7 @@
 
         <div class="row">
             <div class="col">
-                <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="Unnamed_Click"/>
+                <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" /><%--OnClick="Unnamed_Click"--%>
             </div>
         </div>
 

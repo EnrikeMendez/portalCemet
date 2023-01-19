@@ -69,15 +69,6 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList Categoria;
 
         /// <summary>
-        /// lbl_ReferenciaCertificacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ReferenciaCertificacion;
-
-        /// <summary>
         /// ReferenciaCertificacion control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReferenciaCertificacion;
-
-        /// <summary>
-        /// lbl_DescripcionDelProducto control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_DescripcionDelProducto;
 
         /// <summary>
         /// DescripcionDelProducto control.
@@ -105,15 +87,6 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.TextBox DescripcionDelProducto;
 
         /// <summary>
-        /// lbl_Marca control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Marca;
-
-        /// <summary>
         /// Marca control.
         /// </summary>
         /// <remarks>
@@ -121,15 +94,6 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Marca;
-
-        /// <summary>
-        /// lbl_Modelo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Modelo;
 
         /// <summary>
         /// Modelo control.
@@ -184,6 +148,69 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo DocsAdicionales;
+
+        /// <summary>
+        /// lbl_ModalidadDeRecoleccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ModalidadDeRecoleccion;
+
+        /// <summary>
+        /// ModalidadDeRecoleccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ModalidadDeRecoleccion;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
+        /// ModalidadEntrega control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.ModalidadEntrega ModalidadEntrega;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// Cotizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion Cotizacion;
+
+        /// <summary>
+        /// Observaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.Observaciones Observaciones;
 
         /// <summary>
         /// TermYCond control.

@@ -1,7 +1,10 @@
-﻿<%@ Page Title="Presolicitud parcial | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PruebasParciales.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudParcial" %>
+﻿<%@ Page Title="Presolicitud parcial | Alta de nuevo servicio" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasParciales.aspx.cs" Inherits="CEMET.WebApp.Views.PresolicitudParcial" %>
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
+<%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc" TagName="Cotizacion" %>
+<%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -12,8 +15,8 @@
             <div class="border-bottom flex-grow-1"></div>
             <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
+        <div class="row d-flex align-items-end">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label">
                             Tipo de servicio</asp:Label>
                 <div class="">
@@ -21,7 +24,7 @@
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="Norma" ID="lbl_Norma" CssClass="form-label required-field">
                     Norma
                 </asp:Label>
@@ -30,7 +33,7 @@
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="NormaParticular" ID="lbl_NormaParticular" CssClass="form-label required-field">
                     Norma Particular
                 </asp:Label>
@@ -40,7 +43,7 @@
                 </div>
             </div>
 
-             <div class="form-group col-md-6">
+             <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="MetodoDePrueba" ID="lbl_MetodoDePrueba" CssClass="form-label required-field">
                     Metodo de prueba
                 </asp:Label>
@@ -51,31 +54,28 @@
             </div>
 
             
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" ID="lbl_DescripcionDelProducto" CssClass="form-label required-field">
-                            Descripción del producto</asp:Label>
+            <div class="form-group col-md-6 p-3">
+               
                 <div class="">
-                    <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" placeholder="Descripcion del producto"/>
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="Marca" ID="lbl_Marca" CssClass="form-label">
-                            Marca</asp:Label>
-                <div class="f">
-                    <asp:TextBox runat="server" ID="Marca" CssClass="form-control" />
+            <div class="form-group col-md-6 p-3">
+               
+                <div class="">
+                    <asp:TextBox runat="server" ID="Marca" CssClass="form-control" placeholder="Marca"/>
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
-                <asp:Label runat="server" AssociatedControlID="Modelo" ID="lbl_Modelo" CssClass="form-label">
-                            Modelo</asp:Label>
+            <div class="form-group col-md-6 p-3">
+                
                 <div class="">
-                    <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" placeholder="Modelo"/>
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 p-3">
                 <asp:Label runat="server" AssociatedControlID="PaisDeOrigen" ID="lbl_PaisDeOrigen" CssClass="form-label">
                     Pais de Origen
                 </asp:Label>
@@ -107,7 +107,44 @@
             VisualizaNombreDeArchivoComoLink="true"
             Extensiones=".jpg" DescargarNombreFuncion="DocsAdicionalesDownload_Click" />
 
+        <div class="row">
+            <div class="form-group col-md-6 p-3">
+                <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" ID="lbl_ModalidadDeRecoleccion" CssClass="form-label required-field">
+                    Modalidad de recolección:
+                </asp:Label>
+            </div>
+            <div class="form-group col-md-6 p-3">
+                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required=""/>
+            </div>
+        </div>
 
+
+
+        <div class="d-flex align-items-center mb-3 mt-4">
+            <h5 class="mb-0 me-3 me-md-4">
+                <asp:Label ID="Label2" runat="server">
+                    Modalidad de entrega
+                </asp:Label>
+            </h5>
+            <div class="border-bottom flex-grow-1"></div>
+
+        </div>
+
+        <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" />
+
+        <div class="d-flex align-items-center mb-3 mt-4">
+            <h5 class="mb-0 me-3 me-md-4">
+                <asp:Label ID="Label1" runat="server">
+                    Cotizacion
+                </asp:Label>
+            </h5>
+            <div class="border-bottom flex-grow-1"></div>
+
+        </div>
+
+        <uc:Cotizacion runat="server" ID="Cotizacion" />
+
+        <uc:Observaciones runat="server" ID="Observaciones" />
 
 
         <script type="text/javascript">
