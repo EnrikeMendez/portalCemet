@@ -541,6 +541,10 @@
                           </p>
                       </div>
                   </div>
+                  <div class="border-top border-2 border-secondary my-4 my-lg-5" data-aos="fade-up"></div>
+                  <div data-aos="fade-up">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d349.0772290486954!2d-99.08677450128982!3d19.44226023414351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1fbf8174fa28d%3A0xc2af1c7c110a6583!2sCEMET%20(Centro%20de%20Metrologia%20y%20Ensayos%20Tecnicos)!5e0!3m2!1ses-419!2smx!4v1674242116367!5m2!1ses-419!2smx" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
                 </div>
             </div>
         </div>
