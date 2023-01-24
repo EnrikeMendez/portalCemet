@@ -22,6 +22,8 @@ CREATE PROCEDURE SPC_AltaSolicitud(
 )
 AS
 BEGIN
+
+	
 	INSERT INTO dbo.[Solicitud_Servicio]
 	(
 		SOL_CTS_Id,
@@ -70,5 +72,7 @@ BEGIN
 		@SOL_FechaModificacion,
 		@SOL_USU_Id_Modificacion
 	)
+
+	return @@IDENTITY
 END
 GO

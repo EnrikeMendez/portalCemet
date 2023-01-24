@@ -19,7 +19,8 @@ namespace Cemetlib.Model
         public string Observaciones { get; set; }
         public bool TerminosYCondiciones { get; set; }
         public List<string> UploadedDocs { get; set; }
-        public string DiasHabiles { get; set; }
+        public string EmisionInformeEstandar { get; set; }
+        public string EmisionInformeUrgente { get; set; }
         public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
         public long UsuarioCrea { get; set; }

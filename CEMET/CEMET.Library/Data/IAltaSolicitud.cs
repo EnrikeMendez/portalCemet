@@ -12,8 +12,9 @@ namespace Cemetlib.Data
 {
     public static class IAltaSolicitud
     {
-        public static void GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas)
+        public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas)
         {
+            int numeroSolicitud = 0;
             try
             {
                 DB context = new DB();
@@ -24,7 +25,7 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_CPA_Id", SqlDbType.VarChar, solicitudPruebasCompletas.PaisOrigen));
                 parameters.Add(DB.CrearParametroSql("@SOL_CMR_Id", SqlDbType.VarChar, solicitudPruebasCompletas.ModalidadRecoleccion));
                 parameters.Add(DB.CrearParametroSql("@SOL_CME_Id", SqlDbType.VarChar, solicitudPruebasCompletas.ModalidadEntrega));
-                parameters.Add(DB.CrearParametroSql("@SOL_CDH_Id", SqlDbType.VarChar, solicitudPruebasCompletas.DiasHabiles));
+                parameters.Add(DB.CrearParametroSql("@SOL_CDH_Id", SqlDbType.VarChar, solicitudPruebasCompletas.EmisionInformeEstandar));
                 parameters.Add(DB.CrearParametroSql("@SOL_Referencia_Certificacion", SqlDbType.VarChar, solicitudPruebasCompletas.ReferenciaCertificacion));
                 parameters.Add(DB.CrearParametroSql("@SOL_Dsc_Producto", SqlDbType.VarChar, solicitudPruebasCompletas.Descripcion));
                 parameters.Add(DB.CrearParametroSql("@SOL_Marca", SqlDbType.VarChar, solicitudPruebasCompletas.Marca));
@@ -46,7 +47,7 @@ namespace Cemetlib.Data
 
                 throw;
             }
-
+            return numeroSolicitud;
         }
 
     }

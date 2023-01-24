@@ -173,9 +173,9 @@ namespace Cemetlib.Common
 
             return dtRes;
         }
-        public bool EjecutarSP(string nombreSP, List<SqlParameter> parametros)
+        public int EjecutarSP(string nombreSP, List<SqlParameter> parametros)
         {
-            bool res = true;
+            int res = 0;
             try
             {
                 cnn = new SqlConnection();
@@ -190,16 +190,18 @@ namespace Cemetlib.Common
                 {
                     cmd.Parameters.Add(parametro);
                 }
-
+                SqlParameter returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
                 cnn.Open();
                 cmd.ExecuteNonQuery();
+                res = (int)returnParameter.Value;
                 cnn.Close();
             }
             catch (Exception ex)
             {
                 ex.Source += "\t\n" + nombreSP;
                 Log.RegistraExcepcion(ex);
-                res = false;
+                res = 0;
             }
             finally
             {

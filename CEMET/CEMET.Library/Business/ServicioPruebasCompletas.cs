@@ -10,16 +10,18 @@ namespace Cemetlib.Business
 {
     public static class ServicioPruebasCompletas
     {
-        public static void Guardar(PruebasCompletas altaPruebasCompletas)
+        public static int Guardar(PruebasCompletas altaPruebasCompletas)
         {
+            int numeroSolicitud = 0;
             //Validar cadenas
 
             //Validar catalogos
 
             //Guardar info
-            IAltaSolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
+            numeroSolicitud = IAltaSolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
 
             //Crear solicitud documentos
+            return numeroSolicitud;
         }
 
     }

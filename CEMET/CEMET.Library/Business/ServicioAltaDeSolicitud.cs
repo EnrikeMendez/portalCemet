@@ -8,14 +8,16 @@ namespace Cemetlib.Business
 {
     public static class ServicioAltaDeSolicitud
     {
-        public static void GuardarSolicitud(AltaSolicitud solicitud) {
+        public static int GuardarSolicitud(AltaSolicitud solicitud)
+        {
+            int numeroSolicitud = 0;
             try
             {
                 switch (solicitud.TipoServicio)
                 {
                     case "1":
                         PruebasCompletas altaPruebasCompletas = (PruebasCompletas)solicitud;
-                        ServicioPruebasCompletas.Guardar(altaPruebasCompletas);
+                        numeroSolicitud = ServicioPruebasCompletas.Guardar(altaPruebasCompletas);
                         break;
                     case "2":
                         break;
@@ -32,7 +34,8 @@ namespace Cemetlib.Business
 
                 throw;
             }
-            
+
+            return numeroSolicitud;
         }
     }
 }

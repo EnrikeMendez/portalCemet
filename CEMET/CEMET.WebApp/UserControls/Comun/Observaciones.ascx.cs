@@ -9,7 +9,7 @@ namespace CEMET.WebApp.UserControls.Comun
 {
     public partial class Observaciones : System.Web.UI.UserControl
     {
-        public string Obs { get; set; }
+        public string Obs { get { return ObservacionesDeclaraciones.Text;} }
         protected void Page_Load(object sender, EventArgs e)
         {
 

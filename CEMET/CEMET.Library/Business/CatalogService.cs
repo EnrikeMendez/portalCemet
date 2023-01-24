@@ -27,7 +27,7 @@ namespace Cemetlib.Business
         public static List<Catalog> GetCatNorma()
         {
             List<Catalog> catNorma = new List<Catalog>();
-            catNorma.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catNorma.Add(new Catalog { Value = "1", Text = "NOM-133/1-SCFI-1999" });
             return catNorma;
         }
         public static List<Catalog> GetCatNormaParticular()
@@ -45,13 +45,13 @@ namespace Cemetlib.Business
         public static List<Catalog> GetCatCategoria()
         {
             List<Catalog> catCategoria = new List<Catalog>();
-            catCategoria.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catCategoria.Add(new Catalog { Value = "1", Text = "Nuevo" });
             return catCategoria;
         }
         public static List<Catalog> GetCatPaisDeOrigen()
         {
             List<Catalog> catPaisDeOrigen = new List<Catalog>();
-            catPaisDeOrigen.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catPaisDeOrigen.Add(new Catalog { Value = "O148", Text = "México" });
             return catPaisDeOrigen;
         }
         public static List<Catalog> GetCatVoltaje()
@@ -75,7 +75,7 @@ namespace Cemetlib.Business
         public static List<Catalog> GetCatModalidadDeRecoleccion()
         {
             List<Catalog> catModalidadDeRecoleccion = new List<Catalog>();
-            catModalidadDeRecoleccion.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catModalidadDeRecoleccion.Add(new Catalog { Value = "G1", Text = "Solicito que Logis recoja mis muestras" });
             return catModalidadDeRecoleccion;
         }
         public static List<Catalog> GetCatModalidadDeEntrega()
@@ -87,13 +87,13 @@ namespace Cemetlib.Business
         public static List<Catalog> GetCatDiasHabiles()
         {
             List<Catalog> catDiasHabiles = new List<Catalog>();
-            catDiasHabiles.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catDiasHabiles.Add(new Catalog { Value = "H1", Text = "Dia habil 1" });
             return catDiasHabiles;
         }
         public static List<Catalog> GetCatServiciosSolicitados()
         {
             List<Catalog> catServiciosSolicitados = new List<Catalog>();
-            catServiciosSolicitados.Add(new Catalog { Value = "1", Text = "Selecciona opcion..." });
+            catServiciosSolicitados.Add(new Catalog { Value = "S1", Text = "Informe de pruebas Completas - Andaderas" });
             return catServiciosSolicitados;
         }
         public static List<Catalog> GetCatTarifas()

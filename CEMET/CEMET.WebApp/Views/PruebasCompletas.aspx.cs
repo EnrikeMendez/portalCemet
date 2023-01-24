@@ -1,4 +1,5 @@
 ﻿using Cemetlib.Business;
+using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
@@ -21,27 +22,17 @@ namespace CEMET.WebApp.Views
         private void FillCatalogs()
         {
             List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
-            FillDropDownList(TipoDeServicio, serviceTypeItems);
+            Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
             List<Catalog> catNorma = CatalogService.GetCatNorma();
-            FillDropDownList(Norma, catNorma);
+            Controles.FillDropDownList(Norma, catNorma);
             List<Catalog> catCategoria = CatalogService.GetCatCategoria();
-            FillDropDownList(Categoria, catCategoria);
+            Controles.FillDropDownList(Categoria, catCategoria);
             List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
-            FillDropDownList(PaisDeOrigen, catPaisOrigen);
+            Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
             List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
-            FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
-           
-
-            //List<Catalog> catDiasHabiles = CatalogService.GetCatDiasHabiles();
-            //FillDropDownList(ModalidadDeEntrega, catDiasHabiles);
+            Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
         }
-        private void FillDropDownList(DropDownList fillingDropDownList, List<Catalog> catalogElements)
-        {
-            fillingDropDownList.DataValueField = "Value";
-            fillingDropDownList.DataTextField = "Text";
-            fillingDropDownList.DataSource = catalogElements;
-            fillingDropDownList.DataBind();
-        }
+       
         private void CrearDto()
         {
             PruebasCompletas solicitudPruebasCompletas = new PruebasCompletas();
@@ -50,11 +41,12 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.Descripcion = DescripcionDelProducto.Text;
             solicitudPruebasCompletas.Marca = Marca.Text;
             solicitudPruebasCompletas.Modelo = Modelo.Text;
-            solicitudPruebasCompletas.ModalidadRecoleccion = null;
-            solicitudPruebasCompletas.ModalidadEntrega = null;
-            solicitudPruebasCompletas.Observaciones = null;
-            solicitudPruebasCompletas.TerminosYCondiciones = false;
-            solicitudPruebasCompletas.DiasHabiles = null;
+            solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
+            solicitudPruebasCompletas.ModalidadEntrega = ModalidadEntrega.Estandar;
+            solicitudPruebasCompletas.Observaciones = Observaciones.Obs;
+            solicitudPruebasCompletas.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
+            solicitudPruebasCompletas.EmisionInformeEstandar = ModalidadEntrega.Estandar;
+            solicitudPruebasCompletas.EmisionInformeEstandar = ModalidadEntrega.Urgente;
             solicitudPruebasCompletas.Activo = true;
             solicitudPruebasCompletas.UsuarioCrea = 1;//****
             solicitudPruebasCompletas.UsuarioModifica = null;
@@ -66,15 +58,17 @@ namespace CEMET.WebApp.Views
 
             solicitudPruebasCompletas.Cotizacion = new Cotizacion
             {
-                Subtotal = null,
-                Iva = null,
-                Total = null
+                Subtotal = 0,
+                Iva = 0,
+                Total = 0
             };
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
         {
             CrearDto();
+
+
         }
     }
 }
