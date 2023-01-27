@@ -10,6 +10,7 @@
     <div class="py-5 text-center">
         <%--<h1 class="display-5">Display 5</h1>--%>
         <h1>Alta de nuevo servicio</h1>
+        <asp:Label runat="server" ID="Folio"></asp:Label>
     </div>
     <div class="container py-12">
 

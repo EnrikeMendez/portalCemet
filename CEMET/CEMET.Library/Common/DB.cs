@@ -20,14 +20,14 @@ namespace Cemetlib.Common
             string db_cadena = string.Empty;
 
             HOST = "A2NWPLSK14SQL-v02.shr.prod.iad2.secureserver.net";
-            PORT = "1433";
+            PORT = "1521";
             DB_NAME = "ph11756620532_";
             USER_ID = "usr_qa";
             PASSWORD = "Usr_QA5=98";
 
             db_cadena = string.Format("DATA SOURCE = {0}:{1} / {2}; PASSWORD = {3}; USER ID = {4};",
                                       HOST, PORT, DB_NAME, PASSWORD, USER_ID);
-
+            db_cadena = $"Server={HOST};Database={DB_NAME};User Id={USER_ID};Password={PASSWORD};";
             return db_cadena;
         }
         public bool EjecutarQuery(string sql)

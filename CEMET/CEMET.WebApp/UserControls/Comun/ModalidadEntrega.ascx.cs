@@ -12,8 +12,8 @@ namespace CEMET.WebApp.UserControls.Comun
 {
     public partial class ModalidadEntrega : System.Web.UI.UserControl
     {
-        public string Estandar { get { return DiasHabilesEstandar.SelectedValue; } }
-        public string Urgente { get { return DiasHabilesUrgente.SelectedValue; } }
+        public string DiasHabiles { get { return diasHabiles.SelectedValue; } set { diasHabiles.SelectedValue = value; } }
+        public string ModalidadDeEntrega { get { return modalidadDeEntrega.SelectedValue; } set { modalidadDeEntrega.SelectedValue = value; } }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -24,8 +24,10 @@ namespace CEMET.WebApp.UserControls.Comun
         private void FillCatalogs()
         {
             List<Catalog> catDiasHabiles = CatalogService.GetCatDiasHabiles();
-            Controles.FillDropDownList(DiasHabilesEstandar, catDiasHabiles);
-            Controles.FillDropDownList(DiasHabilesUrgente, catDiasHabiles);
+            Controles.FillDropDownList(diasHabiles, catDiasHabiles);
+
+            List<Catalog> catModalidadEntrega = CatalogService.GetCatModalidadDeEntrega();
+            Controles.FillDropDownList(modalidadDeEntrega, catModalidadEntrega);
         }
     }
 }

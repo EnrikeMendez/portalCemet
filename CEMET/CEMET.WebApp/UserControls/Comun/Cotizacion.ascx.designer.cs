@@ -33,21 +33,21 @@ namespace CEMET.WebApp.UserControls.Comun
         protected global::System.Web.UI.WebControls.TextBox Subtotal;
 
         /// <summary>
-        /// Iva control.
+        /// iva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Iva;
+        protected global::System.Web.UI.WebControls.TextBox iva;
 
         /// <summary>
-        /// Total control.
+        /// total control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Total;
+        protected global::System.Web.UI.WebControls.TextBox total;
     }
 }

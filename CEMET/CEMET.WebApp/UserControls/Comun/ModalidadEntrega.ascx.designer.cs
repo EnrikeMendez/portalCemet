@@ -15,21 +15,21 @@ namespace CEMET.WebApp.UserControls.Comun
     {
 
         /// <summary>
-        /// DiasHabilesEstandar control.
+        /// modalidadDeEntrega control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DiasHabilesEstandar;
+        protected global::System.Web.UI.WebControls.DropDownList modalidadDeEntrega;
 
         /// <summary>
-        /// DiasHabilesUrgente control.
+        /// diasHabiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DiasHabilesUrgente;
+        protected global::System.Web.UI.WebControls.DropDownList diasHabiles;
     }
 }

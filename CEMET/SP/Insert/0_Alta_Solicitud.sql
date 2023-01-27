@@ -1,4 +1,4 @@
-CREATE PROCEDURE SPC_AltaSolicitud(
+ALTER PROCEDURE SPC_AltaSolicitud(
 	@SOL_CTS_Id varchar(3),
 	@SOL_NOR_Id varchar(3),
 	@SOL_CCA_Id varchar(3),
@@ -18,61 +18,102 @@ CREATE PROCEDURE SPC_AltaSolicitud(
 	@SOL_Activo bit,
 	@SOL_USU_Id_Creacion bigint,
 	@SOL_FechaModificacion datetime,
-	@SOL_USU_Id_Modificacion bigint
+	@SOL_USU_Id_Modificacion bigint,
+	@FOL_Folio bigint
 )
 AS
 BEGIN
+	DECLARE 
+		@FOL_Folio_Final bigint = @FOL_Folio
+	BEGIN TRY
 
+		BEGIN TRAN
+
+			INSERT INTO dbo.[Solicitud_Servicio]
+			(
+				SOL_CTS_Id,
+				SOL_NOR_Id,
+				SOL_CCA_Id,
+				SOL_CPA_Id,
+				SOL_CMR_Id,
+				SOL_CME_Id,
+				SOL_CDH_Id,
+				SOL_Referencia_Certificacion,
+				SOL_Dsc_Producto,
+				SOL_Marca,
+				SOL_Modelo,
+				SOL_Calibre,
+				SOL_Subtotal,
+				SOL_Iva,
+				SOL_Total,
+				SOL_Observaciones,
+				SOL_Activo,
+				SOL_FechaCreacion,
+				SOL_USU_Id_Creacion,
+				SOL_FechaModificacion,
+				SOL_USU_Id_Modificacion
+			)
+			VALUES
+			(
+				@SOL_CTS_Id,
+				@SOL_NOR_Id,
+				@SOL_CCA_Id,
+				@SOL_CPA_Id,
+				@SOL_CMR_Id,
+				@SOL_CME_Id,
+				@SOL_CDH_Id,
+				@SOL_Referencia_Certificacion,
+				@SOL_Dsc_Producto,
+				@SOL_Marca,
+				@SOL_Modelo,
+				@SOL_Calibre,
+				@SOL_Subtotal,
+				@SOL_Iva,
+				@SOL_Total,
+				@SOL_Observaciones,
+				@SOL_Activo,
+				GETDATE(),
+				@SOL_USU_Id_Creacion,
+				@SOL_FechaModificacion,
+				@SOL_USU_Id_Modificacion
+			)
+			IF @FOL_Folio IS NULL
+			BEGIN
+
+				INSERT INTO dbo.Folio_Solicitud 
+				(
+					FOL_SOL_Id
+					, FOL_Activo
+					, FOL_FechaCarga
+					, FOL_USU_Id_Carga
+					, FOL_FechaModificacion
+					, FOL_USU_Id_Modificacion
+				)
+				VALUES
+				(
+					@@IDENTITY
+					, 1
+					, GETDATE()
+					, @SOL_USU_Id_Creacion
+					, null
+					, null
+				)
+
+				SET @FOL_Folio_Final = @@IDENTITY
+
+			END
+		
+		IF @@TRANCOUNT > 0
+			COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0
+			ROLLBACK TRAN
+
+		RAISERROR(16, 1, 1)
+	END CATCH
 	
-	INSERT INTO dbo.[Solicitud_Servicio]
-	(
-		SOL_CTS_Id,
-		SOL_NOR_Id,
-		SOL_CCA_Id,
-		SOL_CPA_Id,
-		SOL_CMR_Id,
-		SOL_CME_Id,
-		SOL_CDH_Id,
-		SOL_Referencia_Certificacion,
-		SOL_Dsc_Producto,
-		SOL_Marca,
-		SOL_Modelo,
-		SOL_Calibre,
-		SOL_Subtotal,
-		SOL_Iva,
-		SOL_Total,
-		SOL_Observaciones,
-		SOL_Activo,
-		SOL_FechaCreacion,
-		SOL_USU_Id_Creacion,
-		SOL_FechaModificacion,
-		SOL_USU_Id_Modificacion
-	)
-	VALUES
-	(
-		@SOL_CTS_Id,
-		@SOL_NOR_Id,
-		@SOL_CCA_Id,
-		@SOL_CPA_Id,
-		@SOL_CMR_Id,
-		@SOL_CME_Id,
-		@SOL_CDH_Id,
-		@SOL_Referencia_Certificacion,
-		@SOL_Dsc_Producto,
-		@SOL_Marca,
-		@SOL_Modelo,
-		@SOL_Calibre,
-		@SOL_Subtotal,
-		@SOL_Iva,
-		@SOL_Total,
-		@SOL_Observaciones,
-		@SOL_Activo,
-		GETDATE(),
-		@SOL_USU_Id_Creacion,
-		@SOL_FechaModificacion,
-		@SOL_USU_Id_Modificacion
-	)
-
-	return @@IDENTITY
+	
+	return @FOL_Folio_Final
 END
 GO

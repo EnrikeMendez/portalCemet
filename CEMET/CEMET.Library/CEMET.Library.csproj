@@ -45,12 +45,12 @@
   <ItemGroup>
     <Compile Include="Business\CatalogService.cs" />
     <Compile Include="Business\ServicioAltaDeSolicitud.cs" />
-    <Compile Include="Business\ServicioPruebasCompletas.cs" />
     <Compile Include="Business\UserService.cs" />
     <Compile Include="Common\Controles.cs" />
     <Compile Include="Common\DB.cs" />
     <Compile Include="Common\Log.cs" />
     <Compile Include="Data\IAltaSolicitud.cs" />
+    <Compile Include="Data\ICatalogo.cs" />
     <Compile Include="Data\IUser.cs" />
     <Compile Include="Model\AltaSolicitud.cs" />
     <Compile Include="Model\Catalog.cs" />

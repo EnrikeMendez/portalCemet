@@ -17,6 +17,7 @@ namespace CEMET.WebApp.Views
             if (!Page.IsPostBack)
             {
                 FillCatalogs();
+                FillDummyData();
             }
         }
         private void FillCatalogs()
@@ -32,7 +33,20 @@ namespace CEMET.WebApp.Views
             List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
             Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
         }
-       
+        private void FillDummyData()
+        {
+            DescripcionDelProducto.Text = "Test descripción";
+            Marca.Text = "Test marca";
+            Modelo.Text = "Test modelo";
+            Observaciones.Obs = "";
+            TermYCond.UsuarioEstaDeAcuerdo = true;
+            Categoria.Text = "Test categoria";
+            ReferenciaCertificacion.Text = "Test referencia";
+            Observaciones.Obs = "Test observaciones";
+            Cotizacion.Iva = "1.16";
+            Cotizacion.SubTotal = "11.6";
+            Cotizacion.Total = "12.22";
+        }
         private void CrearDto()
         {
             PruebasCompletas solicitudPruebasCompletas = new PruebasCompletas();
@@ -42,11 +56,10 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.Marca = Marca.Text;
             solicitudPruebasCompletas.Modelo = Modelo.Text;
             solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
-            solicitudPruebasCompletas.ModalidadEntrega = ModalidadEntrega.Estandar;
             solicitudPruebasCompletas.Observaciones = Observaciones.Obs;
             solicitudPruebasCompletas.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
-            solicitudPruebasCompletas.EmisionInformeEstandar = ModalidadEntrega.Estandar;
-            solicitudPruebasCompletas.EmisionInformeEstandar = ModalidadEntrega.Urgente;
+            solicitudPruebasCompletas.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;
+            solicitudPruebasCompletas.DiasHabiles = ModalidadEntrega.DiasHabiles;
             solicitudPruebasCompletas.Activo = true;
             solicitudPruebasCompletas.UsuarioCrea = 1;//****
             solicitudPruebasCompletas.UsuarioModifica = null;
@@ -55,13 +68,14 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.ReferenciaCertificacion = ReferenciaCertificacion.Text;
             solicitudPruebasCompletas.PaisOrigen = PaisDeOrigen.Text;
             solicitudPruebasCompletas.Calibre = null;
-
             solicitudPruebasCompletas.Cotizacion = new Cotizacion
             {
-                Subtotal = 0,
-                Iva = 0,
-                Total = 0
+                Subtotal = float.Parse(Cotizacion.SubTotal),
+                Iva = float.Parse(Cotizacion.Iva),
+                Total = float.Parse(Cotizacion.Total)
             };
+            int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
+            Folio.Text = $"Folio guardado {idFolio}";
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)

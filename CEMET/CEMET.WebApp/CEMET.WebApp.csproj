@@ -747,9 +747,11 @@
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
     <Content Include="UserControls\Comun\Observaciones.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
+    <Content Include="Views\Consultar.aspx" />
     <Content Include="Views\Diagrama.aspx" />
     <Content Include="Views\EvaluacionDePresolicitud.aspx" />
     <Content Include="Views\NotificacionDeIngreso.aspx" />
+    <Content Include="Views\ProgramacionDeDevolucion.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
@@ -1073,6 +1075,13 @@
     <Compile Include="Views\ComunicadoDeHallazgos.aspx.designer.cs">
       <DependentUpon>ComunicadoDeHallazgos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Consultar.aspx.cs">
+      <DependentUpon>Consultar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Consultar.aspx.designer.cs">
+      <DependentUpon>Consultar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Diagrama.aspx.cs">
       <DependentUpon>Diagrama.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1093,6 +1102,13 @@
     </Compile>
     <Compile Include="Views\NotificacionDeIngreso.aspx.designer.cs">
       <DependentUpon>NotificacionDeIngreso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProgramacionDeDevolucion.aspx.cs">
+      <DependentUpon>ProgramacionDeDevolucion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ProgramacionDeDevolucion.aspx.designer.cs">
+      <DependentUpon>ProgramacionDeDevolucion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProgramacionDeRecoleccion.aspx.cs">
       <DependentUpon>ProgramacionDeRecoleccion.aspx</DependentUpon>

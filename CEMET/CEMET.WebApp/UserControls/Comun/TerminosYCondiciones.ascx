@@ -23,10 +23,10 @@
     <div class="col-12">
         <div class="form-check">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="AceptoCheck" CssClass="form-check-label">
+                <asp:Label runat="server" AssociatedControlID="AceptoCheck" CssClass="form-check-label required-field">
                     Acepto las condiciones de servicio y declaro que los datos proporcionados son correctos    
                 </asp:Label>
-                <asp:CheckBox runat="server" ID="AceptoCheck" CssClass="" OnCheckedChanged="AceptoCheck_CheckedChanged" />
+                <asp:CheckBox runat="server" ID="AceptoCheck" CssClass="" OnCheckedChanged="AceptoCheck_CheckedChanged" required="" />
                 <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="AceptoCheck" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
             </div>
         </div>

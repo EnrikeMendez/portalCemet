@@ -1,4 +1,5 @@
-﻿using Cemetlib.Model;
+﻿using Cemetlib.Data;
+using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace Cemetlib.Business
             {
                 switch (solicitud.TipoServicio)
                 {
-                    case "1":
+                    case "T1":
                         PruebasCompletas altaPruebasCompletas = (PruebasCompletas)solicitud;
-                        numeroSolicitud = ServicioPruebasCompletas.Guardar(altaPruebasCompletas);
+                        numeroSolicitud = IAltaSolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
                         break;
                     case "2":
                         break;
@@ -37,5 +38,6 @@ namespace Cemetlib.Business
 
             return numeroSolicitud;
         }
+
     }
 }

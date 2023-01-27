@@ -5,11 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CEMET.WebApp.UserControls.Comun
+namespace CEMET.WebApp.Views
 {
-    public partial class Observaciones : System.Web.UI.UserControl
+    public partial class Consultar : System.Web.UI.Page
     {
-        public string Obs { get { return ObservacionesDeclaraciones.Text; } set { ObservacionesDeclaraciones.Text = value; } }
         protected void Page_Load(object sender, EventArgs e)
         {
 

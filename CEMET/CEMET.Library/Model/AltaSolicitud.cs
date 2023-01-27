@@ -14,17 +14,17 @@ namespace Cemetlib.Model
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string ModalidadRecoleccion { get; set; }
-        public string ModalidadEntrega { get; set; }
         public Cotizacion Cotizacion { get; set; }
         public string Observaciones { get; set; }
         public bool TerminosYCondiciones { get; set; }
         public List<string> UploadedDocs { get; set; }
-        public string EmisionInformeEstandar { get; set; }
-        public string EmisionInformeUrgente { get; set; }
+        public string ModalidadEntrega { get; set; }
+        public string DiasHabiles { get; set; }
         public bool Activo { get; set; }
         public DateTime FechaCreacion { get; set; }
         public long UsuarioCrea { get; set; }
         public long? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
+        public int? NumeroFolioSolicitud { get; set; }
     }
 }

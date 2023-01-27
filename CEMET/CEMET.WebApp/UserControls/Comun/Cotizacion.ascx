@@ -22,7 +22,7 @@
         <asp:Label runat="server" AssociatedControlID="Iva" CssClass="form-label required-field">
             Iva:
         </asp:Label>
-        <asp:TextBox runat="server" ID="Iva" CssClass="form-control" required=""/>
+        <asp:TextBox runat="server" ID="iva" CssClass="form-control" required=""/>
     </div>
     
 </div>
@@ -31,6 +31,6 @@
             Total:
         </asp:Label>
     <div class="form-group col-md-6">
-        <asp:TextBox runat="server" ID="Total" CssClass="form-control" required=""/>
+        <asp:TextBox runat="server" ID="total" CssClass="form-control" required=""/>
     </div>
 </div>
