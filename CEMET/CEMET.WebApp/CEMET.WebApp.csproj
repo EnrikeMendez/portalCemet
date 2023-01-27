@@ -754,6 +754,7 @@
     <Content Include="Views\ProgramacionDeDevolucion.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
+    <Content Include="Views\ReporteDeDesviacion.aspx" />
     <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
     <Content Include="Views\RevisionDeListaDeEvaluacion.aspx" />
     <Content Include="_Footer.ascx" />
@@ -1123,6 +1124,13 @@
     </Compile>
     <Compile Include="Views\RecepcionDeMuestras.aspx.designer.cs">
       <DependentUpon>RecepcionDeMuestras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReporteDeDesviacion.aspx.cs">
+      <DependentUpon>ReporteDeDesviacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ReporteDeDesviacion.aspx.designer.cs">
+      <DependentUpon>ReporteDeDesviacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ResponsivaControlDeMuestras.aspx.cs">
       <DependentUpon>ResponsivaControlDeMuestras.aspx</DependentUpon>
