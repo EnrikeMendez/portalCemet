@@ -37,20 +37,22 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
                 <%-- https://stackoverflow.com/questions/41861450/using-scriptmanager-to-add-javascript-references-to-site-master --%>
-                <asp:ScriptReference Path="~/Scripts/fontawesome/all.js"  />
+                <asp:ScriptReference Path="~/Scripts/fontawesome/all.js" />
             </Scripts>
         </asp:ScriptManager>
 
         <div id="mainContentContainer">
-            <uc1:Header runat="server" id="_Header" />
-           
+            <uc1:Header runat="server" ID="_Header" />
+
             <div class="container">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
 
-            <uc1:Footer runat="server" id="_Footer" />
+            <uc1:Footer runat="server" ID="_Footer" />
         </div>
+
+      
     </form>
 </body>
 </html>

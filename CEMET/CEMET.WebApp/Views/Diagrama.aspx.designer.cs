@@ -24,15 +24,6 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList TipoDeServicio;
 
         /// <summary>
-        /// Norma control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Norma;
-
-        /// <summary>
         /// DescripcionDelProducto control.
         /// </summary>
         /// <remarks>
@@ -58,15 +49,6 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Modelo;
-
-        /// <summary>
-        /// PaisDeOrigen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PaisDeOrigen;
 
         /// <summary>
         /// Voltaje control.
@@ -96,15 +78,6 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList Potencia;
 
         /// <summary>
-        /// TituloFileUploader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TituloFileUploader;
-
-        /// <summary>
         /// ModalidadDeRecoleccion control.
         /// </summary>
         /// <remarks>
@@ -123,13 +96,31 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList ModalidadDeEntrega;
 
         /// <summary>
-        /// ObservacionesDeclaraciones control.
+        /// DiasHabiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ObservacionesDeclaraciones;
+        protected global::System.Web.UI.WebControls.DropDownList DiasHabiles;
+
+        /// <summary>
+        /// Cotizacion2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion2 Cotizacion2;
+
+        /// <summary>
+        /// Observaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.Observaciones Observaciones;
 
         /// <summary>
         /// TermYCond control.

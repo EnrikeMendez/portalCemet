@@ -160,5 +160,13 @@ namespace Cemetlib.Data
             return catalogo;
         }
 
+        public static DataTable GetCatDiasHabilesPorNorma()
+        {
+            DB context = new DB();
+            string query = $@"SELECT * FROM [usr_qa].[VDias_Habiles_Norma]";
+            DataTable catalogo = context.ObtieneDataTable(query);
+            return catalogo;
+        }
+
     }
 }

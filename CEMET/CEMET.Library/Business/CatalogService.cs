@@ -91,7 +91,8 @@ namespace Cemetlib.Business
             DataTable catalogo = ICatalogo.GetCatVoltaje();
             foreach (DataRow row in catalogo.Rows)
             {
-                catVoltaje.Add(new Catalog { Value = row["CVO_Clave"].ToString(), Text = row["CVO_Descripcion"].ToString() });
+                //catVoltaje.Add(new Catalog { Value = row["CVO_Clave"].ToString(), Text = row["CVO_Descripcion"].ToString() });
+                catVoltaje.Add(new Catalog { Value = row["CVO_Id"].ToString(), Text = string.Join(row["CVO_Clave"].ToString(), " ", row["CVO_Descripcion"].ToString()) });
             }
 
             return catVoltaje;
@@ -238,6 +239,25 @@ namespace Cemetlib.Business
             }
 
             return catTipoDeConsulta;
+        }
+
+        public static List<Catalog> GetCatDiasHabilesPorNorma()
+        {
+            List<Catalog> catDiasHabiles = new List<Catalog>();
+            DataTable catalogo = ICatalogo.GetCatDiasHabilesPorNorma();
+            foreach (DataRow row in catalogo.Rows)
+            {
+                catDiasHabiles.Add(new Catalog
+                {
+                    Value = row["CDH_Id"].ToString(),
+                    Text = string.Join(
+                        row["CDH_Descripcion"].ToString(), " / ",
+                        row["CHDN_Norma"].ToString() ?? "Norma sin descripción", " / ",
+                        row["CDHN_Dia_Habil"].ToString() ?? "Sin día hábil"
+                    )
+                });
+            }
+            return catDiasHabiles;
         }
     }
 }

@@ -13,68 +13,68 @@
 
     <div class="row">
         <div class="form-group col-md-6 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="NoDeProgramacion" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="NoDeProgramacion" CssClass="form-label required-field">
                 No. de programación
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="NoDeProgramacion" CssClass="form-control" placeholder="No. de programación" />
             </div>
         </div>
         <div class="form-group col-md-6 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="FechaDeRecoleccion" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="FechaDeRecoleccion" CssClass="form-label required-field">
                 Fecha de recolección
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="FechaDeRecoleccion" CssClass="form-control" placeholder="Fecha de recolección" TextMode="Date" />
             </div>
         </div>
 
         <div class="form-group col-md-4 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="Horario" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="Horario" CssClass="form-label required-field">
                 Horario
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Horario" CssClass="form-control" placeholder="Horario" />
             </div>
         </div>
         <div class="form-group col-md-4 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="Contacto" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="Contacto" CssClass="form-label required-field">
                 Contacto
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Contacto" CssClass="form-control" placeholder="Contacto" />
             </div>
         </div>
         <div class="form-group col-md-4 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="Telefono" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="Telefono" CssClass="form-label required-field">
                 Teléfono
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Telefono" CssClass="form-control" placeholder="Teléfono" TextMode="Phone" />
             </div>
         </div>
 
         <div class="form-group col-md-12 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="Direccion" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="Direccion" CssClass="form-label required-field">
                 Dirección
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Direccion" CssClass="form-control" placeholder="Dirección" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="CantidadDeBultosAEntregar" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="CantidadDeBultosAEntregar" CssClass="form-label required-field">
                 Cantidad de bultos a entregar
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="CantidadDeBultosAEntregar" CssClass="form-control" placeholder="Cantidad de bultos a entregar" TextMode="Number" />
             </div>
         </div>
         <div class="form-group col-md-6 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="CantidadDePresolicitudes" CssClass="form-label required-field">
+            <asp:Label runat="server" AssociatedControlID="CantidadDePresolicitudes" CssClass="form-label required-field">
                 Cantidad de presolicitudes
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="CantidadDePresolicitudes" CssClass="form-control" placeholder="Cantidad de presolicitudes" TextMode="Number" value="6" />
             </div>
@@ -117,9 +117,9 @@
         </div>
 
         <div class="form-group col-md-12 p-3">
-<%--            <asp:Label runat="server" AssociatedControlID="ReferenciasAdicionales" CssClass="form-label">
+            <asp:Label runat="server" AssociatedControlID="ReferenciasAdicionales" CssClass="form-label">
                 Referencias adicionales
-            </asp:Label>--%>
+            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="ReferenciasAdicionales" CssClass="form-control" placeholder="Referencias adicionales" />
             </div>

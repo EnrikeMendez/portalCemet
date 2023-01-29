@@ -740,6 +740,7 @@
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Default.aspx" />
     <Content Include="UserControls\Comun\Cotizacion.ascx" />
+    <Content Include="UserControls\Comun\Cotizacion2.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
     <Content Include="UserControls\Comun\ModalidadEntrega.ascx" />
     <Content Include="UserControls\Comun\ModalPopUp.ascx" />
@@ -974,6 +975,7 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CotizacionModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Forms.Master.cs">
@@ -1004,6 +1006,13 @@
     </Compile>
     <Compile Include="UserControls\Comun\Cotizacion.ascx.designer.cs">
       <DependentUpon>Cotizacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\Cotizacion2.ascx.cs">
+      <DependentUpon>Cotizacion2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\Cotizacion2.ascx.designer.cs">
+      <DependentUpon>Cotizacion2.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Comun\Datepicker.ascx.cs">
       <DependentUpon>Datepicker.ascx</DependentUpon>
