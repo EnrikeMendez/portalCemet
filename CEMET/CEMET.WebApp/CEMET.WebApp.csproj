@@ -711,7 +711,6 @@
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="ControlTester.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="AltaNuevoServicio.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -739,7 +738,7 @@
     <Content Include="Content\assan\assets\vendor\masterslider\.DS_Store" />
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
-    <Content Include="Index.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="UserControls\Comun\Cotizacion.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
     <Content Include="UserControls\Comun\ModalidadEntrega.ascx" />
@@ -958,13 +957,6 @@
     <Compile Include="ControlTester.aspx.designer.cs">
       <DependentUpon>ControlTester.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AltaNuevoServicio.aspx.cs">
       <DependentUpon>AltaNuevoServicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -975,12 +967,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
