@@ -28,7 +28,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-               
+
                 //the page is being rendered for the first time
                 Controles.FillDropDownList(TipoDeServicio, CatalogService.GetCatTipoDeServicio(), agregarOpcionSeleccionar: true);
 
@@ -46,11 +46,27 @@ namespace CEMET.WebApp.Views
 
                 Controles.FillDropDownList(ModalidadDeEntrega, CatalogService.GetCatModalidadDeEntrega(), agregarOpcionSeleccionar: true);
 
-
+                //Cotizacion2.ValidationGroupForm = TipoDeServicioReqVal.ValidationGroup;
+                //Cotizacion2.ValorIVA = 0.16;
                 //var g = new tr
 
             }
         }
 
+
+        protected void GuardarDiagramaBtn_Click(object sender, EventArgs e)
+        {
+            //https://stackoverflow.com/questions/6230349/how-to-validate-expression-on-button-click-in-asp-net-c-sharp
+
+            if (Page.IsValid)
+            {
+                //Do stuff
+            }
+            else
+            {
+                //No need for else, the validations should display accordingly
+            }
+
+        }
     }
 }

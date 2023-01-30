@@ -23,12 +23,30 @@
     <div class="col-12">
         <div class="form-check">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="AceptoCheck" CssClass="form-check-label required-field">
+                <span class="required-field"></span>
+                <asp:Label runat="server" AssociatedControlID="AceptoCheck" CssClass="form-check-label">
                     Acepto las condiciones de servicio y declaro que los datos proporcionados son correctos    
                 </asp:Label>
                 <asp:CheckBox runat="server" ID="AceptoCheck" CssClass="" OnCheckedChanged="AceptoCheck_CheckedChanged" required="" />
-                <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="AceptoCheck" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                <br />
+                <asp:CustomValidator
+                    ID="CustomValidator1"
+                    runat="server"
+                    CssClass="text-danger"
+                    EnableClientScript="true"
+                    ClientValidationFunction="ValidateRadioButtons"
+                    OnServerValidate="CustomValidator1_ServerValidate"
+                    ErrorMessage="El campo es requerido">
+                </asp:CustomValidator>
+
             </div>
+            <script type="text/javascript">
+                //https://stackoverflow-com.translate.goog/questions/15796984/select-at-least-one-checkbox-out-of-3-required-field-validator?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=en-US
+                //https://stackoverflow.com/questions/5462795/custom-validator-for-checkbox-in-asp-net
+                function ValidateRadioButtons(sender, e) {
+                    e.IsValid = jQuery("#<%= AceptoCheck.ClientID %>").is(':checked');
+                }
+            </script>
         </div>
     </div>
 </div>

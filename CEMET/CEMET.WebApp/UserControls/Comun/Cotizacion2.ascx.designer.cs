@@ -33,13 +33,22 @@ namespace CEMET.WebApp.UserControls.Comun
         protected global::System.Web.UI.WebControls.DropDownList Tarifa;
 
         /// <summary>
-        /// agregarServTarBtn control.
+        /// AgregarServTarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button agregarServTarBtn;
+        protected global::System.Web.UI.WebControls.Button AgregarServTarBtn;
+
+        /// <summary>
+        /// CustomValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
 
         /// <summary>
         /// cotizacionList control.

@@ -5,14 +5,11 @@
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc1" TagName="Observaciones" %>
 <%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="d-flex align-items-center mb-3 mt-2">
         <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
         <div class="border-bottom flex-grow-1"></div>
-        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -21,7 +18,7 @@
                             Tipo de servicio</asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" ID="TipoDeServicioReqVal" />
                 </div>
             </div>
         </div>
@@ -133,73 +130,23 @@
         </div>
     </div>
 
-
-
-
-
     <div class="d-flex align-items-center mb-3 mt-4">
         <h5 class="mb-0 me-3 me-md-4">Cotización</h5>
         <div class="border-bottom flex-grow-1"></div>
     </div>
 
-    <div class="row">
-
-
-
-        <uc1:Cotizacion2 runat="server" ID="Cotizacion2" />
-
-
-
-        <div class="col-md-12 align-items-center">
-            <table class="table table-borderless">
-                <tbody class="">
-                    <tr>
-                        <th scope="row">S1	Informe de pruebas Completas - Andaderas</th>
-                        <td>100 $</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-
-        <div class="row align-items-center">
-            <div class="col-md-6 text-end">
-                <p>Subtotal</p>
-            </div>
-            <div class="col-md-6 text-end">
-                <strong>300 $</strong>
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-md-6 text-end">
-                <p>IVA (16%)</p>
-            </div>
-            <div class="col-md-6 text-end">
-                <strong>48 $</strong>
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-md-6 text-end">
-                <p>Total</p>
-            </div>
-            <div class="col-md-6 text-end">
-                <strong>348 $</strong>
-            </div>
-        </div>
-    </div>
+    <uc1:Cotizacion2 runat="server" ID="Cotizacion2" ValidationGroupForm="diagramaCamposRequeridos" ValorIVA="0.16" />
 
     <uc1:Observaciones runat="server" ID="Observaciones" />
 
-    <uc1:TerminosYCondiciones runat="server" ID="TermYCond" />
-
+    <uc1:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="diagramaCamposRequeridos" />
 
     <hr class="my-4">
 
     <div class="row">
         <div class="col">
-            <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" ValidationGroup="diagramaCamposRequeridos" />
+            <asp:Button ID="GuardarDiagramaBtn" runat="server" OnClick="GuardarDiagramaBtn_Click" Text="Guardar" CssClass="btn btn-primary" ValidationGroup="diagramaCamposRequeridos" />
         </div>
     </div>
-
 
 </asp:Content>

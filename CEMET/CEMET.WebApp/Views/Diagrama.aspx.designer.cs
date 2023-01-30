@@ -24,6 +24,15 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList TipoDeServicio;
 
         /// <summary>
+        /// TipoDeServicioReqVal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TipoDeServicioReqVal;
+
+        /// <summary>
         /// DescripcionDelProducto control.
         /// </summary>
         /// <remarks>
@@ -130,5 +139,14 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CEMET.WebApp.UserControls.Comun.TerminosYCondiciones TermYCond;
+
+        /// <summary>
+        /// GuardarDiagramaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GuardarDiagramaBtn;
     }
 }
