@@ -8,7 +8,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
-        <%--<h1 class="display-5">Display 5</h1>--%>
         <h1>Alta de nuevo servicio</h1>
         <asp:Label runat="server" ID="Folio"></asp:Label>
     </div>
@@ -17,7 +16,7 @@
         <div class="d-flex align-items-center mb-3 mt-2">
             <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
             <div class="border-bottom flex-grow-1"></div>
-            <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
+
         </div>
         <div class="row d-flex align-items-end">
             <div class="form-group col-md-6 p-3">
@@ -25,7 +24,7 @@
                             Tipo de servicio:</asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
@@ -34,7 +33,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
 
@@ -44,16 +43,16 @@
                 </asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="Categoria" CssClass="form-select" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Categoria" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
-                <asp:Label runat="server" AssociatedControlID="ReferenciaCertificacion"  CssClass="form-label required-field">
+                <asp:Label runat="server" AssociatedControlID="ReferenciaCertificacion" CssClass="form-label required-field">
                     Referencia de certificación:
                 </asp:Label>
                 <div class="">
                     <asp:TextBox runat="server" ID="ReferenciaCertificacion" CssClass="form-control" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="ReferenciaCertificacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
@@ -62,7 +61,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
@@ -71,7 +70,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:TextBox runat="server" ID="Marca" CssClass="form-control" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
@@ -80,7 +79,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
             <div class="form-group col-md-6 p-3">
@@ -89,7 +88,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="PaisDeOrigen" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -106,14 +105,21 @@
             <div class="border-bottom flex-grow-1"></div>
         </div>
 
-        <uc:SubirArchivo runat="server" ID="InstructivoManual" Etiqueta="Instructivo o manual"
+        <uc:SubirArchivo
+            runat="server"
+            ID="InstructivoManual"
+            Etiqueta="Instructivo o manual"
             VisualizaNombreDeArchivoComoLink="true"
-            Extensiones=".jpg" DescargarNombreFuncion="InstructivoManualDownload_Click" />
+            Extensiones=".jpg"
+            DescargarNombreFuncion="InstructivoManualDownload_Click" />
 
-
-        <uc:SubirArchivo runat="server" ID="DocsAdicionales" Etiqueta="Documentos adicionales"
+        <uc:SubirArchivo
+            runat="server"
+            ID="DocsAdicionales"
+            Etiqueta="Documentos adicionales"
             VisualizaNombreDeArchivoComoLink="true"
-            Extensiones=".jpg" DescargarNombreFuncion="DocsAdicionalesDownload_Click" />
+            Extensiones=".jpg"
+            DescargarNombreFuncion="DocsAdicionalesDownload_Click" />
 
         <div class="row">
             <div class="form-group col-md-6 p-3">
@@ -122,7 +128,7 @@
                 </asp:Label>
             </div>
             <div class="form-group col-md-6 p-3">
-                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required=""/>
+                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required="" />
             </div>
         </div>
 
@@ -156,10 +162,6 @@
 
 
         <script type="text/javascript">
-            function SubirArchivoDownload_Click(ev) {
-                console.log(ev);
-            }
-
             function DocsAdicionalesDownload_Click(ev) {
                 console.log(ev);
             }
@@ -167,25 +169,17 @@
             function InstructivoManualDownload_Click(ev) {
                 console.log(ev);
             }
-
-            function MarcadoDownload_Click(ev) {
-                console.log(ev);
-            }
-
-            function DiagramaDownload_Click(ev) {
-                console.log(ev);
-            }
         </script>
 
 
 
-        <uc:TerminosYCondiciones runat="server" ID="TermYCond" />
+        <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasCompletasValGroup" />
 
         <hr class="my-4">
 
         <div class="row">
             <div class="col">
-                <asp:Button runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="Unnamed_Click"/><%--OnClick="Unnamed_Click"--%>
+                <asp:Button ID="GuardaPruebCompBtn" runat="server" ValidationGroup="PruebasCompletasValGroup" Text="Guardar" CssClass="btn btn-primary" OnClick="GuardaPruebCompBtn_Click" /><%--OnClick="Unnamed_Click"--%>
             </div>
         </div>
 

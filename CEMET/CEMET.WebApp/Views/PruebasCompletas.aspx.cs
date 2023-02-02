@@ -3,6 +3,7 @@ using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,7 +15,18 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            string usuarioId = "User123";
+            string appPath = Request.PhysicalApplicationPath;
+            string saveDir = @"Uploads\"+ usuarioId;
+
+            //InstructivoManual.SavePath = Path.Combine(appPath, saveDir);
+            //DocsAdicionales.SavePath = Path.Combine(appPath, saveDir);
+
+            if (Page.IsPostBack)
+            {
+
+            }
+            else
             {
                 FillCatalogs();
                 FillDummyData();
@@ -78,9 +90,12 @@ namespace CEMET.WebApp.Views
             Folio.Text = $"Folio guardado {idFolio}";
         }
 
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)
         {
-            CrearDto();
+            if (Page.IsValid)
+            {
+                CrearDto();
+            }
 
 
         }

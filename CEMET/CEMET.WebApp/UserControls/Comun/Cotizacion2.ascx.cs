@@ -38,6 +38,8 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ActualizacionAutomatica.InputAttributes.Add("class", "form-check-input");
+
             if (IsPostBack)
             {
 
@@ -73,6 +75,9 @@ namespace CEMET.WebApp.UserControls.Comun
                 var ivaVal = BuscaControlEnTemplate<RequiredFieldValidator>(idControl: "IVAReqValidator");
                 ivaVal.ValidationGroup = ValidationGroupForm;
 
+                var totalVal = BuscaControlEnTemplate<RequiredFieldValidator>(idControl: "TotalReqValidator");
+                totalVal.ValidationGroup = ValidationGroupForm;
+
                 var ivaLbl = BuscaControlEnTemplate<Label>(idControl: "IVALabel");
                 ivaLbl.Text = ivaLbl.Text.Trim().Replace("0", (ValorIVA * 100).ToString() + "%");
             }
@@ -80,7 +85,12 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void cotizacionList_DataBound(object sender, EventArgs e)
         {
-            ActualizaSubTotalIVA();
+            //if (ActualizacionAutomatica.Checked)
+            //{
+                ActualizaSubTotalIVA();
+            //}
+
+            ActualizaTotal();
         }
 
         protected void AgregarServTarBtn_Click(object sender, EventArgs e)
@@ -132,7 +142,7 @@ namespace CEMET.WebApp.UserControls.Comun
             var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
             var ivaTxt = BuscaControlEnTemplate<TextBox>(idControl: "IVA");
 
-            if (subTxt != null && subTxt != null)
+            if (subTxt != null && ivaTxt != null)
             {
                 var sub = 0.0;
                 if (Cotizaciones != null && Cotizaciones.Any())
@@ -159,9 +169,48 @@ namespace CEMET.WebApp.UserControls.Comun
             }
         }
 
+        protected void ActualizaTotal()
+        {
+            var totalTxt = BuscaControlEnTemplate<TextBox>(idControl: "Total");
+            var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
+            var ivaTxt = BuscaControlEnTemplate<TextBox>(idControl: "IVA");
+
+            if (totalTxt != null && subTxt != null && ivaTxt != null)
+            {
+                var total = 0.0;
+
+                if (!string.IsNullOrWhiteSpace(subTxt.Text) &&
+                    double.TryParse(subTxt.Text.Replace(",", string.Empty).Replace("$", string.Empty).Replace(" ", string.Empty), out var number))
+                {
+                    total += number;
+                }
+
+
+                if (!string.IsNullOrWhiteSpace(ivaTxt.Text) &&
+                    double.TryParse(ivaTxt.Text.Replace(",", string.Empty).Replace("$", string.Empty).Replace(" ", string.Empty), out number))
+                {
+                    total += number;
+                }
+
+                if (total > 0)
+                {
+                    totalTxt.Text = total.ToString();
+                }
+                else
+                {
+                    totalTxt.Text = 0.ToString();
+                }
+            }
+        }
+
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = Cotizaciones.Any();
+        }
+
+        protected void Subtotal_TextChanged(object sender, EventArgs e)
+        {
+            var f = 0;
         }
     }
 }

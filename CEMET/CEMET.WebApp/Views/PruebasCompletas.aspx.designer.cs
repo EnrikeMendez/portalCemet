@@ -229,5 +229,14 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CEMET.WebApp.UserControls.Comun.TerminosYCondiciones TermYCond;
+
+        /// <summary>
+        /// GuardaPruebCompBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GuardaPruebCompBtn;
     }
 }

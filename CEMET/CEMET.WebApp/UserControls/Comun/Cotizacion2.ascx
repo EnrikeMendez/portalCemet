@@ -57,6 +57,14 @@
                 OnClick="AgregarServTarBtn_Click"
                 Text="Agregar"
                 CssClass="btn btn-outline-secondary" />
+
+            <div class="input-group-text">
+                <asp:CheckBox
+                    runat="server"
+                    Visible="false"
+                    ID="ActualizacionAutomatica"
+                    CssClass="" />
+            </div>
         </div>
     </div>
 
@@ -194,7 +202,8 @@ https://learn.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/gett
                             <asp:TextBox
                                 runat="server"
                                 ID="Subtotal"
-                                CssClass="form-control text-end" />
+                                CssClass="form-control text-end"
+                                OnTextChanged="Subtotal_TextChanged" />
                             <asp:RequiredFieldValidator
                                 ID="SubtotalReqValidator"
                                 runat="server"
@@ -223,6 +232,31 @@ https://learn.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/gett
                                 ID="IVAReqValidator"
                                 runat="server"
                                 ControlToValidate="IVA"
+                                CssClass="text-danger"
+                                ErrorMessage="El campo es requerido" />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="text-end align-top">
+                            <asp:Label
+                                ID="TotalLabel"
+                                runat="server"
+                                AssociatedControlID="Total"
+                                CssClass="form-label required-field">
+                            Total
+                            </asp:Label>
+                        </td>
+                        <td class="text-end">
+                            <asp:TextBox
+                                runat="server"
+                                ID="Total"
+                                ReadOnly="true"
+                                CssClass="form-control text-end" />
+                            <asp:RequiredFieldValidator
+                                ID="TotalReqValidator"
+                                runat="server"
+                                ControlToValidate="Total"
                                 CssClass="text-danger"
                                 ErrorMessage="El campo es requerido" />
                         </td>
