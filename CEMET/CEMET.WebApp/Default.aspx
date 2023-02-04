@@ -69,16 +69,16 @@
                   <a href="#home" class="nav-link">Inicio</a>
               </li>
               <li class="nav-item ms-lg-4">
-                  <a href="#about" class="nav-link">Nuestros Servicios</a>
+                  <a href="#aboutUs" class="nav-link">Sobre Nosotros</a>
               </li>
               <li class="nav-item ms-lg-4">
-                  <a href="#speakers" class="nav-link">Sobre Nosotros</a>
+                  <a href="#services" class="nav-link">Nuestros Servicios</a>
               </li>
               <li class="nav-item ms-lg-4">
-                  <a href="#schedule" class="nav-link">Contáctanos</a>
+                  <a href="#contact" class="nav-link">Contáctanos</a>
               </li>
               <li class="nav-item ms-lg-4">
-                  <a href="#pricing" class="nav-link">Registrar Solicitud</a>
+                  <a href="Views/PruebasCompletas" class="nav-link">Registrar Solicitud</a>
               </li>
           </ul>
           <!--end:Navbar items-->
@@ -205,7 +205,7 @@
     <!--end:main slider-->
 
 
-    <section class="position-relative bg-white border-bottom overflow-hidden" id="next">
+    <section class="position-relative bg-white border-bottom overflow-hidden" id="aboutUs">
       <div class="container py-9 py-lg-11">
           <div class="row align-items-center">
               <div class="col-lg-6 mb-5 mb-lg-0">
@@ -245,7 +245,7 @@
 
 
       <!--begin: features icons-->
-      <section class="position-relative border-bottom" id="next">
+      <section class="position-relative border-bottom" id="services">
         <div class="container py-9 py-lg-11">
           <div class="row mb-9 mb-lg-11 justify-content-between align-items-end">
             <div class="col-lg-10 col-xl-8 mx-auto text-center">
@@ -427,7 +427,7 @@
 
 
 
-      <section class="position-relative">
+      <section class="position-relative" id="contact">
         <div class="container py-9 py-lg-11">
             <div class="row">
                 <div class="col-md-8 col-lg-7 mb-7 mb-md-0 me-auto">
