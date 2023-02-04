@@ -55,9 +55,11 @@ namespace CEMET.WebApp.Views
             Categoria.Text = "Test categoria";
             ReferenciaCertificacion.Text = "Test referencia";
             Observaciones.Obs = "Test observaciones";
-            Cotizacion.Iva = "1.16";
-            Cotizacion.SubTotal = "11.6";
-            Cotizacion.Total = "12.22";
+            /*
+            Cotizacion2.Iva = "1.16";
+            Cotizacion2.SubTotal = "11.6";
+            Cotizacion2.Total = "12.22";
+            */
         }
         private void CrearDto()
         {
@@ -82,9 +84,9 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.Calibre = null;
             solicitudPruebasCompletas.Cotizacion = new Cotizacion
             {
-                Subtotal = float.Parse(Cotizacion.SubTotal),
-                Iva = float.Parse(Cotizacion.Iva),
-                Total = float.Parse(Cotizacion.Total)
+                Subtotal = 0,
+                Iva = 0,
+                Total = 0
             };
             int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
             Folio.Text = $"Folio guardado {idFolio}";

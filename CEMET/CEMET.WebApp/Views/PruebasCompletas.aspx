@@ -5,6 +5,7 @@
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
 <%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc" TagName="Cotizacion" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
@@ -23,7 +24,7 @@
                 <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label required-field">
                             Tipo de servicio:</asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" required="" />
+                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required=""/>
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -32,7 +33,7 @@
                     Norma:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" required="" />
+                    <asp:DropDownList runat="server" ID="Norma" CssClass="form-control" data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' required="" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -42,7 +43,7 @@
                     Categoria:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="Categoria" CssClass="form-select" required="" />
+                    <asp:DropDownList runat="server" ID="Categoria" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Categoria" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -87,7 +88,7 @@
                     Pais de Origen:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" required="" />
+                    <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="PaisDeOrigen" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -128,7 +129,7 @@
                 </asp:Label>
             </div>
             <div class="form-group col-md-6 p-3">
-                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required="" />
+                <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
             </div>
         </div>
 
@@ -156,7 +157,7 @@
 
         </div>
 
-        <uc:Cotizacion runat="server" ID="Cotizacion" />
+        <uc1:Cotizacion2 runat="server" ID="Cotizacion2" ValidationGroupForm="diagramaCamposRequeridos" ValorIVA="0.16" />
 
         <uc:Observaciones runat="server" ID="Observaciones" />
 

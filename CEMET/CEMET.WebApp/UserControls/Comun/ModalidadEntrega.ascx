@@ -8,7 +8,7 @@
         </asp:Label>
     </div>
     <div class="form-group col-md-6">
-        <asp:DropDownList runat="server" ID="modalidadDeEntrega" CssClass="form-select" required=""/>
+        <asp:DropDownList runat="server" ID="modalidadDeEntrega" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required=""/>
     </div>
 </div><br />
 
@@ -20,6 +20,6 @@
         </asp:Label>
     </div>
     <div class="form-group col-md-6">
-        <asp:DropDownList runat="server" ID="diasHabiles" CssClass="form-select" required=""/>
+        <asp:DropDownList runat="server" ID="diasHabiles" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required=""/>
     </div>
 </div><br />
