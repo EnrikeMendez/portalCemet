@@ -26,5 +26,7 @@ namespace Cemetlib.Model
         public long? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
         public int? NumeroFolioSolicitud { get; set; }
+        public List<Documentos> Documentos { get; set; }
+
     }
 }

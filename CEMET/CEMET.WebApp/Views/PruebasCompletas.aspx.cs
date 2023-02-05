@@ -88,8 +88,27 @@ namespace CEMET.WebApp.Views
                 Iva = 0,
                 Total = 0
             };
+
+            List<Documentos> documentosSolicitud = new List<Documentos>();
+            documentosSolicitud.Add(new Documentos
+            {
+                Ruta = InstructivoManual.SavePath
+                , Nombre = InstructivoManual.NombreArchivo
+                , Tipo = "" //Insertar el tipo 
+            });
+            documentosSolicitud.Add(new Documentos
+            {
+                Ruta = DocsAdicionales.SavePath
+                , Nombre = DocsAdicionales.NombreArchivo
+                , Tipo = "" //Insertar el tipo 
+            });
+            solicitudPruebasCompletas.Documentos = documentosSolicitud;
+
+            
             int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
             Folio.Text = $"Folio guardado {idFolio}";
+
+
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)
