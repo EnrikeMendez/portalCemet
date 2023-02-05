@@ -18,7 +18,7 @@ namespace Cemetlib.Business
                 {
                     case "T1":
                         PruebasCompletas altaPruebasCompletas = (PruebasCompletas)solicitud;
-                        numeroSolicitud = IAltaSolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
+                        numeroSolicitud = ISolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
                         break;
                     case "2":
                         break;
