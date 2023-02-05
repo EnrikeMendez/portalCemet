@@ -17,7 +17,7 @@ namespace CEMET.WebApp.Views
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            string saveDir = @"Uploads\"+ usuarioId;
+            string saveDir = @"Uploads\" + usuarioId;
 
             //InstructivoManual.SavePath = Path.Combine(appPath, saveDir);
             //DocsAdicionales.SavePath = Path.Combine(appPath, saveDir);
@@ -30,6 +30,7 @@ namespace CEMET.WebApp.Views
             {
                 FillCatalogs();
                 FillDummyData();
+
             }
         }
         private void FillCatalogs()
@@ -82,14 +83,46 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.ReferenciaCertificacion = ReferenciaCertificacion.Text;
             solicitudPruebasCompletas.PaisOrigen = PaisDeOrigen.Text;
             solicitudPruebasCompletas.Calibre = null;
-            solicitudPruebasCompletas.Cotizacion = new Cotizacion
+            List<Cotizacion> cotizaciones = new List<Cotizacion>();
+            foreach (var cotizacion in Cotizacion2.Cotizaciones)
             {
-                Subtotal = 0,
-                Iva = 0,
-                Total = 0
-            };
+                cotizaciones.Add(new Cotizacion
+                {
+                    IdCotizacion = cotizacion.IdCotizacion,
+                    IdServicio = cotizacion.IdServicio,
+                    IdTarifa = cotizacion.IdTarifa,
+                    Servicio = cotizacion.IdServicio,
+                    Tarifa = cotizacion.Tarifa
+                });
+            }
+            solicitudPruebasCompletas.Cotizaciones = cotizaciones;
+            solicitudPruebasCompletas.Subtotal = float.Parse(Cotizacion2.SubTotal);
+            solicitudPruebasCompletas.Total = float.Parse(Cotizacion2.Total);
+            solicitudPruebasCompletas.Iva = (float)Cotizacion2.ValorIVA;
+
+            List<Documentos> documentosSolicitud = new List<Documentos>();
+            //documentosSolicitud.Add(new Documentos
+            //{
+            //    Ruta = InstructivoManual.SavePath,
+            //    Nombre = InstructivoManual.NombreArchivo,
+            //    Tipo = "" //Insertar el tipo 
+            //});
+            //documentosSolicitud.Add(new Documentos
+            //{
+            //    Ruta = DocsAdicionales.SavePath,
+            //    Nombre = DocsAdicionales.NombreArchivo,
+            //    Tipo = "" //Insertar el tipo 
+            //});
+            solicitudPruebasCompletas.Documentos = documentosSolicitud;
+            string folioSolicitud = Request.QueryString["folio"];
+            if (!string.IsNullOrEmpty(folioSolicitud))
+            {
+                solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(folioSolicitud);
+            }
             int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
             Folio.Text = $"Folio guardado {idFolio}";
+            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
+
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)

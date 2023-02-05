@@ -11,7 +11,7 @@ namespace CEMET.WebApp.Views
 {
 
 
-    public partial class PresolicitudCompleta
+    public partial class PruebasCompletasEE
     {
 
         /// <summary>
@@ -42,6 +42,24 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList TipoDeServicio;
 
         /// <summary>
+        /// lbl_ServicioAdicional control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ServicioAdicional;
+
+        /// <summary>
+        /// ServicioAdicional control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ServicioAdicional;
+
+        /// <summary>
         /// lbl_Norma control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,24 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Norma;
+
+        /// <summary>
+        /// lbl_NormaParticular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_NormaParticular;
+
+        /// <summary>
+        /// NormaParticular control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NormaParticular;
 
         /// <summary>
         /// lbl_Categoria control.
@@ -132,6 +168,51 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList PaisDeOrigen;
 
         /// <summary>
+        /// Calibre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Calibre;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// Voltaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Voltaje;
+
+        /// <summary>
+        /// Corriente control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Corriente;
+
+        /// <summary>
+        /// Potencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Potencia;
+
+        /// <summary>
         /// TituloFileUploader control.
         /// </summary>
         /// <remarks>
@@ -148,6 +229,24 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo InstructivoManual;
+
+        /// <summary>
+        /// Marcado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo Marcado;
+
+        /// <summary>
+        /// Diagrama control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo Diagrama;
 
         /// <summary>
         /// DocsAdicionales control.

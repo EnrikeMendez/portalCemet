@@ -1,4 +1,4 @@
-ALTER PROCEDURE SPC_AltaSolicitud(
+ALTER PROCEDURE dbo.[SPC_AltaSolicitud](
 	@SOL_CTS_Id varchar(3),
 	@SOL_NOR_Id varchar(3),
 	@SOL_CCA_Id varchar(3),
@@ -19,15 +19,42 @@ ALTER PROCEDURE SPC_AltaSolicitud(
 	@SOL_USU_Id_Creacion bigint,
 	@SOL_FechaModificacion datetime,
 	@SOL_USU_Id_Modificacion bigint,
-	@FOL_Folio bigint
+	@FOL_Folio bigint,
+	@Documentos dbo.Documentos READONLY,
+	@Cotizaciones dbo.Cotizaciones READONLY
 )
 AS
 BEGIN
 	DECLARE 
-		@FOL_Folio_Final bigint = @FOL_Folio
+		@FOL_Folio_Final bigint = @FOL_Folio,
+		@Fecha datetime = GETDATE(),
+		@SOL_Id bigint,
+		@error varchar(300)
 	BEGIN TRY
 
 		BEGIN TRAN
+			IF @FOL_Folio IS NULL
+			BEGIN
+
+				INSERT INTO dbo.Folio_Solicitud 
+				(
+					FOL_Activo
+					, FOL_FechaCarga
+					, FOL_USU_Id_Carga
+					, FOL_FechaModificacion
+					, FOL_USU_Id_Modificacion
+				)
+				VALUES
+				(
+					 1
+					, @Fecha
+					, @SOL_USU_Id_Creacion
+					, null
+					, null
+				)
+
+				SET @FOL_Folio_Final = @@IDENTITY
+			END
 
 			INSERT INTO dbo.[Solicitud_Servicio]
 			(
@@ -51,7 +78,8 @@ BEGIN
 				SOL_FechaCreacion,
 				SOL_USU_Id_Creacion,
 				SOL_FechaModificacion,
-				SOL_USU_Id_Modificacion
+				SOL_USU_Id_Modificacion,
+				SOL_Folio
 			)
 			VALUES
 			(
@@ -72,36 +100,46 @@ BEGIN
 				@SOL_Total,
 				@SOL_Observaciones,
 				@SOL_Activo,
-				GETDATE(),
+				@Fecha,
 				@SOL_USU_Id_Creacion,
 				@SOL_FechaModificacion,
-				@SOL_USU_Id_Modificacion
+				@SOL_USU_Id_Modificacion,
+				@FOL_Folio_Final
 			)
-			IF @FOL_Folio IS NULL
-			BEGIN
+			
+			SET @SOL_Id = @@IDENTITY
+			
+			INSERT INTO Solicitud_Documentos 
+			(
+				DOC_SOL_Id
+				, DOC_Ruta
+				, DOC_Nombre
+				, DOC_Tipo
+				, DOC_Activo
+				, DOC_FechaCarga
+				, DOC_USU_Id_Carga
+			)  
+			SELECT 	
+				@SOL_Id
+				, DOC_Ruta
+				, DOC_Nombre
+				, DOC_Tipo
+				, 1
+				, @Fecha
+				, @SOL_USU_Id_Creacion 
+			FROM @Documentos
 
-				INSERT INTO dbo.Folio_Solicitud 
-				(
-					FOL_SOL_Id
-					, FOL_Activo
-					, FOL_FechaCarga
-					, FOL_USU_Id_Carga
-					, FOL_FechaModificacion
-					, FOL_USU_Id_Modificacion
-				)
-				VALUES
-				(
-					@@IDENTITY
-					, 1
-					, GETDATE()
-					, @SOL_USU_Id_Creacion
-					, null
-					, null
-				)
-
-				SET @FOL_Folio_Final = @@IDENTITY
-
-			END
+			INSERT INTO Solicitud_Cotizacion 
+			(
+				COT_SOL_Id
+				, COT_CSS_Id
+				, COT_CTA_Id
+			)  
+			SELECT 	
+				@SOL_Id
+				, COT_CSS_Id
+				, COT_CTA_Id
+			FROM @Cotizaciones
 		
 		IF @@TRANCOUNT > 0
 			COMMIT TRAN
@@ -109,11 +147,11 @@ BEGIN
 	BEGIN CATCH
 		IF @@TRANCOUNT > 0
 			ROLLBACK TRAN
-
-		RAISERROR(16, 1, 1)
+		SELECT @error = ERROR_MESSAGE() 
+		RAISERROR(@error, 16, 1)
 	END CATCH
 	
 	
 	return @FOL_Folio_Final
 END
-GO
+

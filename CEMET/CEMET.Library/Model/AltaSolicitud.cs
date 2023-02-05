@@ -14,7 +14,7 @@ namespace Cemetlib.Model
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string ModalidadRecoleccion { get; set; }
-        public Cotizacion Cotizacion { get; set; }
+        public List<Cotizacion> Cotizaciones { get; set; }
         public string Observaciones { get; set; }
         public bool TerminosYCondiciones { get; set; }
         public List<string> UploadedDocs { get; set; }
@@ -26,5 +26,10 @@ namespace Cemetlib.Model
         public long? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
         public int? NumeroFolioSolicitud { get; set; }
+        public List<Documentos> Documentos { get; set; }
+        public float Subtotal { get; set; }
+        public float Iva { get; set; }
+        public float Total { get; set; }
+
     }
 }

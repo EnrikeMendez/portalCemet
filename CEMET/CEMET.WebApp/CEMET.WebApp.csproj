@@ -753,10 +753,12 @@
     <Content Include="Views\NotificacionDeIngreso.aspx" />
     <Content Include="Views\ProgramacionDeDevolucion.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
+    <Content Include="Views\PruebasCompletasEE.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="Views\ReporteDeDesviacion.aspx" />
     <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
     <Content Include="Views\RevisionDeListaDeEvaluacion.aspx" />
+    <Content Include="Views\Solicitudes.aspx" />
     <Content Include="_Footer.ascx" />
     <Content Include="_Header.ascx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -826,6 +828,7 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\SolicitudCreada.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -1120,6 +1123,13 @@
     <Compile Include="Views\ProgramacionDeRecoleccion.aspx.designer.cs">
       <DependentUpon>ProgramacionDeRecoleccion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\PruebasCompletasEE.aspx.cs">
+      <DependentUpon>PruebasCompletasEE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PruebasCompletasEE.aspx.designer.cs">
+      <DependentUpon>PruebasCompletasEE.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RecepcionDeMuestras.aspx.cs">
       <DependentUpon>RecepcionDeMuestras.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1148,6 +1158,13 @@
     <Compile Include="Views\RevisionDeListaDeEvaluacion.aspx.designer.cs">
       <DependentUpon>RevisionDeListaDeEvaluacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Solicitudes.aspx.cs">
+      <DependentUpon>Solicitudes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Solicitudes.aspx.designer.cs">
+      <DependentUpon>Solicitudes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="_Footer.ascx.cs">
       <DependentUpon>_Footer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1175,6 +1192,13 @@
     </Compile>
     <Compile Include="Views\PruebasParciales.aspx.designer.cs">
       <DependentUpon>PruebasParciales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolicitudCreada.aspx.cs">
+      <DependentUpon>SolicitudCreada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\SolicitudCreada.aspx.designer.cs">
+      <DependentUpon>SolicitudCreada.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1223,6 +1247,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

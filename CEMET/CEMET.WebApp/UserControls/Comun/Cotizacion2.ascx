@@ -193,6 +193,7 @@ https://learn.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/gett
                             <asp:TextBox
                                 runat="server"
                                 ID="Subtotal"
+                                ReadOnly="true"
                                 CssClass="form-control text-end"
                                 OnTextChanged="Subtotal_TextChanged" />
                             <asp:RequiredFieldValidator

@@ -8,9 +8,14 @@ namespace Cemetlib.Model
 {
     public class Cotizacion
     {
-        public int? ServiciosSolicitados { get; set; }
-        public float? Subtotal { get; set; }
-        public float? Iva { get; set; }
-        public float? Total { get; set; }
+        public int IdCotizacion { get; set; }
+
+        public string Servicio { get; set; }
+
+        public string Tarifa { get; set; }
+
+        public string IdServicio { get; set; }
+
+        public string IdTarifa { get; set; }
     }
 }
