@@ -1,4 +1,4 @@
-ALTER PROCEDURE SPC_AltaSolicitud(
+CREATE PROCEDURE dbo.[SPC_AltaSolicitud](
 	@SOL_CTS_Id varchar(3),
 	@SOL_NOR_Id varchar(3),
 	@SOL_CCA_Id varchar(3),
@@ -19,12 +19,16 @@ ALTER PROCEDURE SPC_AltaSolicitud(
 	@SOL_USU_Id_Creacion bigint,
 	@SOL_FechaModificacion datetime,
 	@SOL_USU_Id_Modificacion bigint,
-	@FOL_Folio bigint
+	@FOL_Folio bigint,
+	@Documentos dbo.Documentos READONLY,
+	@Cotizaciones dbo.Cotizaciones READONLY
 )
 AS
 BEGIN
 	DECLARE 
-		@FOL_Folio_Final bigint = @FOL_Folio
+		@FOL_Folio_Final bigint = @FOL_Folio,
+		@Fecha datetime = GETDATE(),
+		@SOL_Id bigint
 	BEGIN TRY
 
 		BEGIN TRAN
@@ -42,7 +46,7 @@ BEGIN
 				VALUES
 				(
 					 1
-					, GETDATE()
+					, @Fecha
 					, @SOL_USU_Id_Creacion
 					, null
 					, null
@@ -95,15 +99,46 @@ BEGIN
 				@SOL_Total,
 				@SOL_Observaciones,
 				@SOL_Activo,
-				GETDATE(),
+				@Fecha,
 				@SOL_USU_Id_Creacion,
 				@SOL_FechaModificacion,
 				@SOL_USU_Id_Modificacion,
 				@FOL_Folio_Final
 			)
 			
-
+			SET @SOL_Id = @@IDENTITY
 			
+			INSERT INTO Solicitud_Documentos 
+			(
+				DOC_SOL_Id
+				, DOC_Ruta
+				, DOC_Nombre
+				, DOC_Tipo
+				, DOC_Activo
+				, DOC_FechaCarga
+				, DOC_USU_Id_Carga
+			)  
+			SELECT 	
+				@SOL_Id
+				, DOC_Ruta
+				, DOC_Nombre
+				, DOC_Tipo
+				, 1
+				, @Fecha
+				, @SOL_USU_Id_Creacion 
+			FROM @Documentos
+
+			INSERT INTO Solicitud_Cotizacion 
+			(
+				COT_SOL_Id
+				, COT_CSS_Id
+				, COT_CTA_Id
+			)  
+			SELECT 	
+				@SOL_Id
+				, COT_CSS_Id
+				, COT_CTA_Id
+			FROM @Cotizaciones
 		
 		IF @@TRANCOUNT > 0
 			COMMIT TRAN
@@ -118,4 +153,4 @@ BEGIN
 	
 	return @FOL_Folio_Final
 END
-GO
+
