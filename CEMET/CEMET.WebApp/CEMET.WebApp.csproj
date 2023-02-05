@@ -826,6 +826,7 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\SolicitudCreada.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
@@ -1175,6 +1176,12 @@
     <Compile Include="Views\PruebasParciales.aspx.designer.cs">
       <DependentUpon>PruebasParciales.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\SolicitudCreada.aspx.cs">
+      <DependentUpon>SolicitudCreada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolicitudCreada.aspx.designer.cs">
+      <DependentUpon>SolicitudCreada.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1222,6 +1229,11 @@
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>
+    <MonoDevelop>
+      <Properties>
+        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+      </Properties>
+    </MonoDevelop>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

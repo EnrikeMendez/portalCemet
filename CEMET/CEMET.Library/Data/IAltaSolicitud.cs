@@ -40,6 +40,33 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitudPruebasCompletas.FechaModifica));
                 parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitudPruebasCompletas.UsuarioModifica));
                 parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitudPruebasCompletas.NumeroFolioSolicitud));
+                DataTable tablaDocumentos = new DataTable();
+
+                // Adding Columns    
+                DataColumn column = new DataColumn();
+                column.ColumnName = "DOC_Ruta";
+                column.DataType = typeof(int);
+                tablaDocumentos.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "DOC_Nombre";
+                column.DataType = typeof(string);
+                tablaDocumentos.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "Doc_Tipo";
+                column.DataType = typeof(string);
+                tablaDocumentos.Columns.Add(column);
+                foreach (Documentos doc in solicitudPruebasCompletas.Documentos)
+                {
+                    DataRow DR = tablaDocumentos.NewRow();
+                    DR[0] = doc.Ruta;
+                    DR[1] = doc.Nombre;
+                    DR[2] = doc.Tipo;
+                    tablaDocumentos.Rows.Add(DR);
+                }
+                parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, tablaDocumentos));
+
                 numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
 
             }

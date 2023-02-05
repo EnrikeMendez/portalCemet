@@ -58,6 +58,7 @@ namespace CEMET.WebApp.Views
             Cotizacion.Iva = "1.16";
             Cotizacion.SubTotal = "11.6";
             Cotizacion.Total = "12.22";
+
         }
         private void CrearDto()
         {
@@ -86,8 +87,27 @@ namespace CEMET.WebApp.Views
                 Iva = float.Parse(Cotizacion.Iva),
                 Total = float.Parse(Cotizacion.Total)
             };
+
+            List<Documentos> documentosSolicitud = new List<Documentos>();
+            documentosSolicitud.Add(new Documentos
+            {
+                Ruta = InstructivoManual.SavePath
+                , Nombre = InstructivoManual.NombreArchivo
+                , Tipo = "" //Insertar el tipo 
+            });
+            documentosSolicitud.Add(new Documentos
+            {
+                Ruta = DocsAdicionales.SavePath
+                , Nombre = DocsAdicionales.NombreArchivo
+                , Tipo = "" //Insertar el tipo 
+            });
+            solicitudPruebasCompletas.Documentos = documentosSolicitud;
+
+            
             int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
             Folio.Text = $"Folio guardado {idFolio}";
+
+
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)

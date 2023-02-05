@@ -3,7 +3,7 @@
     <div class="py-5 text-center">
         <h1>Solicitud creada correctamente</h1>
         <label>Se ha creado correctamente la solicitud con el folio numero: </label>
-        <asp:Label runat="server" ID="solicitud"></asp:Label>
+        <asp:Label runat="server" ID="lb_solicitud"></asp:Label>
     </div>
 
 </asp:Content>

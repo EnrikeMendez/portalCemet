@@ -38,7 +38,7 @@ namespace CEMET.WebApp.UserControls.Comun
         public string MensajeParaCampoRequerido { get; set; }
         public string ClaseParaMensajeDeRequerido { get; set; }
         public bool ModoLectura { get; set; }
-
+        public string NombreArchivo { get; set; }
 
         /// <summary>
         /// Comma separated
@@ -155,7 +155,7 @@ namespace CEMET.WebApp.UserControls.Comun
 
                         // Append the name of the uploaded file to the path.
                         var path = Path.Combine(SavePath, fileName);
-
+                        NombreArchivo = fileName;
                         if (File.Exists(path))
                         {
                             File.Delete(path);
