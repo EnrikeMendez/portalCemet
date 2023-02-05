@@ -25,7 +25,7 @@ namespace CEMET.WebApp.Views
             string appPath = Request.PhysicalApplicationPath;
             string saveDir = @"Uploads\" + "Usuario123";
 
-            SubirArchivo.SavePath = Path.Combine(appPath, saveDir);
+            //SubirArchivo.SavePath = Path.Combine(appPath, saveDir);
 
             if (IsPostBack)
             {
