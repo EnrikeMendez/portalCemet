@@ -35,6 +35,22 @@ namespace CEMET.WebApp.UserControls.Comun
             get { return (List<CotizacionModel>)Session[CotizacionesLstKey]; }
             set { Session[CotizacionesLstKey] = value; }
         }
+        public string SubTotal
+        {
+            get
+            {
+                var totalTxt = BuscaControlEnTemplate<TextBox>(idControl: "Total");
+                return totalTxt.Text;
+            }
+        }
+        public string Total
+        {
+            get
+            {
+                var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
+                return subTxt.Text;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -87,7 +103,7 @@ namespace CEMET.WebApp.UserControls.Comun
         {
             //if (ActualizacionAutomatica.Checked)
             //{
-                ActualizaSubTotalIVA();
+            ActualizaSubTotalIVA();
             //}
 
             ActualizaTotal();
@@ -166,6 +182,7 @@ namespace CEMET.WebApp.UserControls.Comun
                     subTxt.Text = string.Empty;
                     ivaTxt.Text = string.Empty;
                 }
+
             }
         }
 
@@ -200,7 +217,9 @@ namespace CEMET.WebApp.UserControls.Comun
                 {
                     totalTxt.Text = 0.ToString();
                 }
+
             }
+
         }
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)

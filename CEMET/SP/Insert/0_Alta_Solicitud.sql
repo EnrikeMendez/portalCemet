@@ -1,4 +1,4 @@
-CREATE PROCEDURE dbo.[SPC_AltaSolicitud](
+ALTER PROCEDURE dbo.[SPC_AltaSolicitud](
 	@SOL_CTS_Id varchar(3),
 	@SOL_NOR_Id varchar(3),
 	@SOL_CCA_Id varchar(3),
@@ -28,7 +28,8 @@ BEGIN
 	DECLARE 
 		@FOL_Folio_Final bigint = @FOL_Folio,
 		@Fecha datetime = GETDATE(),
-		@SOL_Id bigint
+		@SOL_Id bigint,
+		@error varchar(300)
 	BEGIN TRY
 
 		BEGIN TRAN
@@ -146,8 +147,8 @@ BEGIN
 	BEGIN CATCH
 		IF @@TRANCOUNT > 0
 			ROLLBACK TRAN
-
-		RAISERROR(16, 1, 1)
+		SELECT @error = ERROR_MESSAGE() 
+		RAISERROR(@error, 16, 1)
 	END CATCH
 	
 	

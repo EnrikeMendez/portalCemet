@@ -39,9 +39,9 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_Marca", SqlDbType.VarChar, solicitudPruebasCompletas.Marca));
                 parameters.Add(DB.CrearParametroSql("@SOL_Modelo", SqlDbType.VarChar, solicitudPruebasCompletas.Modelo));
                 parameters.Add(DB.CrearParametroSql("@SOL_Calibre", SqlDbType.VarChar, solicitudPruebasCompletas.Calibre));
-                parameters.Add(DB.CrearParametroSql("@SOL_Subtotal", SqlDbType.Float, solicitudPruebasCompletas.Cotizacion.Subtotal));
-                parameters.Add(DB.CrearParametroSql("@SOL_Iva", SqlDbType.Float, solicitudPruebasCompletas.Cotizacion.Iva));
-                parameters.Add(DB.CrearParametroSql("@SOL_Total", SqlDbType.VarChar, solicitudPruebasCompletas.Cotizacion.Total));
+                parameters.Add(DB.CrearParametroSql("@SOL_Subtotal", SqlDbType.Float, solicitudPruebasCompletas.Subtotal));
+                parameters.Add(DB.CrearParametroSql("@SOL_Iva", SqlDbType.Float, solicitudPruebasCompletas.Iva));
+                parameters.Add(DB.CrearParametroSql("@SOL_Total", SqlDbType.VarChar, solicitudPruebasCompletas.Total));
                 parameters.Add(DB.CrearParametroSql("@SOL_Observaciones", SqlDbType.VarChar, solicitudPruebasCompletas.Observaciones));
                 parameters.Add(DB.CrearParametroSql("@SOL_Activo", SqlDbType.Bit, solicitudPruebasCompletas.Activo));
                 parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Creacion", SqlDbType.BigInt, solicitudPruebasCompletas.UsuarioCrea));
@@ -75,10 +75,29 @@ namespace Cemetlib.Data
                 }
                 parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, tablaDocumentos));
 
+                DataTable tablaCotizacion = new DataTable();
+                column = new DataColumn();
+                column.ColumnName = "COT_CSS_Id";
+                column.DataType = typeof(string);
+                tablaCotizacion.Columns.Add(column);
+
+                column = new DataColumn();
+                column.ColumnName = "COT_CTA_Id";
+                column.DataType = typeof(string);
+                tablaCotizacion.Columns.Add(column);
+                foreach (Cotizacion cotizacion in solicitudPruebasCompletas.Cotizaciones)
+                {
+                    DataRow DR = tablaCotizacion.NewRow();
+                    DR[0] = cotizacion.IdServicio;
+                    DR[1] = cotizacion.IdTarifa;
+                    tablaCotizacion.Rows.Add(DR);
+                }
+                parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, tablaCotizacion));
+
                 numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
