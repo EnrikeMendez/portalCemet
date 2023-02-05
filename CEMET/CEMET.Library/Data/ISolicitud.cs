@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Data
 {
-    public static class IAltaSolicitud
+    public static class ISolicitud
     {
+        public static DataTable ObtenerSolicitudes()
+        {
+            DB context = new DB();
+            string query = $@"SELECT * FROM Solicitud_Servicio 
+                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id";
+            DataTable catalogo = context.ObtieneDataTable(query);
+            return catalogo;
+        }
         public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas)
         {
             int numeroSolicitud = 0;

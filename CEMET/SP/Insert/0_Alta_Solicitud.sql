@@ -28,6 +28,28 @@ BEGIN
 	BEGIN TRY
 
 		BEGIN TRAN
+			IF @FOL_Folio IS NULL
+			BEGIN
+
+				INSERT INTO dbo.Folio_Solicitud 
+				(
+					FOL_Activo
+					, FOL_FechaCarga
+					, FOL_USU_Id_Carga
+					, FOL_FechaModificacion
+					, FOL_USU_Id_Modificacion
+				)
+				VALUES
+				(
+					 1
+					, GETDATE()
+					, @SOL_USU_Id_Creacion
+					, null
+					, null
+				)
+
+				SET @FOL_Folio_Final = @@IDENTITY
+			END
 
 			INSERT INTO dbo.[Solicitud_Servicio]
 			(
@@ -51,7 +73,8 @@ BEGIN
 				SOL_FechaCreacion,
 				SOL_USU_Id_Creacion,
 				SOL_FechaModificacion,
-				SOL_USU_Id_Modificacion
+				SOL_USU_Id_Modificacion,
+				SOL_Folio
 			)
 			VALUES
 			(
@@ -75,33 +98,12 @@ BEGIN
 				GETDATE(),
 				@SOL_USU_Id_Creacion,
 				@SOL_FechaModificacion,
-				@SOL_USU_Id_Modificacion
+				@SOL_USU_Id_Modificacion,
+				@FOL_Folio_Final
 			)
-			IF @FOL_Folio IS NULL
-			BEGIN
+			
 
-				INSERT INTO dbo.Folio_Solicitud 
-				(
-					FOL_SOL_Id
-					, FOL_Activo
-					, FOL_FechaCarga
-					, FOL_USU_Id_Carga
-					, FOL_FechaModificacion
-					, FOL_USU_Id_Modificacion
-				)
-				VALUES
-				(
-					@@IDENTITY
-					, 1
-					, GETDATE()
-					, @SOL_USU_Id_Creacion
-					, null
-					, null
-				)
-
-				SET @FOL_Folio_Final = @@IDENTITY
-
-			END
+			
 		
 		IF @@TRANCOUNT > 0
 			COMMIT TRAN
