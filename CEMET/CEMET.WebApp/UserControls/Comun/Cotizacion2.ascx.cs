@@ -34,6 +34,24 @@ namespace CEMET.WebApp.UserControls.Comun
             set { Session[CotizacionesLstKey] = value; }
         }
 
+        public string SubTotal
+        {
+            get
+            {
+                var totalTxt = BuscaControlEnTemplate<TextBox>(idControl: "Total");
+                return totalTxt.Text;
+            }
+        }
+
+        public string Total
+        {
+            get
+            {
+                var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
+                return subTxt.Text;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -48,7 +66,6 @@ namespace CEMET.WebApp.UserControls.Comun
 
                 Controles.FillDropDownList(Tarifa, CatalogService.GetCatTarifas(), agregarOpcionSeleccionar: true);
 
-                //cotizacionList.DataSource = null;
                 cotizacionList.DataSource = Cotizaciones;
                 cotizacionList.DataBind();
 
@@ -101,7 +118,6 @@ namespace CEMET.WebApp.UserControls.Comun
 
                 AgregarServTarBtn.Enabled = true;
 
-                //cotizacionList.DataSource = null;
                 cotizacionList.DataSource = Cotizaciones;
                 cotizacionList.DataBind();
             }
@@ -118,7 +134,6 @@ namespace CEMET.WebApp.UserControls.Comun
             string value = btn.CommandArgument;
             var removed = Cotizaciones.RemoveAll(x => x.IdCotizacion.Equals(int.Parse(value)));
 
-            //cotizacionList.DataSource = null;
             cotizacionList.DataSource = Cotizaciones;
             cotizacionList.DataBind();
         }
