@@ -1,66 +1,66 @@
-﻿using System;
+﻿using CEMET.WebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.UserControls.Comun
 {
     public partial class SubirArchivo : System.Web.UI.UserControl
     {
-
-        const string SuccessMessageDefault = "Se subió el archivo {0} correctamente.";
         const string MaxSizeErrorMessageDefault = "El archivo {0} supera el máximo permitido en bytes que es {1}.";
         const string ExtensionNotAllowedErrorMessageDefault = "El archivo {0} no se subió debido a que no tiene la extensión {1}.";
-        const string NoFileMessageDefault = "No has especificado algún archivo para subir.";
-        const string ClaseParaArchivoComoLinkDefault = "btn btn-link";
         const string ClaseParaCampoRequeridoDefault = "required-field";
-        const string MensajeParaCampoRequeridoDefault = "La carga de documentos es requerido";
-        const string ClaseParaMensajeDeRequeridoDefault = "text-danger";
 
-        public EventHandler OnClickEvent { get; set; }
+        private const string DocumentosLstKey = "ListaDeDocumentosLstKey";
+        private const string ValidationGroupFormKey = "ValidationGroupSubArcFormLst";
+
         public string SavePath { get; set; }
-        public string SuccessMessage { get; set; }
         public string MaxSizeErrorMessage { get; set; }
         public string ExtensionNotAllowedErrorMessage { get; set; }
-        public string NoFileMessage { get; set; }
-        public string SeparadorDeMensaje { get; set; }
-        public bool VisualizaNombreDeArchivoComoLink { get; set; }
-        public string ClaseParaArchivoComoLink { get; set; }
         public string Etiqueta { get; set; }
-        public string DescargarNombreFuncion { get; set; }
-        public IDictionary<string, string> MapeoDeArchivos { get; private set; }
+        public List<DocumentoModel> ListaDeDocumentos
+        {
+            get { return (List<DocumentoModel>)Session[DocumentosLstKey]; }
+            set { Session[DocumentosLstKey] = value; }
+        }
         public bool EsRequerido { get; set; }
         public string ClaseParaCampoRequerido { get; set; }
         public bool CargaMultiple { get; set; }
-        public string MensajeParaCampoRequerido { get; set; }
-        public string ClaseParaMensajeDeRequerido { get; set; }
         public bool ModoLectura { get; set; }
-
-
+        public string ValidationGroupForm
+        {
+            get { return (string)Session[ValidationGroupFormKey]; }
+            set { Session[ValidationGroupFormKey] = value; }
+        }
         /// <summary>
         /// Comma separated
         /// </summary>
         public string Extensiones { get; set; }
-
         public int? MaxSizeInBytes { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            UploadButton.Click += new EventHandler(UploadButton_Click);
-
-            if (OnClickEvent != null)
+            if (IsPostBack)
             {
-                UploadButton.Click += OnClickEvent;
+                ErrorMessagesContainer.InnerHtml = string.Empty;
+                ErrorMessagesContainer.Visible = false;
             }
-
-            if (!IsPostBack)
+            else
             {
+                ListaDeDocumentos = new List<DocumentoModel>();
+                DocumentosListView.DataSource = ListaDeDocumentos;
+                DocumentosListView.DataBind();
+
                 if (!string.IsNullOrWhiteSpace(Etiqueta))
                 {
                     UploadTitle.Text = Etiqueta;
+                }
+
+                if (!string.IsNullOrWhiteSpace(Extensiones))
+                {
+                    UploadTitle.Text = string.Concat(UploadTitle.Text, " ", "(", Extensiones.ToLower(), ")");
                 }
 
                 if (EsRequerido)
@@ -68,7 +68,7 @@ namespace CEMET.WebApp.UserControls.Comun
                     var requeridCss = ClaseParaCampoRequerido ?? ClaseParaCampoRequeridoDefault;
 
                     if (!string.IsNullOrWhiteSpace(UploadTitle.CssClass)
-                        && !UploadTitle.CssClass.Trim().Split(' ').Select(x => x.ToLower()).Any(x => x.Equals(requeridCss)))
+                        && !UploadTitle.CssClass.Trim().Split(' ').Select(x => x.Trim()).Any(x => x.Equals(requeridCss)))
                     {
                         UploadTitle.CssClass = UploadTitle.CssClass + " " + requeridCss;
                     }
@@ -84,44 +84,34 @@ namespace CEMET.WebApp.UserControls.Comun
                 {
                     FileUpload1.Visible = false;
                     UploadButton.Visible = false;
-                    //var cssC = docsContainer.Attributes["class"];
-                    //cssC = cssC.Replace("col-md-6", "col-md-12");
-                    //docsContainer.Attributes.Remove("class");
-                    //docsContainer.Attributes.Add("class", cssC);
-
-                    //btnContainer.Visible = false;
                 }
+
+                if (!string.IsNullOrEmpty(ValidationGroupForm) && EsRequerido)
+                {
+                    CustomValidator1.ValidationGroup = ValidationGroupForm;
+                }
+            }
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (EsRequerido)
+            {
+                args.IsValid = ListaDeDocumentos.Any();
             }
             else
             {
-                if (EsRequerido && !FileUpload1.HasFiles)
-                {
-                    var msgReq = MensajeParaCampoRequerido ?? MensajeParaCampoRequeridoDefault;
-                    var cssMsgReq = ClaseParaMensajeDeRequerido ?? ClaseParaMensajeDeRequeridoDefault;
-                    var css = UploadStatusLabel.Attributes["class"] ?? string.Empty;
-
-                    if (!css.Trim().Split(' ').Select(x => x.ToLower()).Any(x => x.Equals(cssMsgReq)))
-                    {
-                        UploadStatusLabel.Attributes.Remove("class");
-                        UploadStatusLabel.Attributes.Add("class", (css + " " + cssMsgReq).Trim());
-                    }
-                    //.Add("class", cssMsgReq);
-                    UploadStatusLabel.InnerHtml = msgReq;
-                    return;
-                }
-
+                args.IsValid = true;
             }
         }
+
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
             if (FileUpload1.HasFiles)
             {
-                var messages = new List<string>();
-                var fileMapping = new Dictionary<string, string>();
+                var errorMessages = new List<string>();
                 var msg = string.Empty;
-
-                UploadStatusLabel.Attributes.CssStyle.Remove("class");
 
                 foreach (var file in FileUpload1.PostedFiles)
                 {
@@ -136,7 +126,7 @@ namespace CEMET.WebApp.UserControls.Comun
                         if (MaxSizeInBytes.HasValue && fileSize < MaxSizeInBytes.Value)
                         {
                             // Notify the user why their file was not uploaded.
-                            messages.Add(string.Format(MaxSizeErrorMessage ?? MaxSizeErrorMessageDefault, fileName, MaxSizeInBytes.Value));
+                            errorMessages.Add(string.Format(MaxSizeErrorMessage ?? MaxSizeErrorMessageDefault, fileName, MaxSizeInBytes.Value));
                             continue;
                         }
 
@@ -145,7 +135,7 @@ namespace CEMET.WebApp.UserControls.Comun
                             && !Extensiones.Split(',').Select(x => x.ToLowerInvariant().Trim()).Any(y => y.Equals(extension.ToLowerInvariant())))
                         {
                             // Notify the user why their file was not uploaded.
-                            messages.Add(string.Format(ExtensionNotAllowedErrorMessage ?? ExtensionNotAllowedErrorMessageDefault,
+                            errorMessages.Add(string.Format(ExtensionNotAllowedErrorMessage ?? ExtensionNotAllowedErrorMessageDefault,
                                 fileName,
                                 Extensiones));
                             continue;
@@ -158,6 +148,7 @@ namespace CEMET.WebApp.UserControls.Comun
 
                         if (File.Exists(path))
                         {
+                            var docDel = ListaDeDocumentos.RemoveAll(x => x.Path.Equals(path));
                             File.Delete(path);
                         }
 
@@ -171,64 +162,103 @@ namespace CEMET.WebApp.UserControls.Comun
                         FileUpload1.SaveAs(path);
 
                         // Notify the user that the file was uploaded successfully.
-
-                        if (VisualizaNombreDeArchivoComoLink)
-                        {
-                            //msg = string.Format(SuccessMessage ?? SuccessMessageDefault, fileName);
-                            //Button button = new Button
-                            //{
-                            //    CssClass = ClaseParaArchivoComoLink ?? ClaseParaArchivoComoLinkDefault
-                            //};
-                            //button.Click += OnDownloadClickEvent;
-                            //button.Text = msg;
-
-                            //msg = "<button type=\"button\" OnClick=\"DonwloadButton_Click(event)\" class=\"" + (ClaseParaArchivoComoLink ?? ClaseParaArchivoComoLinkDefault) + "\" data-fileName=\"" + fileName + "\">" + string.Format(SuccessMessage ?? SuccessMessageDefault, fileName) + "</button>";
-                            msg = "<button type=\"button\" OnClick=\"" + DescargarNombreFuncion + "(event)\" class=\"" + (ClaseParaArchivoComoLink ?? ClaseParaArchivoComoLinkDefault) + "\" data-fileName=\"" + fileName + "\">" + string.Format(SuccessMessage ?? SuccessMessageDefault, fileName) + "</button>";
-                            //UploadStatusLabel.Controls.Add(button);
-                        }
-                        else
-                        {
-
-                            msg = string.Format(SuccessMessage ?? SuccessMessageDefault, fileName);
-                            //Label label = new Label
-                            //{
-                            //    CssClass = "",
-                            //    Text = msg
-                            //};
-
-                            //UploadStatusLabel.Controls.Add(label);
-                        }
                         //messages.Add(msg);
 
                         //We save the path in case user want to see it
-                        fileMapping.Add(fileName, path);
+                        ListaDeDocumentos.Add(new DocumentoModel
+                        {
+                            IdDocumento = ListaDeDocumentos.Count,
+                            Nombre = fileName,
+                            Path = path
+                        });
+                        DocumentosListView.DataSource = ListaDeDocumentos;
+                        DocumentosListView.DataBind();
                     }
                     catch (Exception ex)
                     {
                         msg = "Excepción para el archivo " + Server.HtmlEncode(file.FileName) + " " + ex.Message;
-                        //messages.Add(msg);
-                        //Label label = new Label
-                        //{
-                        //    CssClass = "",
-                        //    Text = msg
-                        //};
-                        //UploadStatusLabel.Controls.Add(label);
+                        errorMessages.Add(msg);
                     }
-                    messages.Add(msg);
                 }
 
-                if (messages.Any())
+                if (errorMessages.Any())
                 {
-                    UploadStatusLabel.InnerHtml = string.Join(SeparadorDeMensaje ?? "<br />", messages.ToArray());
+                    ErrorMessagesContainer.Visible = true;
+                    ErrorMessagesContainer.InnerHtml = string.Join("<br />", errorMessages.ToArray());
                 }
-
-                MapeoDeArchivos = fileMapping;
             }
             else
             {
                 // Notify the user that a file was not uploaded.
-                UploadStatusLabel.InnerHtml = NoFileMessage ?? NoFileMessageDefault;
+                //UploadStatusLabel.InnerHtml = NoFileMessage ?? NoFileMessageDefault;
             }
+        }
+
+        protected void DocumentosListView_LayoutCreated(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DocumentosListView_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void EliminaDocumento_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            string value = btn.CommandArgument;
+            var removed = ListaDeDocumentos.RemoveAll(x => x.IdDocumento.Equals(int.Parse(value)));
+
+            DocumentosListView.DataSource = ListaDeDocumentos;
+            DocumentosListView.DataBind();
+        }
+
+        protected void DescargaDocumento_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = sender as LinkButton;
+            string value = btn.CommandArgument;
+            var documento = ListaDeDocumentos.FirstOrDefault(x => x.IdDocumento == int.Parse(value));
+
+            Response.Clear();
+            Response.AddHeader("content-type", GetContentType(Path.GetExtension(path: documento.Path).ToLower()));
+            Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", documento.Nombre));
+            Response.TransmitFile(documento.Path);
+            Response.End();
+        }
+
+        private string GetContentType(string extension)
+        {
+            //https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+            var mediaType = "application /octet-stream";
+
+            switch (extension)
+            {
+                case ".txt":
+                    mediaType = "text/plain";
+                    break;
+                case ".jpeg":
+                case ".jpg":
+                    mediaType = "image/jpeg";
+                    break;
+                case ".png":
+                    mediaType = "image/png";
+                    break;
+                case ".doc":
+                    mediaType = "application/msword";
+                    break;
+                case ".docx":
+                    mediaType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    break;
+                case ".xls":
+                    mediaType = "application/vnd.ms-excel";
+                    break;
+                case ".xlsx":
+                    mediaType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    break;
+            }
+
+            return mediaType;
         }
     }
 }

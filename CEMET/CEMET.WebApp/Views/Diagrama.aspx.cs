@@ -22,6 +22,11 @@ namespace CEMET.WebApp.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string appPath = Request.PhysicalApplicationPath;
+            string saveDir = @"Uploads\" + "Usuario123";
+
+            SubirArchivo.SavePath = Path.Combine(appPath, saveDir);
+
             if (IsPostBack)
             {
 
@@ -31,8 +36,6 @@ namespace CEMET.WebApp.Views
 
                 //the page is being rendered for the first time
                 Controles.FillDropDownList(TipoDeServicio, CatalogService.GetCatTipoDeServicio(), agregarOpcionSeleccionar: true);
-
-                //Controles.FillDropDownList(Norma, CatalogService.GetCatNorma(), agregarOpcionSeleccionar: true);
 
                 Controles.FillDropDownList(Voltaje, CatalogService.GetCatVoltaje(), agregarOpcionSeleccionar: true);
 
@@ -45,11 +48,6 @@ namespace CEMET.WebApp.Views
                 Controles.FillDropDownList(DiasHabiles, CatalogService.GetCatDiasHabilesPorNorma(), agregarOpcionSeleccionar: true);
 
                 Controles.FillDropDownList(ModalidadDeEntrega, CatalogService.GetCatModalidadDeEntrega(), agregarOpcionSeleccionar: true);
-
-                //Cotizacion2.ValidationGroupForm = TipoDeServicioReqVal.ValidationGroup;
-                //Cotizacion2.ValorIVA = 0.16;
-                //var g = new tr
-
             }
         }
 

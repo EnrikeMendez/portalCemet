@@ -4,8 +4,6 @@ using Cemetlib.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.UserControls.Comun
@@ -14,7 +12,7 @@ namespace CEMET.WebApp.UserControls.Comun
     {
         //https://learn.microsoft.com/en-us/previous-versions/dotnet/articles/ms972429(v=msdn.10)?redirectedfrom=MSDN
         private const string CotizacionesLstKey = "CotizacionesTableLst";
-        private const string ValidationGroupFormKey = "ValidationGroupFormLst";
+        private const string ValidationGroupFormKey = "ValidationGroupCotFormLst";
         private const string ValorIVAKey = "ValorIvaFormLst";
 
         public double ValorIVA
@@ -38,8 +36,6 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ActualizacionAutomatica.InputAttributes.Add("class", "form-check-input");
-
             if (IsPostBack)
             {
 
@@ -52,7 +48,7 @@ namespace CEMET.WebApp.UserControls.Comun
 
                 Controles.FillDropDownList(Tarifa, CatalogService.GetCatTarifas(), agregarOpcionSeleccionar: true);
 
-                cotizacionList.DataSource = null;
+                //cotizacionList.DataSource = null;
                 cotizacionList.DataSource = Cotizaciones;
                 cotizacionList.DataBind();
 
@@ -67,6 +63,9 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void cotizacionList_LayoutCreated(object sender, EventArgs e)
         {
+            var ivaLbl = BuscaControlEnTemplate<Label>(idControl: "IVALabel");
+            ivaLbl.Text = ivaLbl.Text.Trim().Replace("0", (ValorIVA * 100).ToString() + "%");
+
             if (!string.IsNullOrEmpty(ValidationGroupForm))
             {
                 var subtotalVal = BuscaControlEnTemplate<RequiredFieldValidator>(idControl: "SubtotalReqValidator");
@@ -77,19 +76,12 @@ namespace CEMET.WebApp.UserControls.Comun
 
                 var totalVal = BuscaControlEnTemplate<RequiredFieldValidator>(idControl: "TotalReqValidator");
                 totalVal.ValidationGroup = ValidationGroupForm;
-
-                var ivaLbl = BuscaControlEnTemplate<Label>(idControl: "IVALabel");
-                ivaLbl.Text = ivaLbl.Text.Trim().Replace("0", (ValorIVA * 100).ToString() + "%");
             }
         }
 
         protected void cotizacionList_DataBound(object sender, EventArgs e)
         {
-            //if (ActualizacionAutomatica.Checked)
-            //{
-                ActualizaSubTotalIVA();
-            //}
-
+            ActualizaSubTotalIVA();
             ActualizaTotal();
         }
 
@@ -109,7 +101,7 @@ namespace CEMET.WebApp.UserControls.Comun
 
                 AgregarServTarBtn.Enabled = true;
 
-                cotizacionList.DataSource = null;
+                //cotizacionList.DataSource = null;
                 cotizacionList.DataSource = Cotizaciones;
                 cotizacionList.DataBind();
             }
@@ -126,7 +118,7 @@ namespace CEMET.WebApp.UserControls.Comun
             string value = btn.CommandArgument;
             var removed = Cotizaciones.RemoveAll(x => x.IdCotizacion.Equals(int.Parse(value)));
 
-            cotizacionList.DataSource = null;
+            //cotizacionList.DataSource = null;
             cotizacionList.DataSource = Cotizaciones;
             cotizacionList.DataBind();
         }
@@ -185,7 +177,6 @@ namespace CEMET.WebApp.UserControls.Comun
                     total += number;
                 }
 
-
                 if (!string.IsNullOrWhiteSpace(ivaTxt.Text) &&
                     double.TryParse(ivaTxt.Text.Replace(",", string.Empty).Replace("$", string.Empty).Replace(" ", string.Empty), out number))
                 {
@@ -210,7 +201,7 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void Subtotal_TextChanged(object sender, EventArgs e)
         {
-            var f = 0;
+            
         }
     }
 }

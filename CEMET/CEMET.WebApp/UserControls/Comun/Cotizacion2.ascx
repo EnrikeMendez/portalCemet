@@ -29,7 +29,6 @@
             }
         </script>
 
-
         <div class="input-group mb-3">
             <asp:DropDownList
                 runat="server"
@@ -57,14 +56,6 @@
                 OnClick="AgregarServTarBtn_Click"
                 Text="Agregar"
                 CssClass="btn btn-outline-secondary" />
-
-            <div class="input-group-text">
-                <asp:CheckBox
-                    runat="server"
-                    Visible="false"
-                    ID="ActualizacionAutomatica"
-                    CssClass="" />
-            </div>
         </div>
     </div>
 

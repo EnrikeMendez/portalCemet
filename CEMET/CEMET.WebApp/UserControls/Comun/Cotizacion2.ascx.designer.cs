@@ -42,15 +42,6 @@ namespace CEMET.WebApp.UserControls.Comun
         protected global::System.Web.UI.WebControls.Button AgregarServTarBtn;
 
         /// <summary>
-        /// ActualizacionAutomatica control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ActualizacionAutomatica;
-
-        /// <summary>
         /// CustomValidator1 control.
         /// </summary>
         /// <remarks>

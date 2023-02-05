@@ -976,6 +976,7 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\CotizacionModel.cs" />
+    <Compile Include="Models\DocumentoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Forms.Master.cs">
