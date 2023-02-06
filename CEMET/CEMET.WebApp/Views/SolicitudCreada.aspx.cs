@@ -44,5 +44,10 @@ namespace CEMET.WebApp.Views
 
             Response.Redirect($"{pagina}.aspx?folio={folioSolicitud}");
         }
+
+        protected void No_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Default.aspx");
+        }
     }
 }

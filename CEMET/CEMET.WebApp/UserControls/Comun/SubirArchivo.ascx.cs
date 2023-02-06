@@ -96,7 +96,7 @@ namespace CEMET.WebApp.UserControls.Comun
                     CustomValidator1.ValidationGroup = ValidationGroupForm;
                 }
 
-                if (!string.IsNullOrEmpty(ClientValidationFunctionForValidator))
+                if (!string.IsNullOrEmpty(ClientValidationFunctionForValidator) && EsRequerido)
                 {
                     CustomValidator1.ClientValidationFunction = ClientValidationFunctionForValidator;
                 }

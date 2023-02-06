@@ -156,7 +156,6 @@ https://learn.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/gett
                             <asp:TextBox
                                 runat="server"
                                 ID="Subtotal"
-                                ReadOnly="true"
                                 CssClass="form-control text-end"
                                 OnTextChanged="Subtotal_TextChanged" />
                             <asp:RequiredFieldValidator
@@ -207,7 +206,7 @@ https://learn.microsoft.com/en-us/aspnet/web-forms/overview/getting-started/gett
                                 runat="server"
                                 ID="Total"
                                 ReadOnly="true"
-                                CssClass="form-control text-end" />
+                                CssClass="form-control text-end bg-gray-200" />
                             <asp:RequiredFieldValidator
                                 ID="TotalReqValidator"
                                 runat="server"

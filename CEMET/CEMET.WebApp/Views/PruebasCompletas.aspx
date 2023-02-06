@@ -9,9 +9,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
         <h1>Alta de nuevo servicio</h1>
-        <asp:Label runat="server" ID="Folio"></asp:Label>
+        
+        <h3 id="FolioContainer" runat="server" visible="false"><asp:Label runat="server" ID="Folio" CssClass="badge bg-success"></asp:Label></h3>
     </div>
-    <div class="container py-12">
+    <div class="container">
 
         <div class="d-flex align-items-center mb-3 mt-2">
             <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
@@ -166,9 +167,7 @@
 
         <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasCompletasValGroup" />
 
-        <hr class="my-4">
-
-        <div class="row">
+        <div class="row mt-3">
             <div class="col">
                 <asp:Button ID="GuardaPruebCompBtn" runat="server" ValidationGroup="PruebasCompletasValGroup" Text="Guardar" CssClass="btn btn-primary" OnClick="GuardaPruebCompBtn_Click" />
             </div>

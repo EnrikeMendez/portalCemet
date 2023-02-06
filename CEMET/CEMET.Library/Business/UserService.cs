@@ -28,5 +28,26 @@ namespace Cemetlib.Business
             throw new NotImplementedException();
         }
         
+        public static bool ValidaFolio(string folio, out bool redirect)
+        {
+            redirect = false;
+            var respuesta = false;
+
+            if (!string.IsNullOrWhiteSpace(folio))
+            {
+                if (int.TryParse(folio.Trim(), out var noFolio))
+                {
+                    //función que valida que el numero recuperado exista y no solo lo haya puesto el usuario...
+                    //si noFolio no existe y/o no le pertenece.... Redirect
+                    respuesta = true;
+                }
+                else
+                {
+                    redirect = true;
+                }
+            }
+
+            return respuesta;
+        }
     }
 }

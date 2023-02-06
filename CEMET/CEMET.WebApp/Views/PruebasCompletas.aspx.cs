@@ -17,7 +17,7 @@ namespace CEMET.WebApp.Views
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            string saveDirIns = @"Uploads\"+ usuarioId + @"\PruebasCompletas\InstructivoManual" ;
+            string saveDirIns = @"Uploads\" + usuarioId + @"\PruebasCompletas\InstructivoManual";
             string saveDirDocs = @"Uploads\" + usuarioId + @"\PruebasCompletas\DocsAdicionales";
 
             InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
@@ -29,11 +29,26 @@ namespace CEMET.WebApp.Views
             }
             else
             {
+                var folio = Request.QueryString["folio"];
+
+                if (UserService.ValidaFolio(folio: folio, out var redirect))
+                {
+                    if (redirect)
+                    {
+                        //porque no tiene permisos
+                        Response.Redirect("../Default.aspx");
+                        //porque no le pertenece el folio
+                        Response.Redirect("PruebasCompletas.aspx");
+                    }
+                    FolioContainer.Visible = true;
+                    Folio.Text = string.Concat("Folio ", folio.Trim());
+                }
+
                 FillCatalogs();
                 FillDummyData();
-
             }
         }
+
         private void FillCatalogs()
         {
             List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
@@ -57,11 +72,6 @@ namespace CEMET.WebApp.Views
             Categoria.Text = "Test categoria";
             ReferenciaCertificacion.Text = "Test referencia";
             Observaciones.Obs = "Test observaciones";
-            /*
-            Cotizacion2.Iva = "1.16";
-            Cotizacion2.SubTotal = "11.6";
-            Cotizacion2.Total = "12.22";
-            */
         }
         private void CrearDto()
         {
@@ -102,18 +112,29 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.Iva = (float)Cotizacion2.ValorIVA;
 
             List<Documentos> documentosSolicitud = new List<Documentos>();
-            //documentosSolicitud.Add(new Documentos
-            //{
-            //    Ruta = InstructivoManual.SavePath,
-            //    Nombre = InstructivoManual.NombreArchivo,
-            //    Tipo = "" //Insertar el tipo 
-            //});
-            //documentosSolicitud.Add(new Documentos
-            //{
-            //    Ruta = DocsAdicionales.SavePath,
-            //    Nombre = DocsAdicionales.NombreArchivo,
-            //    Tipo = "" //Insertar el tipo 
-            //});
+
+            //This is required
+            documentosSolicitud.AddRange(
+                InstructivoManual.ListaDeDocumentos.Select(x => new Documentos
+                {
+                    Nombre = x.Nombre,
+                    Ruta = "1",//InstructivoManual.SavePath, //con string truena
+                    Tipo = "1"//Tipo instructivo
+                })
+            );
+
+            if (documentosSolicitud.Any())
+            {
+                documentosSolicitud.AddRange(
+                   DocsAdicionales.ListaDeDocumentos.Select(x => new Documentos
+                   {
+                       Nombre = x.Nombre,
+                       Ruta = "2",//DocsAdicionales.SavePath,
+                       Tipo = "2"//Tipo Adicional
+                   })
+               );
+            }
+
             solicitudPruebasCompletas.Documentos = documentosSolicitud;
             string folioSolicitud = Request.QueryString["folio"];
             if (!string.IsNullOrEmpty(folioSolicitud))

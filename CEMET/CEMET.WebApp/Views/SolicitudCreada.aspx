@@ -11,10 +11,10 @@
         </div>
         <div class="row" runat="server" id="botones">
             <div class="offset-md-5 col-md-1">
-                <asp:Button ID="Si" runat="server" Text="Si" CssClass="btn btn-primary" OnClick="SiBtn_Click"/><%--OnClick="Unnamed_Click"--%>
+                <asp:Button ID="Si" runat="server" Text="Si" CssClass="btn btn-primary" OnClick="SiBtn_Click"/>
             </div>
             <div class="col-md-1">
-                <asp:Button ID="No" runat="server" Text="No" CssClass="btn btn-outline-secondary" /><%--OnClick="Unnamed_Click"--%>
+                <asp:Button ID="No" runat="server" Text="No" CssClass="btn btn-outline-secondary" OnClick="No_Click" />
             </div>
         </div>
         <div class="row" id="frmTipoServicio" runat="server">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-md12">
-                <asp:Button ID="AgregarBtn" runat="server"  Text="Agregar" CssClass="btn btn-primary" OnClick="AgregarBtn_Click" /><%--OnClick="Unnamed_Click"--%>
+                <asp:Button ID="AgregarBtn" runat="server"  Text="Agregar" CssClass="btn btn-primary" OnClick="AgregarBtn_Click" />
             </div>
         </div>
         
