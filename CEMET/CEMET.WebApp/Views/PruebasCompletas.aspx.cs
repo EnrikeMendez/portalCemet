@@ -17,10 +17,11 @@ namespace CEMET.WebApp.Views
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            string saveDir = @"Uploads\" + usuarioId;
+            string saveDirIns = @"Uploads\"+ usuarioId + @"\PruebasCompletas\InstructivoManual" ;
+            string saveDirDocs = @"Uploads\" + usuarioId + @"\PruebasCompletas\DocsAdicionales";
 
-            //InstructivoManual.SavePath = Path.Combine(appPath, saveDir);
-            //DocsAdicionales.SavePath = Path.Combine(appPath, saveDir);
+            InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
+            DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
 
             if (Page.IsPostBack)
             {

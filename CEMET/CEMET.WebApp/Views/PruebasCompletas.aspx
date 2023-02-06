@@ -23,7 +23,7 @@
                 <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label required-field">
                             Tipo de servicio:</asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required=""/>
+                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -109,17 +109,16 @@
             runat="server"
             ID="InstructivoManual"
             Etiqueta="Instructivo o manual"
-            VisualizaNombreDeArchivoComoLink="true"
+            EsRequerido="true"
             Extensiones=".jpg"
-            DescargarNombreFuncion="InstructivoManualDownload_Click" />
+            ValidationGroupForm="PruebasCompletasValGroup"
+            ClientValidationFunctionForValidator="InstructivoManual_ValidaListaDocs" />
 
         <uc:SubirArchivo
             runat="server"
             ID="DocsAdicionales"
             Etiqueta="Documentos adicionales"
-            VisualizaNombreDeArchivoComoLink="true"
-            Extensiones=".jpg"
-            DescargarNombreFuncion="DocsAdicionalesDownload_Click" />
+            Extensiones=".jpg" />
 
         <div class="row">
             <div class="form-group col-md-6 p-3">
@@ -131,8 +130,6 @@
                 <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
             </div>
         </div>
-
-
 
         <div class="d-flex align-items-center mb-3 mt-4">
             <h5 class="mb-0 me-3 me-md-4">
@@ -156,22 +153,16 @@
 
         </div>
 
-        <uc1:Cotizacion2 runat="server" ID="Cotizacion2" ValidationGroupForm="diagramaCamposRequeridos" ValorIVA="0.16" />
+        <uc1:Cotizacion2
+            runat="server"
+            ID="Cotizacion2"
+            EsRequerido="true"
+            ValidationGroupForm="PruebasCompletasValGroup"
+            ValorIVA="0.16"
+            OnClientChangeEventDropdown="Cotizacion2_ActivaBotonAgregar()"
+            ClientValidationFunctionForValidator="Cotizacion2_ValidateConceptosList" />
 
         <uc:Observaciones runat="server" ID="Observaciones" />
-
-
-        <script type="text/javascript">
-            function DocsAdicionalesDownload_Click(ev) {
-                console.log(ev);
-            }
-
-            function InstructivoManualDownload_Click(ev) {
-                console.log(ev);
-            }
-        </script>
-
-
 
         <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasCompletasValGroup" />
 
@@ -179,9 +170,52 @@
 
         <div class="row">
             <div class="col">
-                <asp:Button ID="GuardaPruebCompBtn" runat="server" ValidationGroup="PruebasCompletasValGroup" Text="Guardar" CssClass="btn btn-primary" OnClick="GuardaPruebCompBtn_Click" /><%--OnClick="Unnamed_Click"--%>
+                <asp:Button ID="GuardaPruebCompBtn" runat="server" ValidationGroup="PruebasCompletasValGroup" Text="Guardar" CssClass="btn btn-primary" OnClick="GuardaPruebCompBtn_Click" />
             </div>
         </div>
 
     </div>
+
+    <script type="text/javascript">
+
+        function InstructivoManual_ValidaListaDocs(sender, e) {
+            console.log("InstructivoManual_ValidaListaDocs");
+            if ("<%=InstructivoManual.EsRequerido%>".toLowerCase() == "true")
+                e.IsValid = "<%=InstructivoManual.ListaDeDocumentos.Any()%>".toLowerCase() == 'true';
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Cotizacion2_ActivaBotonAgregar() {
+            console.log("Cotizacion2_ActivaBotonAgregar");
+            let serv = "<%= Cotizacion2.ServicioSolicitadoClientId %>";
+            let tarf = "<%= Cotizacion2.TarifaClientId %>";
+
+            if ($("#" + serv).val()) {
+                $("#" + serv).removeClass("is-invalid");
+            } else {
+                $("#" + serv).addClass("is-invalid");
+            }
+
+            if ($("#" + tarf).val()) {
+                $("#" + tarf).removeClass("is-invalid");
+            } else {
+                $("#" + tarf).addClass("is-invalid");
+            }
+
+            //https://stackoverflow.com/questions/7514716/enable-and-disable-button-using-javascript-and-asp-net
+            if ($("#" + serv).val() && $("#" + tarf).val()) {
+                $('#<%= Cotizacion2.AgregaServClientId %>').prop("disabled", false);
+            } else {
+                $('#<%= Cotizacion2.AgregaServClientId %>').prop("disabled", true);
+            }
+        }
+
+        function Cotizacion2_ValidateConceptosList(sender, e) {
+            console.log("Cotizacion2_ValidateConceptosList");
+            e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
+        }
+
+    </script>
 </asp:Content>

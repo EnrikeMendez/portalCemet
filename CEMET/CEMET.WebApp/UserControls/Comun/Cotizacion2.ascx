@@ -3,39 +3,11 @@
 <div class="row">
 
     <div class="col-md-12">
-        <script type="text/javascript">
-            function activaBotonAgregar() {
-                let serv = "<%= ServicioSolicitado.ClientID %>";
-                let tarf = "<%= Tarifa.ClientID %>";
-
-                if ($("#" + serv).val()) {
-                    $("#" + serv).removeClass("is-invalid");
-                } else {
-                    $("#" + serv).addClass("is-invalid");
-                }
-
-                if ($("#" + tarf).val()) {
-                    $("#" + tarf).removeClass("is-invalid");
-                } else {
-                    $("#" + tarf).addClass("is-invalid");
-                }
-
-                //https://stackoverflow.com/questions/7514716/enable-and-disable-button-using-javascript-and-asp-net
-                if ($("#" + serv).val() && $("#" + tarf).val()) {
-                    $('#<%= AgregarServTarBtn.ClientID %>').prop("disabled", false);
-                } else {
-                    $('#<%= AgregarServTarBtn.ClientID %>').prop("disabled", true);
-                }
-            }
-        </script>
-
         <div class="input-group mb-3">
             <asp:DropDownList
                 runat="server"
                 ID="ServicioSolicitado"
-                ValidationGroup="CotizacionControlesForm"
-                onchange="activaBotonAgregar()"
-                value=""
+                ValidationGroup="CotFormDropD"
                 CssClass="form-select" />
 
             <label class="input-group-text" for="NoForm">&nbsp;&nbsp;</label>
@@ -43,16 +15,13 @@
             <asp:DropDownList
                 runat="server"
                 ID="Tarifa"
-                ValidationGroup="CotizacionControlesForm"
-                onchange="activaBotonAgregar()"
-                value=""
+                ValidationGroup="CotFormDropD"
                 CssClass="form-select" />
 
             <asp:Button
                 ID="AgregarServTarBtn"
                 runat="server"
-                type="button"
-                ValidationGroup="CotizacionControlesForm"
+                ValidationGroup="CotFormDropD"
                 OnClick="AgregarServTarBtn_Click"
                 Text="Agregar"
                 CssClass="btn btn-outline-secondary" />
@@ -60,17 +29,11 @@
     </div>
 
     <div class="col-md-12 text-center">
-        <script type="text/javascript">
-            function ValidateConceptosList(sender, e) {
-                e.IsValid = "<%=Cotizaciones.Any()%>".toLowerCase() == 'true';
-            }
-        </script>
         <asp:CustomValidator
             ID="CustomValidator1"
             runat="server"
             CssClass="text-danger mb-2 mt-2"
             EnableClientScript="true"
-            ClientValidationFunction="ValidateConceptosList"
             OnServerValidate="CustomValidator1_ServerValidate"
             ErrorMessage="El campo es requerido">
         </asp:CustomValidator>

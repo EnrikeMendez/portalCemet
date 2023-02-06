@@ -17,21 +17,20 @@ namespace CEMET.WebApp.UserControls.Comun
 
         public double ValorIVA
         {
-            get { return (double)Session[ValorIVAKey]; }
-            set { Session[ValorIVAKey] = value; }
+            get { return (double)Session[CreaLLaveUnica(llave: ValorIVAKey)]; }
+            set { Session[CreaLLaveUnica(llave: ValorIVAKey)] = value; }
         }
 
         public string ValidationGroupForm
         {
-            get { return (string)Session[ValidationGroupFormKey]; }
-            set { Session[ValidationGroupFormKey] = value; }
+            get { return (string)Session[CreaLLaveUnica(llave: ValidationGroupFormKey)]; }
+            set { Session[CreaLLaveUnica(llave: ValidationGroupFormKey)] = value; }
         }
-
 
         public List<CotizacionModel> Cotizaciones
         {
-            get { return (List<CotizacionModel>)Session[CotizacionesLstKey]; }
-            set { Session[CotizacionesLstKey] = value; }
+            get { return (List<CotizacionModel>)Session[CreaLLaveUnica(llave: CotizacionesLstKey)]; }
+            set { Session[CreaLLaveUnica(llave: CotizacionesLstKey)] = value; }
         }
 
         public string SubTotal
@@ -51,6 +50,45 @@ namespace CEMET.WebApp.UserControls.Comun
                 return subTxt.Text;
             }
         }
+
+        /// <summary>
+        /// Esta función debe de incluir los paréntesis al final del nombre debido a que se pasa como atributo y será llamado por el control como nombre_de_la_funcion()
+        /// </summary>
+        public string OnClientChangeEventDropdown { get; set; }
+
+        public string ClientValidationFunctionForValidator { get; set; }
+
+        public string AgregaServClientId
+        {
+            get
+            {
+                return AgregarServTarBtn.ClientID;
+            }
+        }
+
+        public string ServicioSolicitadoClientId
+        {
+            get
+            {
+                return ServicioSolicitado.ClientID;
+            }
+        }
+
+        public string TarifaClientId
+        {
+            get
+            {
+                return Tarifa.ClientID;
+            }
+        }
+
+        public bool EsRequerido { get; set; }
+
+        private string CreaLLaveUnica(string llave)
+        {
+            return string.Concat(llave, ID);
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,6 +113,17 @@ namespace CEMET.WebApp.UserControls.Comun
                 }
 
                 AgregarServTarBtn.Enabled = false;
+
+                if (!string.IsNullOrEmpty(OnClientChangeEventDropdown))
+                {
+                    ServicioSolicitado.Attributes.Add("onchange", OnClientChangeEventDropdown);
+                    Tarifa.Attributes.Add("onchange", OnClientChangeEventDropdown);
+                }
+
+                if (!string.IsNullOrEmpty(ClientValidationFunctionForValidator) && EsRequerido)
+                {
+                    CustomValidator1.ClientValidationFunction = ClientValidationFunctionForValidator;
+                }
             }
         }
 
@@ -83,7 +132,7 @@ namespace CEMET.WebApp.UserControls.Comun
             var ivaLbl = BuscaControlEnTemplate<Label>(idControl: "IVALabel");
             ivaLbl.Text = ivaLbl.Text.Trim().Replace("0", (ValorIVA * 100).ToString() + "%");
 
-            if (!string.IsNullOrEmpty(ValidationGroupForm))
+            if (!string.IsNullOrEmpty(ValidationGroupForm) && EsRequerido)
             {
                 var subtotalVal = BuscaControlEnTemplate<RequiredFieldValidator>(idControl: "SubtotalReqValidator");
                 subtotalVal.ValidationGroup = ValidationGroupForm;
@@ -211,12 +260,19 @@ namespace CEMET.WebApp.UserControls.Comun
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = Cotizaciones.Any();
+            if (EsRequerido)
+            {
+                args.IsValid = Cotizaciones.Any();
+            }
+            else
+            {
+                args.IsValid = true;
+            }
         }
 
         protected void Subtotal_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

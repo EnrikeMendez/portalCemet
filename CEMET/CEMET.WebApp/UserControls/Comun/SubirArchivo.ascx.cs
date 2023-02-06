@@ -13,8 +13,8 @@ namespace CEMET.WebApp.UserControls.Comun
         const string ExtensionNotAllowedErrorMessageDefault = "El archivo {0} no se subió debido a que no tiene la extensión {1}.";
         const string ClaseParaCampoRequeridoDefault = "required-field";
 
-        private const string DocumentosLstKey = "ListaDeDocumentosLstKey";
-        private const string ValidationGroupFormKey = "ValidationGroupSubArcFormLst";
+        private const string DocumentosLstKey = "LstDocKey";
+        private const string ValidationGroupFormKey = "ValGrpSubArcForm";
 
         public string SavePath { get; set; }
         public string MaxSizeErrorMessage { get; set; }
@@ -22,8 +22,8 @@ namespace CEMET.WebApp.UserControls.Comun
         public string Etiqueta { get; set; }
         public List<DocumentoModel> ListaDeDocumentos
         {
-            get { return (List<DocumentoModel>)Session[DocumentosLstKey]; }
-            set { Session[DocumentosLstKey] = value; }
+            get { return (List<DocumentoModel>)Session[CreaLLaveUnica(llave: DocumentosLstKey)]; }
+            set { Session[CreaLLaveUnica(llave: DocumentosLstKey)] = value; }
         }
         public bool EsRequerido { get; set; }
         public string ClaseParaCampoRequerido { get; set; }
@@ -31,14 +31,19 @@ namespace CEMET.WebApp.UserControls.Comun
         public bool ModoLectura { get; set; }
         public string ValidationGroupForm
         {
-            get { return (string)Session[ValidationGroupFormKey]; }
-            set { Session[ValidationGroupFormKey] = value; }
+            get { return (string)Session[CreaLLaveUnica(llave: ValidationGroupFormKey)]; }
+            set { Session[CreaLLaveUnica(llave: ValidationGroupFormKey)] = value; }
         }
         /// <summary>
         /// Comma separated
         /// </summary>
         public string Extensiones { get; set; }
         public int? MaxSizeInBytes { get; set; }
+        public string ClientValidationFunctionForValidator { get; set; }
+        private string CreaLLaveUnica(string llave)
+        {
+            return string.Concat(llave, ID);
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -90,6 +95,11 @@ namespace CEMET.WebApp.UserControls.Comun
                 {
                     CustomValidator1.ValidationGroup = ValidationGroupForm;
                 }
+
+                if (!string.IsNullOrEmpty(ClientValidationFunctionForValidator))
+                {
+                    CustomValidator1.ClientValidationFunction = ClientValidationFunctionForValidator;
+                }
             }
         }
 
@@ -104,7 +114,6 @@ namespace CEMET.WebApp.UserControls.Comun
                 args.IsValid = true;
             }
         }
-
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {

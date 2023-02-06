@@ -7,6 +7,24 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <%--    <script type="text/javascript">
+        function SubirArchivo_ValidaListaDocs(sender, e) {
+            if ("<%=SubirArchivo.EsRequerido%>".toLowerCase() == "true")
+                 e.IsValid = "<%=SubirArchivo.ListaDeDocumentos.Any()%>".toLowerCase() == 'true';
+            else {
+                e.IsValid = true;
+            }
+        }
+    </script>
+    <uc1:SubirArchivo
+        runat="server"
+        ID="SubirArchivo"
+        EsRequerido="true"
+        Etiqueta="Prueba"
+        Extensiones=".jpg"
+        ValidationGroupForm="diagramaCamposRequeridos"
+        ClientValidationFunctionForValidator="SubirArchivo_ValidaListaDocs" />--%>
+
     <div class="d-flex align-items-center mb-3 mt-2">
         <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
         <div class="border-bottom flex-grow-1"></div>
@@ -32,6 +50,7 @@
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
+
         <div class="form-group col-md-6">
             <asp:Label runat="server" AssociatedControlID="Marca" CssClass="form-label required-field">
                             Marca</asp:Label>
@@ -40,6 +59,7 @@
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
+
         <div class="form-group col-md-6">
             <asp:Label runat="server" AssociatedControlID="Modelo" CssClass="form-label required-field">
                             Modelo</asp:Label>
@@ -136,7 +156,14 @@
         <div class="border-bottom flex-grow-1"></div>
     </div>
 
-    <uc1:Cotizacion2 runat="server" ID="Cotizacion2" ValidationGroupForm="diagramaCamposRequeridos" ValorIVA="0.16" />
+    <uc1:Cotizacion2
+        runat="server"
+        ID="Cotizacion2"
+        ValidationGroupForm="diagramaCamposRequeridos"
+        EsRequerido="true"
+        OnClientChangeEventDropdown="Cotizacion2_ActivaBotonAgregar()"
+        ClientValidationFunctionForValidator="Cotizacion2_ValidateConceptosList"
+        ValorIVA="0.16" />
 
     <uc1:Observaciones runat="server" ID="Observaciones" />
 
@@ -149,5 +176,39 @@
             <asp:Button ID="GuardarDiagramaBtn" runat="server" OnClick="GuardarDiagramaBtn_Click" Text="Guardar" CssClass="btn btn-primary" ValidationGroup="diagramaCamposRequeridos" />
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        function Cotizacion2_ActivaBotonAgregar() {
+            console.log("Cotizacion2_ActivaBotonAgregar");
+            let serv = "<%= Cotizacion2.ServicioSolicitadoClientId %>";
+            let tarf = "<%= Cotizacion2.TarifaClientId %>";
+
+            if ($("#" + serv).val()) {
+                $("#" + serv).removeClass("is-invalid");
+            } else {
+                $("#" + serv).addClass("is-invalid");
+            }
+
+            if ($("#" + tarf).val()) {
+                $("#" + tarf).removeClass("is-invalid");
+            } else {
+                $("#" + tarf).addClass("is-invalid");
+            }
+
+            //https://stackoverflow.com/questions/7514716/enable-and-disable-button-using-javascript-and-asp-net
+            if ($("#" + serv).val() && $("#" + tarf).val()) {
+                $('#<%= Cotizacion2.AgregaServClientId %>').prop("disabled", false);
+            } else {
+                $('#<%= Cotizacion2.AgregaServClientId %>').prop("disabled", true);
+            }
+        }
+
+        function Cotizacion2_ValidateConceptosList(sender, e) {
+            console.log("Cotizacion2_ValidateConceptosList");
+            e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
+        }
+
+    </script>
 
 </asp:Content>

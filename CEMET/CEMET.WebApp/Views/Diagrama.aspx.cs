@@ -1,16 +1,9 @@
-﻿using CEMET.WebApp.Models;
-using CEMET.WebApp.UserControls.Comun;
+﻿using CEMET.WebApp.UserControls.Comun;
 using Cemetlib.Business;
 using Cemetlib.Common;
-using Cemetlib.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.ModelBinding;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
@@ -22,9 +15,8 @@ namespace CEMET.WebApp.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string appPath = Request.PhysicalApplicationPath;
-            string saveDir = @"Uploads\" + "Usuario123";
-
+            //string appPath = Request.PhysicalApplicationPath;
+            //string saveDir = @"Uploads\Usuario123\Diagrama";
             //SubirArchivo.SavePath = Path.Combine(appPath, saveDir);
 
             if (IsPostBack)

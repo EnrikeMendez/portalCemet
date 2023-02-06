@@ -13,27 +13,20 @@
     <div class="col-md-6">
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="FileUpload1" ID="UploadTitle" CssClass="form-label">
-             Seleccione los archivos
+                Seleccione los archivos
             </asp:Label>
+
             <asp:FileUpload ID="FileUpload1" CssClass="file-input-rename form-control" runat="server"></asp:FileUpload>
-            <script type="text/javascript">
-                function ValidaListaDocs(sender, e) {
-                    if ("<%=EsRequerido%>".toLowerCase() == "true")
-                        e.IsValid = "<%=ListaDeDocumentos.Any()%>".toLowerCase() == 'true';
-                    else {
-                        e.IsValid = true;
-                    }
-                }
-            </script>
+           
             <asp:CustomValidator
                 ID="CustomValidator1"
                 runat="server"
                 CssClass="text-danger mt-1"
                 EnableClientScript="true"
-                ClientValidationFunction="ValidaListaDocs"
                 OnServerValidate="CustomValidator1_ServerValidate"
                 ErrorMessage="El campo es requerido">
             </asp:CustomValidator>
+
             <br />
             <asp:Button ID="UploadButton"
                 OnClick="UploadButton_Click"
