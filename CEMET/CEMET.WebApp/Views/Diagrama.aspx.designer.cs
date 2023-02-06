@@ -15,6 +15,24 @@ namespace CEMET.WebApp.Views
     {
 
         /// <summary>
+        /// FolioContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FolioContainer;
+
+        /// <summary>
+        /// Folio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Folio;
+
+        /// <summary>
         /// TipoDeServicio control.
         /// </summary>
         /// <remarks>

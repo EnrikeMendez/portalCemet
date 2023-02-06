@@ -7,23 +7,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%--    <script type="text/javascript">
-        function SubirArchivo_ValidaListaDocs(sender, e) {
-            if ("<%=SubirArchivo.EsRequerido%>".toLowerCase() == "true")
-                 e.IsValid = "<%=SubirArchivo.ListaDeDocumentos.Any()%>".toLowerCase() == 'true';
-            else {
-                e.IsValid = true;
-            }
-        }
-    </script>
-    <uc1:SubirArchivo
-        runat="server"
-        ID="SubirArchivo"
-        EsRequerido="true"
-        Etiqueta="Prueba"
-        Extensiones=".jpg"
-        ValidationGroupForm="diagramaCamposRequeridos"
-        ClientValidationFunctionForValidator="SubirArchivo_ValidaListaDocs" />--%>
+    <div class="row">
+        <div class="col-12 py-5 text-center">
+            <h1>Alta de nuevo servicio</h1>
+
+            <h3 id="FolioContainer" runat="server" visible="false">
+                <asp:Label runat="server" ID="Folio" CssClass="badge bg-success"></asp:Label>
+            </h3>
+        </div>
+    </div>
 
     <div class="d-flex align-items-center mb-3 mt-2">
         <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
@@ -36,7 +28,11 @@
                 <asp:Label runat="server" AssociatedControlID="TipoDeServicio" CssClass="form-label required-field">
                             Tipo de servicio</asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" />
+                    <asp:DropDownList
+                        runat="server"
+                        ID="TipoDeServicio"
+                        CssClass="form-select"
+                        Enabled="false" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" ID="TipoDeServicioReqVal" />
                 </div>
             </div>

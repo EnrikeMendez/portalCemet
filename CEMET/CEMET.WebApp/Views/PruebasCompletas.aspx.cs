@@ -46,6 +46,8 @@ namespace CEMET.WebApp.Views
 
                 FillCatalogs();
                 FillDummyData();
+
+                TipoDeServicio.SelectedValue = "T1";
             }
         }
 
