@@ -92,7 +92,7 @@ namespace Cemetlib.Business
             foreach (DataRow row in catalogo.Rows)
             {
                 //catVoltaje.Add(new Catalog { Value = row["CVO_Clave"].ToString(), Text = row["CVO_Descripcion"].ToString() });
-                catVoltaje.Add(new Catalog { Value = row["CVO_Id"].ToString(), Text = string.Join(row["CVO_Clave"].ToString(), " ", row["CVO_Descripcion"].ToString()) });
+                catVoltaje.Add(new Catalog { Value = row["CVO_Id"].ToString(), Text = string.Concat("(" , row["CVO_Clave"].ToString(), ") ", row["CVO_Descripcion"].ToString()) });
             }
 
             return catVoltaje;
@@ -250,10 +250,10 @@ namespace Cemetlib.Business
                 catDiasHabiles.Add(new Catalog
                 {
                     Value = row["CDH_Id"].ToString(),
-                    Text = string.Join(
+                    Text = string.Concat(
                         row["CDH_Descripcion"].ToString(), " / ",
-                        row["CHDN_Norma"].ToString() ?? "Norma sin descripción", " / ",
-                        row["CDHN_Dia_Habil"].ToString() ?? "Sin día hábil"
+                        (string.IsNullOrWhiteSpace(row["CHDN_Norma"].ToString()) ? null : row["CHDN_Norma"].ToString().Trim()) ?? "Norma sin descripción", " / ",
+                        (string.IsNullOrWhiteSpace(row["CDHN_Dia_Habil"].ToString()) ? null : row["CDHN_Dia_Habil"].ToString().Trim()) ?? "Sin día hábil"
                     )
                 });
             }

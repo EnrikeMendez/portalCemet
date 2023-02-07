@@ -222,6 +222,63 @@ namespace Cemetlib.Common
             }
             return res;
         }
+
+        public int EjecutarSP(string nombreSP, List<SqlParameter> parametros, out Dictionary<string, object> parametrosSalida)
+        {
+            int res = 0;
+            parametrosSalida = new Dictionary<string, object>();
+            try
+            {
+                cnn = new SqlConnection();
+                cnn.ConnectionString = GetConnectionString();
+
+                cmd = new SqlCommand();
+                cmd.CommandText = nombreSP;
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                foreach (SqlParameter parametro in parametros)
+                {
+                    cmd.Parameters.Add(parametro);
+                }
+                SqlParameter returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                res = (int)returnParameter.Value;
+
+                foreach (var paramSalida in parametros.Where(x => x.Direction == ParameterDirection.Output))
+                {
+                    parametrosSalida.Add(paramSalida.ParameterName, cmd.Parameters[paramSalida.ParameterName].Value);
+                }
+
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                ex.Source += "\t\n" + nombreSP;
+                Log.RegistraExcepcion(ex);
+                res = 0;
+            }
+            finally
+            {
+                if (cnn != null)
+                {
+                    if (cnn.State == ConnectionState.Open)
+                    {
+                        cnn.Close();
+                    }
+                    cnn.Dispose();
+                    GC.SuppressFinalize(cnn);
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                    GC.SuppressFinalize(cmd);
+                }
+            }
+            return res;
+        }
         public static SqlParameter CrearParametroSql(string nombreParametro, SqlDbType tipo, object argumento)
         {
             SqlParameter parameter = null;

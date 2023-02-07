@@ -22,7 +22,9 @@ namespace Cemetlib.Business
                         break;
                     case "2":
                         break;
-                    case "3":
+                    case "T3":
+                        DiagramaMarcado diagrama = (DiagramaMarcado)solicitud;
+                        numeroSolicitud = ISolicitud.GuardaSolicitudDiagrama(diagrama);
                         break;
                     case "4":
                         break;
@@ -38,6 +40,5 @@ namespace Cemetlib.Business
 
             return numeroSolicitud;
         }
-
     }
 }

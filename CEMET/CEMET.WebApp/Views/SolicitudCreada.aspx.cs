@@ -34,7 +34,8 @@ namespace CEMET.WebApp.Views
                     break;
                 case "2":
                     break;
-                case "3":
+                case "T3":
+                    pagina = "Diagrama";
                     break;
                 case "4":
                     break;

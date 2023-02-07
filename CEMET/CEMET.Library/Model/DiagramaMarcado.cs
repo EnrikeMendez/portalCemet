@@ -8,8 +8,7 @@ namespace Cemetlib.Model
 {
     public class DiagramaMarcado : AltaSolicitud
     {
-        public int Voltaje { get; set; }
-        public int Corriente { get; set; }
-        public int Potencia { get; set; }
+        public List<EspecificacionElectrica> EspecificacionesElectricas { get; set; }
+
     }
 }

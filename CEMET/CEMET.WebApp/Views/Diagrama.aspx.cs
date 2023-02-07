@@ -3,8 +3,10 @@ using Cemetlib.Business;
 using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Web.UI;
+using Cotizacion = Cemetlib.Model.Cotizacion;
 
 namespace CEMET.WebApp.Views
 {
@@ -26,8 +28,8 @@ namespace CEMET.WebApp.Views
                     {
                         //porque no tiene permisos
                         Response.Redirect("../Default.aspx");
-                        //porque no le pertenece el folio
-                        Response.Redirect("PruebasCompletas.aspx");
+                        ////porque no le pertenece el folio
+                        //Response.Redirect("PruebasCompletas.aspx");
                     }
                     FolioContainer.Visible = true;
                     Folio.Text = string.Concat("Folio ", folio.Trim());
@@ -58,7 +60,7 @@ namespace CEMET.WebApp.Views
 
             if (Page.IsValid)
             {
-                //Do stuff
+                CreaDTO(folio: Request.QueryString["folio"]);
             }
             else
             {
@@ -67,10 +69,61 @@ namespace CEMET.WebApp.Views
 
         }
 
-        protected void CreaDTO()
+        protected void CreaDTO(string folio)
         {
-            var diagramaDTO = new DiagramaMarcado();
+            var diagrama = new DiagramaMarcado();
 
+            diagrama.TipoServicio = TipoDeServicio.SelectedValue;
+            diagrama.Descripcion = DescripcionDelProducto.Text;
+            diagrama.Marca = Marca.Text;
+            diagrama.Modelo = Modelo.Text;
+            //region Solicitud_Especificaciones_Electricas
+            diagrama.EspecificacionesElectricas = new List<EspecificacionElectrica>();
+            diagrama.EspecificacionesElectricas.Add(new EspecificacionElectrica
+            {
+                IdVoltaje = int.Parse(Voltaje.SelectedValue),
+                IdCorriente = Corriente.SelectedValue,
+                IdPotencia = Potencia.SelectedValue
+            });
+            //endregion
+            diagrama.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
+            diagrama.ModalidadEntrega = ModalidadDeEntrega.SelectedValue;
+            diagrama.DiasHabiles = DiasHabiles.SelectedValue;
+            //region Solicitud_Cotizacion
+            diagrama.Cotizaciones = new List<Cotizacion>();
+            foreach (var cotizacion in Cotizacion2.Cotizaciones)
+            {
+                diagrama.Cotizaciones.Add(new Cotizacion
+                {
+                    IdCotizacion = cotizacion.IdCotizacion,
+                    IdServicio = cotizacion.IdServicio,
+                    IdTarifa = cotizacion.IdTarifa,
+                    Servicio = cotizacion.IdServicio,
+                    Tarifa = cotizacion.Tarifa
+                });
+            }
+            diagrama.Subtotal = float.Parse(Cotizacion2.SubTotal);
+            diagrama.Total = float.Parse(Cotizacion2.Total);
+            diagrama.Iva = (float)Cotizacion2.ValorIVA;
+            //endregion
+            diagrama.Observaciones = Observaciones.Obs;
+            diagrama.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
+
+            diagrama.Activo = true;
+            diagrama.UsuarioCrea = 1;//****
+            diagrama.UsuarioModifica = null;
+            diagrama.FechaModifica = null;
+
+            if (!string.IsNullOrWhiteSpace(folio))
+            {
+                diagrama.NumeroFolioSolicitud = int.Parse(folio.Trim());
+                FolioContainer.Visible = true;
+                Folio.Text = string.Concat("Folio ", folio.Trim());
+            }
+
+            int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(diagrama);
+
+            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
         }
     }
 }
