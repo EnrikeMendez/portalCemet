@@ -78,7 +78,7 @@
                   <a href="#contact" class="nav-link">Contáctanos</a>
               </li>
               <li class="nav-item ms-lg-4">
-                  <a href="Views/PruebasCompletas" class="nav-link">Registrar Solicitud</a>
+                  <a href="Views/SolicitudCreada" class="nav-link">Registrar Solicitud</a>
               </li>
           </ul>
           <!--end:Navbar items-->

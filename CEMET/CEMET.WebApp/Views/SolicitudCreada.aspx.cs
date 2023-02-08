@@ -14,9 +14,37 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            frmTipoServicio.Visible = false;
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
-            Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
+            var folio = Request.QueryString["folio"];
+
+            if (UserService.ValidaFolio(folio: folio, out var redirect))
+            {
+                frmTipoServicio.Visible = false;
+                MsgSolicitudCreada.Visible = true;
+                MsgNuevaSolicitud.Visible = false;
+                if (redirect)
+                {
+                    //porque no tiene permisos
+                    Response.Redirect("../Default.aspx");
+                    //porque no le pertenece el folio
+                    Response.Redirect("PruebasCompletas.aspx");
+                }
+
+            }
+            else
+            {
+                botones.Visible = false;
+                frmTipoServicio.Visible = true;
+                MsgSolicitudCreada.Visible = false;
+                MsgNuevaSolicitud.Visible = true;
+            }
+            if (!Page.IsPostBack)
+            {
+               
+               
+                List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+                Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
+            }
+           
         }
         protected void SiBtn_Click(object sender, EventArgs e)
         {
@@ -27,23 +55,27 @@ namespace CEMET.WebApp.Views
         {
             string folioSolicitud = Request.QueryString["folio"];
             string pagina = string.Empty;
-            switch (TipoDeServicio.SelectedValue)
+            string tipoSolicitud = TipoDeServicio.SelectedItem.Value;
+            switch (tipoSolicitud)
             {
                 case "T1":
                     pagina = "PruebasCompletas";
                     break;
-                case "2":
+                case "T2":
+                    pagina = "../Default";
                     break;
                 case "T3":
                     pagina = "Diagrama";
                     break;
-                case "4":
+                case "T4":
+                    pagina = "../Default";
+                    
                     break;
                 default:
                     throw new ArgumentException("La solicitud seleccionada es inválida.");
             }
-
-            Response.Redirect($"{pagina}.aspx?folio={folioSolicitud}");
+            string redirectPage = string.IsNullOrEmpty(folioSolicitud) ? $"{pagina}.aspx" : $"{pagina}.aspx?folio={folioSolicitud}";
+            Response.Redirect(redirectPage);
         }
 
         protected void No_Click(object sender, EventArgs e)

@@ -2,11 +2,17 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container py-12 text-center">
-        <div class="row">
+        <div class="row" runat="server" id="MsgSolicitudCreada">
             <h1>Solicitud creada correctamente</h1>
             <label>Se ha creado correctamente la solicitud vinculada al folio numero: </label>
             <asp:Label runat="server" ID="lb_solicitud"><%Response.Write(Request.QueryString["folio"]);%></asp:Label>
             <label>¿Desea agregar otra solicitud al folio creado?</label><br />
+
+        </div>
+        <div class="row" runat="server" id="MsgNuevaSolicitud">
+            <h1>Nueva solicitud</h1>
+            
+            <label>Seleccione el tipo de solicitud que desea crear:</label><br />
 
         </div>
         <div class="row" runat="server" id="botones">

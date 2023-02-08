@@ -15,6 +15,15 @@ namespace CEMET.WebApp.Views
     {
 
         /// <summary>
+        /// MsgSolicitudCreada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MsgSolicitudCreada;
+
+        /// <summary>
         /// lb_solicitud control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_solicitud;
+
+        /// <summary>
+        /// MsgNuevaSolicitud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MsgNuevaSolicitud;
 
         /// <summary>
         /// botones control.
