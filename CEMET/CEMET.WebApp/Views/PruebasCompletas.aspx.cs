@@ -120,7 +120,7 @@ namespace CEMET.WebApp.Views
                 InstructivoManual.ListaDeDocumentos.Select(x => new Documentos
                 {
                     Nombre = x.Nombre,
-                    Ruta = "1",//InstructivoManual.SavePath, //con string truena
+                    Ruta = InstructivoManual.SavePath, //con string truena
                     Tipo = "1"//Tipo instructivo
                 })
             );
@@ -131,7 +131,7 @@ namespace CEMET.WebApp.Views
                    DocsAdicionales.ListaDeDocumentos.Select(x => new Documentos
                    {
                        Nombre = x.Nombre,
-                       Ruta = "2",//DocsAdicionales.SavePath,
+                       Ruta = DocsAdicionales.SavePath,
                        Tipo = "2"//Tipo Adicional
                    })
                );
