@@ -20,13 +20,15 @@ namespace Cemetlib.Business
                         PruebasCompletas altaPruebasCompletas = (PruebasCompletas)solicitud;
                         numeroSolicitud = ISolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
                         break;
-                    case "2":
+                    case "T2":
+                        PruebasParciales pruebasParciales = (PruebasParciales)solicitud;
+                        numeroSolicitud = ISolicitud.GuardaSolicitudPruebaParcial(pruebasParciales);
                         break;
                     case "T3":
                         DiagramaMarcado diagrama = (DiagramaMarcado)solicitud;
                         numeroSolicitud = ISolicitud.GuardaSolicitudDiagrama(diagrama);
                         break;
-                    case "4":
+                    case "T4":
                         break;
                     default:
                         throw new ArgumentException("La solicitud seleccionada es inválida.");

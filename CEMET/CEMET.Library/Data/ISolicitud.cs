@@ -23,7 +23,7 @@ namespace Cemetlib.Data
 
         public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas)
         {
-            int numeroSolicitud = 0;
+            int numeroSolicitud;
             try
             {
                 DB context = new DB();
@@ -49,51 +49,9 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitudPruebasCompletas.FechaModifica));
                 parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitudPruebasCompletas.UsuarioModifica));
                 parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitudPruebasCompletas.NumeroFolioSolicitud));
-                DataTable tablaDocumentos = new DataTable();
+                parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, CreaTablaDocumentos(documentos: solicitudPruebasCompletas.Documentos)));
 
-                // Adding Columns    
-                DataColumn column = new DataColumn();
-                column.ColumnName = "DOC_Ruta";
-                column.DataType = typeof(int);
-                tablaDocumentos.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "DOC_Nombre";
-                column.DataType = typeof(string);
-                tablaDocumentos.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "Doc_Tipo";
-                column.DataType = typeof(string);
-                tablaDocumentos.Columns.Add(column);
-                foreach (Documentos doc in solicitudPruebasCompletas.Documentos)
-                {
-                    DataRow DR = tablaDocumentos.NewRow();
-                    DR[0] = doc.Ruta;
-                    DR[1] = doc.Nombre;
-                    DR[2] = doc.Tipo;
-                    tablaDocumentos.Rows.Add(DR);
-                }
-                parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, tablaDocumentos));
-
-                DataTable tablaCotizacion = new DataTable();
-                column = new DataColumn();
-                column.ColumnName = "COT_CSS_Id";
-                column.DataType = typeof(string);
-                tablaCotizacion.Columns.Add(column);
-
-                column = new DataColumn();
-                column.ColumnName = "COT_CTA_Id";
-                column.DataType = typeof(string);
-                tablaCotizacion.Columns.Add(column);
-                foreach (Cotizacion cotizacion in solicitudPruebasCompletas.Cotizaciones)
-                {
-                    DataRow DR = tablaCotizacion.NewRow();
-                    DR[0] = cotizacion.IdServicio;
-                    DR[1] = cotizacion.IdTarifa;
-                    tablaCotizacion.Rows.Add(DR);
-                }
-                parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, tablaCotizacion));
+                parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebasCompletas.Cotizaciones)));
 
                 numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
 
@@ -105,7 +63,45 @@ namespace Cemetlib.Data
             }
             return numeroSolicitud;
         }
+        public static int GuardaSolicitudPruebaParcial(PruebasParciales solicitudPruebaParcial)
+        {
+            int numeroSolicitud;
+            try
+            {
+                DB context = new DB();
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(DB.CrearParametroSql("@SOL_CTS_Id", SqlDbType.VarChar, solicitudPruebaParcial.TipoServicio));
+                parameters.Add(DB.CrearParametroSql("@SOL_NOR_Id", SqlDbType.VarChar, solicitudPruebaParcial.Norma));
+                parameters.Add(DB.CrearParametroSql("@SOL_CPA_Id", SqlDbType.VarChar, solicitudPruebaParcial.PaisOrigen));
+                parameters.Add(DB.CrearParametroSql("@SOL_CMR_Id", SqlDbType.VarChar, solicitudPruebaParcial.ModalidadRecoleccion));
+                parameters.Add(DB.CrearParametroSql("@SOL_CME_Id", SqlDbType.VarChar, solicitudPruebaParcial.ModalidadEntrega));
+                parameters.Add(DB.CrearParametroSql("@SOL_CDH_Id", SqlDbType.VarChar, solicitudPruebaParcial.DiasHabiles));
+                parameters.Add(DB.CrearParametroSql("@SOL_Dsc_Producto", SqlDbType.VarChar, solicitudPruebaParcial.Descripcion));
+                parameters.Add(DB.CrearParametroSql("@SOL_Marca", SqlDbType.VarChar, solicitudPruebaParcial.Marca));
+                parameters.Add(DB.CrearParametroSql("@SOL_Modelo", SqlDbType.VarChar, solicitudPruebaParcial.Modelo));
+                parameters.Add(DB.CrearParametroSql("@SOL_Subtotal", SqlDbType.Float, solicitudPruebaParcial.Subtotal));
+                parameters.Add(DB.CrearParametroSql("@SOL_Iva", SqlDbType.Float, solicitudPruebaParcial.Iva));
+                parameters.Add(DB.CrearParametroSql("@SOL_Total", SqlDbType.VarChar, solicitudPruebaParcial.Total));
+                parameters.Add(DB.CrearParametroSql("@SOL_Observaciones", SqlDbType.VarChar, solicitudPruebaParcial.Observaciones));
+                parameters.Add(DB.CrearParametroSql("@SOL_Activo", SqlDbType.Bit, solicitudPruebaParcial.Activo));
+                parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Creacion", SqlDbType.BigInt, solicitudPruebaParcial.UsuarioCrea));
+                parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitudPruebaParcial.FechaModifica));
+                parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitudPruebaParcial.UsuarioModifica));
+                parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitudPruebaParcial.NumeroFolioSolicitud));
+                parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, CreaTablaDocumentos(documentos: solicitudPruebaParcial.Documentos)));
 
+                parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebaParcial.Cotizaciones)));
+
+                numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return numeroSolicitud;
+        }
         public static int GuardaSolicitudDiagrama(DiagramaMarcado solicitud)
         {
             int folioSolicitud;

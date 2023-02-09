@@ -62,7 +62,7 @@ namespace CEMET.WebApp.Views
                     pagina = "PruebasCompletas";
                     break;
                 case "T2":
-                    pagina = "../Default";
+                    pagina = "PruebasParciales";
                     break;
                 case "T3":
                     pagina = "Diagrama";
