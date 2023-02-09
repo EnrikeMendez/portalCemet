@@ -23,7 +23,7 @@
         <div class="border-bottom flex-grow-1"></div>
         <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
     </div>
-    <div class="row d-flex align-items-end">
+    <div class="row d-flex">
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label">
                             Tipo de servicio</asp:Label>
