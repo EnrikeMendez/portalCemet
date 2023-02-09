@@ -10,7 +10,6 @@ namespace Cemetlib.Model
     {
         public string Categoria { get; set; }
         public string ReferenciaCertificacion { get; set; }
-        public string PaisOrigen { get; set; }
         public string Calibre { get; set; }
     }
 }

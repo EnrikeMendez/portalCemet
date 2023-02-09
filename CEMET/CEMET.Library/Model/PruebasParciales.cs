@@ -9,7 +9,7 @@ namespace Cemetlib.Model
     public class PruebasParciales : AltaSolicitud
     {
         
-        public int NormaParticular { get; set; }
-        public int MetodoPrueba { get; set; }
+        public string NormaParticular { get; set; }
+        public string MetodoPrueba { get; set; }
     }
 }

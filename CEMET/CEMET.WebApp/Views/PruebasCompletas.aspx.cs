@@ -120,7 +120,7 @@ namespace CEMET.WebApp.Views
                 InstructivoManual.ListaDeDocumentos.Select(x => new Documentos
                 {
                     Nombre = x.Nombre,
-                    Ruta = "1",//InstructivoManual.SavePath, //con string truena
+                    Ruta = InstructivoManual.SavePath, //con string truena
                     Tipo = "1"//Tipo instructivo
                 })
             );
@@ -131,7 +131,7 @@ namespace CEMET.WebApp.Views
                    DocsAdicionales.ListaDeDocumentos.Select(x => new Documentos
                    {
                        Nombre = x.Nombre,
-                       Ruta = "2",//DocsAdicionales.SavePath,
+                       Ruta = DocsAdicionales.SavePath,
                        Tipo = "2"//Tipo Adicional
                    })
                );
@@ -143,7 +143,9 @@ namespace CEMET.WebApp.Views
             {
                 solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(folioSolicitud);
             }
-            int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasCompletas);
+            List<string> errores = new List<string>();
+            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasCompletas);
+            int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             Folio.Text = $"Folio guardado {idFolio}";
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
 

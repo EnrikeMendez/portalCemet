@@ -37,7 +37,7 @@ namespace CEMET.WebApp.UserControls.Comun
         {
             get
             {
-                var totalTxt = BuscaControlEnTemplate<TextBox>(idControl: "Total");
+                var totalTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
                 return totalTxt.Text;
             }
         }
@@ -46,7 +46,7 @@ namespace CEMET.WebApp.UserControls.Comun
         {
             get
             {
-                var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Subtotal");
+                var subTxt = BuscaControlEnTemplate<TextBox>(idControl: "Total");
                 return subTxt.Text;
             }
         }

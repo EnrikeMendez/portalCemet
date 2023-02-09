@@ -30,6 +30,6 @@ namespace Cemetlib.Model
         public float Subtotal { get; set; }
         public float Iva { get; set; }
         public float Total { get; set; }
-
+        public string PaisOrigen { get; set; }
     }
 }

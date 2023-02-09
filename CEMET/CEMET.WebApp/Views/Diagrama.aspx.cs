@@ -120,8 +120,9 @@ namespace CEMET.WebApp.Views
                 FolioContainer.Visible = true;
                 Folio.Text = string.Concat("Folio ", folio.Trim());
             }
-
-            int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(diagrama);
+            List<string> errores = new List<string>();
+            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(diagrama);
+            int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
 
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
         }

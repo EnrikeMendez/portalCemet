@@ -15,6 +15,24 @@ namespace CEMET.WebApp.Views
     {
 
         /// <summary>
+        /// FolioContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FolioContainer;
+
+        /// <summary>
+        /// Folio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Folio;
+
+        /// <summary>
         /// lbl_TipoDeServicio control.
         /// </summary>
         /// <remarks>
@@ -204,13 +222,13 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Cotizacion control.
+        /// Cotizacion2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion Cotizacion;
+        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion2 Cotizacion2;
 
         /// <summary>
         /// Observaciones control.
@@ -229,5 +247,14 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CEMET.WebApp.UserControls.Comun.TerminosYCondiciones TermYCond;
+
+        /// <summary>
+        /// GuardaPruebParcialBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button GuardaPruebParcialBtn;
     }
 }
