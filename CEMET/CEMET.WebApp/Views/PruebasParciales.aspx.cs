@@ -134,7 +134,9 @@ namespace CEMET.WebApp.Views
             {
                 solicitudPruebasParciales.NumeroFolioSolicitud = int.Parse(folioSolicitud);
             }
-            int idFolio = ServicioAltaDeSolicitud.GuardarSolicitud(solicitudPruebasParciales);
+            List<string> errores = new List<string>();
+            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasParciales);
+            int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             Folio.Text = $"Folio guardado {idFolio}";
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
 
