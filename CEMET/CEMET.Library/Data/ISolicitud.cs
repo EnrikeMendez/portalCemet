@@ -162,7 +162,7 @@ namespace Cemetlib.Data
 
             DataColumn column = new DataColumn();
             column.ColumnName = "DOC_Ruta";
-            column.DataType = typeof(int);
+            column.DataType = typeof(string);
             tablaDocumentos.Columns.Add(column);
 
             column = new DataColumn();
