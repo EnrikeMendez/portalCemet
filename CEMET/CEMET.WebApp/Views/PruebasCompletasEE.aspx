@@ -9,7 +9,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
         <h1>Alta de nuevo servicio</h1>
-        <asp:Label runat="server" ID="Folio"></asp:Label>
+        <h3 id="FolioContainer" runat="server" visible="false">
+            <asp:Label runat="server" ID="Folio" CssClass="badge bg-success"></asp:Label>
+        </h3>
     </div>
     <div class="container py-12">
 
@@ -52,7 +54,7 @@
                     Norma particular:
                 </asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="NormaParticular" CssClass="form-select"  />
+                    <asp:DropDownList runat="server" ID="NormaParticular" CssClass="form-select" />
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="NormaParticular" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
@@ -132,7 +134,7 @@
             <div class="border-bottom flex-grow-1"></div>
         </div>
 
-         <div class="col-md-12">
+        <div class="col-md-12">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="form-group">

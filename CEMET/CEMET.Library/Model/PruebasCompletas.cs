@@ -11,5 +11,8 @@ namespace Cemetlib.Model
         public string Categoria { get; set; }
         public string ReferenciaCertificacion { get; set; }
         public string Calibre { get; set; }
+        public string ServicioAdicional { get; set; }
+        public string NormaParticular { get; set; }
+        public List<EspecificacionElectrica> EspecificacionesElectricas { get; set; }
     }
 }
