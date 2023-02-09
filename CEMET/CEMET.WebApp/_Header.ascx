@@ -11,7 +11,7 @@
 
         <div class="col-lg-6 text-center text-right">
             <div class="d-inline-flex align-items-center">
-                <a class="text-white px-2" href="index.aspx">
+                <a class="text-white px-2" href="/Default">
                     <i class="fa fa-home"></i>
                 </a>
                 <a class="text-white px-2" href="">

@@ -80,6 +80,9 @@
               <li class="nav-item ms-lg-4">
                   <a href="Views/SolicitudCreada" class="nav-link">Registrar Solicitud</a>
               </li>
+              <li class="nav-item ms-lg-4">
+                  <a href="Views/Solicitudes" class="nav-link">Consulta Solicitudes</a>
+              </li>
           </ul>
           <!--end:Navbar items-->
 
