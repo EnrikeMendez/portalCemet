@@ -739,6 +739,8 @@
     <Content Include="Content\assan\assets\vendor\masterslider\masterslider.min.js.map" />
     <Content Include="Content\assan\assets\vendor\masterslider\skins\.DS_Store" />
     <Content Include="Default.aspx" />
+    <Content Include="Scripts\choices-select-init.js" />
+    <Content Include="UserControls\Comun\CamposComunes.ascx" />
     <Content Include="UserControls\Comun\Cotizacion.ascx" />
     <Content Include="UserControls\Comun\Cotizacion2.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
@@ -1005,6 +1007,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserControls\Comun\CamposComunes.ascx.cs">
+      <DependentUpon>CamposComunes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\CamposComunes.ascx.designer.cs">
+      <DependentUpon>CamposComunes.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Comun\Cotizacion.ascx.cs">
       <DependentUpon>Cotizacion.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

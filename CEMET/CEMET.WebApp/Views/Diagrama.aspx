@@ -4,6 +4,8 @@
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc1" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc1" TagName="Observaciones" %>
 <%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc1" TagName="CamposComunes" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -38,7 +40,20 @@
             </div>
         </div>
 
-        <div class="form-group col-md-6">
+        <uc1:CamposComunes
+            runat="server"
+            ID="CamposComunes"
+            DescripcionDelProducto_EsRequerido="true"
+            DescripcionDelProducto_ClientValidationFunction="DescripcionDelProducto_ClientValidationFunction"
+            Marca_EsRequerido="true"
+            Marca_ClientValidationFunction="Marca_ClientValidationFunction"
+            Modelo_EsRequerido="true"
+            Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
+            PaisDeOrigen_Visible="false"
+            ValidationGroup="diagramaCamposRequeridos" />
+
+
+        <%--        <div class="form-group col-md-6">
             <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" CssClass="form-label required-field">
                             Descripción del producto</asp:Label>
             <div class="">
@@ -63,7 +78,7 @@
                 <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
-        </div>
+        </div>--%>
 
         <div class="col-md-12">
             <div class="row align-items-center">
@@ -203,6 +218,39 @@
         function Cotizacion2_ValidateConceptosList(sender, e) {
             console.log("Cotizacion2_ValidateConceptosList");
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
+        }
+
+        function DescripcionDelProducto_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
+                        let t = "<%=CamposComunes.DescripcionDelProducto_Text%>";
+                console.log("DescripcionDelProducto_Text", t);
+                e.IsValid = "<%=CamposComunes.DescripcionDelProducto_Text%>" !== '';
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Marca_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = "<%=CamposComunes.Marca_Text%>";
+                console.log("Marca_Text", t);
+                e.IsValid = "<%=CamposComunes.Marca_Text%>" !== '';
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Modelo_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = "<%=CamposComunes.Modelo_Text%>";
+                console.log("Modelo_Text", t);
+                e.IsValid = "<%=CamposComunes.Modelo_Text%>" !== '';
+            }
+            else {
+                e.IsValid = true;
+            }
         }
 
     </script>

@@ -1,9 +1,11 @@
 ﻿using CEMET.WebApp.App_Code;
 using Cemetlib.Business;
 using Cemetlib.Common;
+using Cemetlib.Data;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -52,6 +54,11 @@ namespace CEMET.WebApp.Views
 
                 InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
                 DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
+
+                if (!string.IsNullOrWhiteSpace(folio))
+                {
+                    InicializaCamposComunes(folio: int.Parse(folio));
+                }
             }
         }
 
@@ -63,16 +70,17 @@ namespace CEMET.WebApp.Views
             Controles.FillDropDownList(Norma, catNorma);
             List<Catalog> catCategoria = CatalogService.GetCatCategoria();
             Controles.FillDropDownList(Categoria, catCategoria);
-            List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
-            Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
+            //List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
+            ////Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
+            //CamposComunes.PaisDeOrigen_DataSource = catPaisOrigen;
             List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
             Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
         }
         private void FillDummyData()
         {
-            DescripcionDelProducto.Text = "Test descripción";
-            Marca.Text = "Test marca";
-            Modelo.Text = "Test modelo";
+            //DescripcionDelProducto.Text = "Test descripción";
+            //Marca.Text = "Test marca";
+            //Modelo.Text = "Test modelo";
             Observaciones.Obs = "";
             TermYCond.UsuarioEstaDeAcuerdo = true;
             Categoria.Text = "Test categoria";
@@ -84,9 +92,9 @@ namespace CEMET.WebApp.Views
             PruebasCompletas solicitudPruebasCompletas = new PruebasCompletas();
             solicitudPruebasCompletas.Norma = Norma.SelectedValue;
             solicitudPruebasCompletas.TipoServicio = TipoDeServicio.SelectedValue;
-            solicitudPruebasCompletas.Descripcion = DescripcionDelProducto.Text;
-            solicitudPruebasCompletas.Marca = Marca.Text;
-            solicitudPruebasCompletas.Modelo = Modelo.Text;
+            solicitudPruebasCompletas.Descripcion = CamposComunes.DescripcionDelProducto_Text;
+            solicitudPruebasCompletas.Marca = CamposComunes.Marca_Text;
+            solicitudPruebasCompletas.Modelo = CamposComunes.Modelo_Text;
             solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
             solicitudPruebasCompletas.Observaciones = Observaciones.Obs;
             solicitudPruebasCompletas.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
@@ -98,7 +106,7 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.FechaModifica = null;
             solicitudPruebasCompletas.Categoria = Categoria.Text;
             solicitudPruebasCompletas.ReferenciaCertificacion = ReferenciaCertificacion.Text;
-            solicitudPruebasCompletas.PaisOrigen = PaisDeOrigen.Text;
+            solicitudPruebasCompletas.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
             solicitudPruebasCompletas.Calibre = null;
             List<Cotizacion> cotizaciones = new List<Cotizacion>();
             foreach (var cotizacion in Cotizacion2.Cotizaciones)
@@ -163,6 +171,46 @@ namespace CEMET.WebApp.Views
             Folio.Text = $"Folio guardado {idFolio}";
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
 
+        }
+
+        private void InicializaCamposComunes(int folio)
+        {
+            var db = ISolicitud.ObtenerSolicitudes(folio: folio);
+            var ppList = new List<PruebasCompletas>();
+
+            if (db != null && db.Rows.Count > 0)
+            {
+                ppList = db.AsEnumerable().Select(row =>
+                  new PruebasCompletas
+                  {
+                      Descripcion = row.Field<string>("SOL_Dsc_Producto"),
+                      Marca = row.Field<string>("SOL_Marca"),
+                      Modelo = row.Field<string>("SOL_Modelo"),
+                      PaisOrigen = row.Field<string>("SOL_CPA_Id")
+                  }).ToList();
+
+                var lastPP = ppList.Last();
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Descripcion))
+                {
+                    CamposComunes.DescripcionDelProducto_Text = lastPP.Descripcion;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Marca))
+                {
+                    CamposComunes.Marca_Text = lastPP.Marca;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Modelo))
+                {
+                    CamposComunes.Modelo_Text = lastPP.Modelo;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.PaisOrigen))
+                {
+                    CamposComunes.PaisDeOrigen_SelectedValue = lastPP.PaisOrigen;
+                }
+            }
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)

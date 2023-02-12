@@ -5,6 +5,8 @@
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
 <%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc" TagName="CamposComunes" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -64,13 +66,13 @@
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="ReferenciaCertificacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
-        <div class="form-group col-md-6 p-3">
+        <%--        <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" CssClass="form-label">
                     Descripcion del producto:
             </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
-                
+
             </div>
         </div>
         <div class="form-group col-md-6 p-3">
@@ -99,7 +101,20 @@
                 <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="PaisDeOrigen" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
-        </div>
+        </div>--%>
+
+        <uc:CamposComunes
+            runat="server"
+            ID="CamposComunes"
+            DescripcionDelProducto_EsRequerido="true"
+            DescripcionDelProducto_ClientValidationFunction="DescripcionDelProducto_ClientValidationFunction"
+            Marca_EsRequerido="true"
+            Marca_ClientValidationFunction="Marca_ClientValidationFunction"
+            Modelo_EsRequerido="true"
+            Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
+            PaisDeOrigen_EsRequerido="true"
+            PaisDeOrigen_ClientValidationFunction="PaisDeOrigen_ClientValidationFunction"
+            ValidationGroup="PruebasCompletasValGroup" />
     </div>
 
     <%--
@@ -222,5 +237,68 @@
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
         }
 
+        function DescripcionDelProducto_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
+                console.log("DescripcionDelProducto_Text", t);
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Marca_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.Marca_ClientID %>").val();
+                console.log("Marca_Text", t);
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Modelo_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.Modelo_ClientID %>").val();
+                console.log("Modelo_Text", t);
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function PaisDeOrigen_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.PaisDeOrigen_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.PaisDeOrigen_ClientID %>").val();
+                console.log("PaisDeOrigen_SelectedValue", t);
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
     </script>
 </asp:Content>

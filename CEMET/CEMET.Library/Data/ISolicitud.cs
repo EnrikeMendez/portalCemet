@@ -121,9 +121,11 @@ namespace Cemetlib.Data
                 List<SqlParameter> parameters = new List<SqlParameter>();
 
                 parameters.Add(DB.CrearParametroSql("@SOL_CTS_Id", SqlDbType.VarChar, solicitud.TipoServicio));
+                //Controles comunes
                 parameters.Add(DB.CrearParametroSql("@SOL_Dsc_Producto", SqlDbType.VarChar, solicitud.Descripcion));
                 parameters.Add(DB.CrearParametroSql("@SOL_Marca", SqlDbType.VarChar, solicitud.Marca));
                 parameters.Add(DB.CrearParametroSql("@SOL_Modelo", SqlDbType.VarChar, solicitud.Modelo));
+                parameters.Add(DB.CrearParametroSql("@SOL_CPA_Id", SqlDbType.VarChar, solicitud.PaisOrigen));
 
                 parameters.Add(DB.CrearParametroSql("@SOL_CMR_Id", SqlDbType.VarChar, solicitud.ModalidadRecoleccion));
                 parameters.Add(DB.CrearParametroSql("@SOL_CME_Id", SqlDbType.VarChar, solicitud.ModalidadEntrega));
@@ -251,6 +253,20 @@ namespace Cemetlib.Data
             }
 
             return tablaEspElect;
+        }
+
+        public static DataTable ObtenerSolicitudes(int folio)
+        {
+            DB context = new DB();
+            string query = $@"SELECT v.* FROM VSolicitud_Servicio v WHERE v.[SOL_Folio] = @SOL_Folio ORDER BY v.[SOL_Folio], v.[SOL_Id]";
+
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                DB.CrearParametroSql("@SOL_Folio", SqlDbType.BigInt, folio)
+            };
+
+            DataTable catalogo = context.ObtieneDataTable(query, parametros: parameters);
+            return catalogo;
         }
     }
 }

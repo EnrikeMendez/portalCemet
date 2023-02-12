@@ -173,6 +173,68 @@ namespace Cemetlib.Common
 
             return dtRes;
         }
+        public DataTable ObtieneDataTable(string sql, List<SqlParameter> parametros )
+        {
+            DataTable dtTemp = new DataTable();
+
+            try
+            {
+                dtRes = new DataTable();
+                cnn = new SqlConnection();
+                cnn.ConnectionString = GetConnectionString();
+
+                cmd = new SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = cnn;
+
+                foreach (SqlParameter parametro in parametros)
+                {
+                    cmd.Parameters.Add(parametro);
+                }
+
+                cnn.Open();
+                da = new SqlDataAdapter(cmd);
+                da.Fill(dtTemp);
+                cnn.Close();
+
+                dtRes = dtTemp.Copy();
+            }
+            catch (Exception ex)
+            {
+                ex.Source += "\t\n" + sql;
+                Log.RegistraExcepcion(ex);
+                dtRes = null;
+            }
+            finally
+            {
+                if (cnn != null)
+                {
+                    if (cnn.State == ConnectionState.Open)
+                    {
+                        cnn.Close();
+                    }
+                    cnn.Dispose();
+                    GC.SuppressFinalize(cnn);
+                }
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                    GC.SuppressFinalize(cmd);
+                }
+                if (da != null)
+                {
+                    da.Dispose();
+                    GC.SuppressFinalize(da);
+                }
+                if (dtTemp != null)
+                {
+                    dtTemp.Dispose();
+                    GC.SuppressFinalize(dtTemp);
+                }
+            }
+
+            return dtRes;
+        }
         public int EjecutarSP(string nombreSP, List<SqlParameter> parametros)
         {
             int res = 0;

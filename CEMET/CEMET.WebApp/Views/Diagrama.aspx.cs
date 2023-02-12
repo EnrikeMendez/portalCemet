@@ -1,10 +1,13 @@
 ﻿using CEMET.WebApp.UserControls.Comun;
 using Cemetlib.Business;
 using Cemetlib.Common;
+using Cemetlib.Data;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
 using System.Web.UI;
 using Cotizacion = Cemetlib.Model.Cotizacion;
 
@@ -51,6 +54,11 @@ namespace CEMET.WebApp.Views
                 Controles.FillDropDownList(ModalidadDeEntrega, CatalogService.GetCatModalidadDeEntrega(), agregarOpcionSeleccionar: true);
 
                 TipoDeServicio.SelectedValue = "T3";
+
+                if (!string.IsNullOrWhiteSpace(folio))
+                {
+                    InicializaCamposComunes(folio: int.Parse(folio));
+                }
             }
         }
 
@@ -69,14 +77,58 @@ namespace CEMET.WebApp.Views
 
         }
 
+        private void InicializaCamposComunes(int folio)
+        {
+            var db = ISolicitud.ObtenerSolicitudes(folio: folio);
+            var ppList = new List<PruebasCompletas>();
+
+            if (db != null && db.Rows.Count > 0)
+            {
+                ppList = db.AsEnumerable().Select(row =>
+                  new PruebasCompletas
+                  {
+                      Descripcion = row.Field<string>("SOL_Dsc_Producto"),
+                      Marca = row.Field<string>("SOL_Marca"),
+                      Modelo = row.Field<string>("SOL_Modelo"),
+                      PaisOrigen = row.Field<string>("SOL_CPA_Id")
+                  }).ToList();
+
+                var lastPP = ppList.Last();
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Descripcion))
+                {
+                    CamposComunes.DescripcionDelProducto_Text = lastPP.Descripcion;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Marca))
+                {
+                    CamposComunes.Marca_Text = lastPP.Marca;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Modelo))
+                {
+                    CamposComunes.Modelo_Text = lastPP.Modelo;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.PaisOrigen))
+                {
+                    CamposComunes.PaisDeOrigen_SelectedValue = lastPP.PaisOrigen;
+                }
+            }
+        }
+
         protected void CreaDTO(string folio)
         {
             var diagrama = new DiagramaMarcado();
 
             diagrama.TipoServicio = TipoDeServicio.SelectedValue;
-            diagrama.Descripcion = DescripcionDelProducto.Text;
-            diagrama.Marca = Marca.Text;
-            diagrama.Modelo = Modelo.Text;
+            diagrama.Descripcion = CamposComunes.DescripcionDelProducto_Text;
+            diagrama.Marca = CamposComunes.Marca_Text;
+            diagrama.Modelo = CamposComunes.Modelo_Text;
+            if(!string.IsNullOrWhiteSpace(CamposComunes.PaisDeOrigen_Current_SelectedValue))
+            {
+                diagrama.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
+            }
             //region Solicitud_Especificaciones_Electricas
             diagrama.EspecificacionesElectricas = new List<EspecificacionElectrica>();
             diagrama.EspecificacionesElectricas.Add(new EspecificacionElectrica

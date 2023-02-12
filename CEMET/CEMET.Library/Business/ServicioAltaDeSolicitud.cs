@@ -47,7 +47,7 @@ namespace Cemetlib.Business
                     default:
                         throw new ArgumentException("La solicitud seleccionada es inválida.");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -63,19 +63,22 @@ namespace Cemetlib.Business
         private List<string> ValidaDocumentos()
         {
             List<string> errores = new List<string>();
-            foreach (Documentos doc in Solicitud.Documentos)
+            if (Solicitud.Documentos != null)
             {
-                if (string.IsNullOrEmpty(doc.Tipo))
+                foreach (Documentos doc in Solicitud.Documentos)
                 {
-                    throw new ArgumentException("El tipo de documento proporcionado no es válido"); //Hard stop because this is not provided by user.
-                }
-                if (string.IsNullOrEmpty(doc.Nombre))
-                {
-                    errores.Add($"El nombre del documento tipo {doc.Tipo} no puede estár vacío");
-                }
-                if (string.IsNullOrEmpty(doc.Ruta))
-                {
-                    errores.Add($"La ruta del documento tipo {doc.Tipo} no puede estár vacía");
+                    if (string.IsNullOrEmpty(doc.Tipo))
+                    {
+                        throw new ArgumentException("El tipo de documento proporcionado no es válido"); //Hard stop because this is not provided by user.
+                    }
+                    if (string.IsNullOrEmpty(doc.Nombre))
+                    {
+                        errores.Add($"El nombre del documento tipo {doc.Tipo} no puede estár vacío");
+                    }
+                    if (string.IsNullOrEmpty(doc.Ruta))
+                    {
+                        errores.Add($"La ruta del documento tipo {doc.Tipo} no puede estár vacía");
+                    }
                 }
             }
 
@@ -89,7 +92,8 @@ namespace Cemetlib.Business
             float total = 0;
             foreach (Cotizacion cotizacion in Solicitud.Cotizaciones)
             {
-                subtotal += float.Parse(cotizacion.Tarifa);
+                if (float.TryParse(cotizacion.Tarifa, out float t))
+                    subtotal += t;
             }
             total = subtotal + (subtotal * Solicitud.Iva);
 

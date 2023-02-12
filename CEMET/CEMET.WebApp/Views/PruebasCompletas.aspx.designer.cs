@@ -96,49 +96,13 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.TextBox ReferenciaCertificacion;
 
         /// <summary>
-        /// DescripcionDelProducto control.
+        /// CamposComunes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DescripcionDelProducto;
-
-        /// <summary>
-        /// Marca control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Marca;
-
-        /// <summary>
-        /// Modelo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Modelo;
-
-        /// <summary>
-        /// lbl_PaisDeOrigen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_PaisDeOrigen;
-
-        /// <summary>
-        /// PaisDeOrigen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PaisDeOrigen;
+        protected global::CEMET.WebApp.UserControls.Comun.CamposComunes CamposComunes;
 
         /// <summary>
         /// TituloFileUploader control.

@@ -37,7 +37,9 @@
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <%--Site Scripts--%>
                 <%-- https://stackoverflow.com/questions/41861450/using-scriptmanager-to-add-javascript-references-to-site-master --%>
-                <asp:ScriptReference Path="~/Scripts/fontawesome/all.js" />
+                <asp:ScriptReference Path="~/Content/assan/assets/js/theme.bundle.js" />
+                <asp:ScriptReference Path="~/Content/assan/assets/vendor/node_modules/js/choices.min.js" />
+                <asp:ScriptReference Path="~/Scripts/choices-select-init.js" />
             </Scripts>
         </asp:ScriptManager>
 
@@ -51,31 +53,6 @@
 
             <uc1:Footer runat="server" ID="_Footer" />
         </div>
-
-      
     </form>
 </body>
-
-<!--Select scripts-->
- <script src="/Content/assan/assets/vendor/node_modules/js/choices.min.js"></script>
- <script>
-     var cSelect = document.querySelectorAll("[data-choices]");
-     //console.log("cSelect: ", cSelect);
-      cSelect.forEach(el => {
-        const t = { ...el.dataset.choices ? JSON.parse(el.dataset.choices) : {},
-         ...{
-             classNames: {
-             containerInner: el.className,
-             input: "form-control",
-             inputCloned: "form-control-sm",
-             listDropdown: "dropdown-menu",
-             itemChoice: "dropdown-item",
-             activeState: "show",
-             selectedState: "active"
-             }
-     }
-    }
-    new Choices(el, t)
-    });
- </script>
 </html>

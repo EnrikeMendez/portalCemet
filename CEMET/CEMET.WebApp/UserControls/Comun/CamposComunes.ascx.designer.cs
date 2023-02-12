@@ -7,146 +7,155 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEMET.WebApp.Views
+namespace CEMET.WebApp.UserControls.Comun
 {
 
 
-    public partial class Diagrama
+    public partial class CamposComunes
     {
 
         /// <summary>
-        /// FolioContainer control.
+        /// DescripcionDelProducto_Container control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FolioContainer;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DescripcionDelProducto_Container;
 
         /// <summary>
-        /// Folio control.
+        /// DescripcionDelProducto_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Folio;
+        protected global::System.Web.UI.WebControls.Label DescripcionDelProducto_Label;
 
         /// <summary>
-        /// TipoDeServicio control.
+        /// DescripcionDelProducto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TipoDeServicio;
+        protected global::System.Web.UI.WebControls.TextBox DescripcionDelProducto;
 
         /// <summary>
-        /// TipoDeServicioReqVal control.
+        /// DescripcionDelProducto_CustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator TipoDeServicioReqVal;
+        protected global::System.Web.UI.WebControls.CustomValidator DescripcionDelProducto_CustomValidator;
 
         /// <summary>
-        /// CamposComunes control.
+        /// Marca_Container control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.CamposComunes CamposComunes;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Marca_Container;
 
         /// <summary>
-        /// Voltaje control.
+        /// Marca_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Voltaje;
+        protected global::System.Web.UI.WebControls.Label Marca_Label;
 
         /// <summary>
-        /// Corriente control.
+        /// Marca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Corriente;
+        protected global::System.Web.UI.WebControls.TextBox Marca;
 
         /// <summary>
-        /// Potencia control.
+        /// Marca_CustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Potencia;
+        protected global::System.Web.UI.WebControls.CustomValidator Marca_CustomValidator;
 
         /// <summary>
-        /// ModalidadDeRecoleccion control.
+        /// Modelo_Container control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ModalidadDeRecoleccion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Modelo_Container;
 
         /// <summary>
-        /// ModalidadDeEntrega control.
+        /// Modelo_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ModalidadDeEntrega;
+        protected global::System.Web.UI.WebControls.Label Modelo_Label;
 
         /// <summary>
-        /// DiasHabiles control.
+        /// Modelo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DiasHabiles;
+        protected global::System.Web.UI.WebControls.TextBox Modelo;
 
         /// <summary>
-        /// Cotizacion2 control.
+        /// Modelo_CustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion2 Cotizacion2;
+        protected global::System.Web.UI.WebControls.CustomValidator Modelo_CustomValidator;
 
         /// <summary>
-        /// Observaciones control.
+        /// PaisDeOrigen_Container control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.Observaciones Observaciones;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PaisDeOrigen_Container;
 
         /// <summary>
-        /// TermYCond control.
+        /// PaisDeOrigen_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.TerminosYCondiciones TermYCond;
+        protected global::System.Web.UI.WebControls.Label PaisDeOrigen_Label;
 
         /// <summary>
-        /// GuardarDiagramaBtn control.
+        /// PaisDeOrigen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuardarDiagramaBtn;
+        protected global::System.Web.UI.WebControls.DropDownList PaisDeOrigen;
+
+        /// <summary>
+        /// PaisDeOrigen_CustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator PaisDeOrigen_CustomValidator;
     }
 }
