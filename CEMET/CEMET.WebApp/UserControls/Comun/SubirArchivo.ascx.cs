@@ -15,8 +15,13 @@ namespace CEMET.WebApp.UserControls.Comun
 
         private const string DocumentosLstKey = "LstDocKey";
         private const string ValidationGroupFormKey = "ValGrpSubArcForm";
+        private const string SavePathKey = "SavPathKey";
 
-        public string SavePath { get; set; }
+        public string SavePath
+        {
+            get { return (string)Session[CreaLLaveUnica(llave: SavePathKey)]; }
+            set { Session[CreaLLaveUnica(llave: SavePathKey)] = value; }
+        }
         public string MaxSizeErrorMessage { get; set; }
         public string ExtensionNotAllowedErrorMessage { get; set; }
         public string Etiqueta { get; set; }
@@ -269,5 +274,8 @@ namespace CEMET.WebApp.UserControls.Comun
 
             return mediaType;
         }
+
+    
+
     }
 }

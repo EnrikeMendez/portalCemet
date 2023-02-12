@@ -21,9 +21,10 @@ namespace Cemetlib.Data
             return catalogo;
         }
 
-        public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas)
+        public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas, out int solicitudId)
         {
-            int numeroSolicitud;
+            int folio;
+            solicitudId = 0;
             try
             {
                 DB context = new DB();
@@ -53,7 +54,16 @@ namespace Cemetlib.Data
 
                 parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebasCompletas.Cotizaciones)));
 
-                numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
+                var solIdParameter = DB.CrearParametroSql("@SOL_Id", SqlDbType.BigInt, null);
+                solIdParameter.Direction = ParameterDirection.Output;
+                parameters.Add(solIdParameter);
+
+                folio = context.EjecutarSP("SPC_AltaSolicitud", parameters, out Dictionary<string, object> parametrosSalida);
+
+                if (parametrosSalida.Any())
+                {
+                    solicitudId = int.Parse(parametrosSalida["@SOL_Id"].ToString());
+                }
 
             }
             catch (Exception ex)
@@ -61,11 +71,11 @@ namespace Cemetlib.Data
 
                 throw;
             }
-            return numeroSolicitud;
+            return folio;
         }
         public static int GuardaSolicitudPruebaParcial(PruebasParciales solicitudPruebaParcial)
         {
-            int numeroSolicitud;
+            int folio;
             try
             {
                 DB context = new DB();
@@ -92,7 +102,7 @@ namespace Cemetlib.Data
 
                 parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebaParcial.Cotizaciones)));
 
-                numeroSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters);
+                folio = context.EjecutarSP("SPC_AltaSolicitud", parameters);
 
             }
             catch (Exception ex)
@@ -100,7 +110,7 @@ namespace Cemetlib.Data
 
                 throw;
             }
-            return numeroSolicitud;
+            return folio;
         }
         public static int GuardaSolicitudDiagrama(DiagramaMarcado solicitud)
         {

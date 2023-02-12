@@ -1,4 +1,5 @@
-﻿using Cemetlib.Business;
+﻿using CEMET.WebApp.App_Code;
+using Cemetlib.Business;
 using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
@@ -17,11 +18,7 @@ namespace CEMET.WebApp.Views
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            string saveDirIns = @"Uploads\" + usuarioId + @"\PruebasCompletas\InstructivoManual";
-            string saveDirDocs = @"Uploads\" + usuarioId + @"\PruebasCompletas\DocsAdicionales";
-
-            InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
-            DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
+            //string appPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             if (Page.IsPostBack)
             {
@@ -48,6 +45,13 @@ namespace CEMET.WebApp.Views
                 FillDummyData();
 
                 TipoDeServicio.SelectedValue = "T1";
+
+                string rootSavePath = Helper.CreateTempPath(usuarioId: usuarioId);
+                string saveDirIns = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_InstructivoManual");
+                string saveDirDocs = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_DocumentosAdicionales");
+
+                InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
+                DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
             }
         }
 
@@ -120,12 +124,12 @@ namespace CEMET.WebApp.Views
                 InstructivoManual.ListaDeDocumentos.Select(x => new Documentos
                 {
                     Nombre = x.Nombre,
-                    Ruta = InstructivoManual.SavePath, //con string truena
+                    Ruta = InstructivoManual.SavePath,
                     Tipo = "1"//Tipo instructivo
                 })
             );
 
-            if (documentosSolicitud.Any())
+            if (DocsAdicionales.ListaDeDocumentos.Any())
             {
                 documentosSolicitud.AddRange(
                    DocsAdicionales.ListaDeDocumentos.Select(x => new Documentos
@@ -146,6 +150,16 @@ namespace CEMET.WebApp.Views
             List<string> errores = new List<string>();
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasCompletas);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
+
+            //var destinationFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Helper.ReadSetting(key: "PruebasCompletas_InstructivoManual").Replace("{NoSolicitud}", servicioAltaDeSolicitud.Solicitud.SolicitudId.ToString()));
+            //Helper.MoveAllFiles(sourceFolderPath: InstructivoManual.SavePath, destinationFolderPath: destinationFolderPath);
+
+            //if (DocsAdicionales.ListaDeDocumentos.Any())
+            //{
+            //    destinationFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Helper.ReadSetting(key: "PruebasCompletas_DocumentosAdicionales").Replace("{NoSolicitud}", servicioAltaDeSolicitud.Solicitud.SolicitudId.ToString()));
+            //    Helper.MoveAllFiles(sourceFolderPath: DocsAdicionales.SavePath, destinationFolderPath: destinationFolderPath);
+            //}
+
             Folio.Text = $"Folio guardado {idFolio}";
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
 

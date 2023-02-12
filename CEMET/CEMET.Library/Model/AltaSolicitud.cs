@@ -31,5 +31,6 @@ namespace Cemetlib.Model
         public float Iva { get; set; }
         public float Total { get; set; }
         public string PaisOrigen { get; set; }
+        public int SolicitudId { get; set; }
     }
 }

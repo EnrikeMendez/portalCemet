@@ -9,7 +9,7 @@ namespace Cemetlib.Business
 {
     public class ServicioAltaDeSolicitud
     {
-        private AltaSolicitud Solicitud;
+        public readonly AltaSolicitud Solicitud;
         public ServicioAltaDeSolicitud(AltaSolicitud solicitud)
         {
             Solicitud = solicitud;
@@ -19,7 +19,9 @@ namespace Cemetlib.Business
             errores = new List<string>();
             List<string> erroresDocumentos = new List<string>();
             List<string> erroresCotizacion = new List<string>();
-            int numeroSolicitud = 0;
+            int folio = 0;
+            int solicitudId = 0;
+
             try
             {
                 erroresCotizacion = ValidaCotizacion(Solicitud.Cotizaciones);
@@ -30,15 +32,15 @@ namespace Cemetlib.Business
                 {
                     case "T1":
                         PruebasCompletas altaPruebasCompletas = (PruebasCompletas)Solicitud;
-                        numeroSolicitud = ISolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas);
+                        folio = ISolicitud.GuardaSolicitudPruebaCompleta(altaPruebasCompletas, out solicitudId);
                         break;
                     case "T2":
                         PruebasParciales pruebasParciales = (PruebasParciales)Solicitud;
-                        numeroSolicitud = ISolicitud.GuardaSolicitudPruebaParcial(pruebasParciales);
+                        folio = ISolicitud.GuardaSolicitudPruebaParcial(pruebasParciales);
                         break;
                     case "T3":
                         DiagramaMarcado diagrama = (DiagramaMarcado)Solicitud;
-                        numeroSolicitud = ISolicitud.GuardaSolicitudDiagrama(diagrama);
+                        folio = ISolicitud.GuardaSolicitudDiagrama(diagrama);
                         break;
                     case "T4":
                         break;
@@ -53,7 +55,9 @@ namespace Cemetlib.Business
                 throw ex;
             }
 
-            return numeroSolicitud;
+            Solicitud.SolicitudId = solicitudId;
+
+            return folio;
         }
 
         private List<string> ValidaDocumentos()
@@ -89,14 +93,15 @@ namespace Cemetlib.Business
             }
             total = subtotal + (subtotal * Solicitud.Iva);
 
-            if (subtotal != Solicitud.Subtotal)
-            {
-                errores.Add("El subtotal no coincide con el cálculo de las cotizaciones.");
-            }
-            if (total != Solicitud.Total)
-            {
-                errores.Add("El total no coincide con el cálculo de las cotizaciones.");
-            }
+            //el subtotal puede variar a lo que capture el usuario, por eso se dejaron abiertos los campos
+            //if (subtotal != Solicitud.Subtotal)
+            //{
+            //    errores.Add("El subtotal no coincide con el cálculo de las cotizaciones.");
+            //}
+            //if (total != Solicitud.Total)
+            //{
+            //    errores.Add("El total no coincide con el cálculo de las cotizaciones.");
+            //}
 
             return errores;
         }
