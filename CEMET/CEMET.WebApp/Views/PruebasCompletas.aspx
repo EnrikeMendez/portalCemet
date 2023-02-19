@@ -4,9 +4,10 @@
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
-<%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
 <%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc" TagName="CamposComunes" %>
 
+<%--PRESOLICITUD MM - PRUEBAS COMPLETAS - P3--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -26,7 +27,7 @@
 
     </div>
 
-    <div class="row d-flex">
+    <div class="row">
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server"
                 AssociatedControlID="TipoDeServicio"
@@ -43,7 +44,7 @@
                     Norma:
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="Norma" CssClass="form-control" data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' required="" />
+                <asp:DropDownList runat="server" ID="Norma" CssClass="form-control" data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
@@ -53,7 +54,7 @@
                     Categoria:
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="Categoria" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
+                <asp:DropDownList runat="server" ID="Categoria" CssClass="form-control" data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Categoria" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
@@ -66,42 +67,6 @@
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="ReferenciaCertificacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
-        <%--        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" CssClass="form-label">
-                    Descripcion del producto:
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
-
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="Marca" CssClass="form-label required-field">
-                    Marca:
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Marca" CssClass="form-control" required="" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="Modelo" CssClass="form-label required-field">
-                    Modelo:
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" required="" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="PaisDeOrigen" ID="lbl_PaisDeOrigen" CssClass="form-label required-field">
-                    Pais de Origen:
-            </asp:Label>
-            <div class="">
-                <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="PaisDeOrigen" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>--%>
 
         <uc:CamposComunes
             runat="server"
@@ -117,14 +82,10 @@
             ValidationGroup="PruebasCompletasValGroup" />
     </div>
 
-    <%--
-            https://es.stackoverflow.com/questions/41008/error-de-servidor-en-la-aplicaci%C3%B3n#:~:text=Argumento%20de%20devoluci%C3%B3n%20o%20de,%22%20%25%3E%20en%20una%20p%C3%A1gina.
-    --%>
+    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="PruebasCompletasValGroup" />
+
     <div class="d-flex align-items-center mb-3 mt-4">
-        <h5 class="mb-0 me-3 me-md-4">
-            <asp:Label ID="TituloFileUploader" runat="server">
-            Documentos
-            </asp:Label>
+        <h5 class="mb-0 me-3 me-md-4">Documentos
         </h5>
         <div class="border-bottom flex-grow-1"></div>
     </div>
@@ -144,28 +105,7 @@
         Etiqueta="Documentos adicionales"
         Extensiones=".jpg" />
 
-    <div class="row">
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" ID="lbl_ModalidadDeRecoleccion" CssClass="form-label required-field">
-                    Modalidad de recolección:
-            </asp:Label>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required="" />
-        </div>
-    </div>
 
-    <div class="d-flex align-items-center mb-3 mt-4">
-        <h5 class="mb-0 me-3 me-md-4">
-            <asp:Label ID="Label2" runat="server">
-                    Modalidad de entrega
-            </asp:Label>
-        </h5>
-        <div class="border-bottom flex-grow-1"></div>
-
-    </div>
-
-    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" />
 
     <div class="d-flex align-items-center mb-3 mt-4">
         <h5 class="mb-0 me-3 me-md-4">

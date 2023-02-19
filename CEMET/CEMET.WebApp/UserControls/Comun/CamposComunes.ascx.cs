@@ -79,7 +79,14 @@ namespace CEMET.WebApp.UserControls.Comun
 
         public string PaisDeOrigen_ClientValidationFunction { get; set; }
 
+        /// <summary>
+        /// Bandera para inicializar el campo pais
+        /// </summary>
         public string PaisDeOrigen_SelectedValue { get; set; }
+
+        /// <summary>
+        /// Valor seleccionado del campo pais
+        /// </summary>
         public string PaisDeOrigen_Current_SelectedValue
         {
             get { return PaisDeOrigen.SelectedValue; }

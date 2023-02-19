@@ -41,7 +41,29 @@ namespace CEMET.WebApp.Views
             {
                
                
-                List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+                List<Catalog> serviceTypeItems = new List<Catalog>()
+                {
+                    new Catalog
+                    {
+                         Text = "Pruebas completas",
+                         Value = "T1"
+                    },
+                    new Catalog
+                    {
+                         Text = "Pruebas Parciales",
+                         Value = "T2"
+                    },
+                    new Catalog
+                    {
+                         Text = "Diagrama",
+                         Value = "T3"
+                    },
+                    new Catalog
+                    {
+                         Text = "Pruebas completas EE",
+                         Value = "T5"
+                    }
+                };
                 Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
             }
            
@@ -67,8 +89,8 @@ namespace CEMET.WebApp.Views
                 case "T3":
                     pagina = "Diagrama";
                     break;
-                case "T4":
-                    pagina = "../Default";
+                case "T5":
+                    pagina = "PruebasCompletasEE";
                     
                     break;
                 default:

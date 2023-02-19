@@ -50,9 +50,14 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitudPruebasCompletas.FechaModifica));
                 parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitudPruebasCompletas.UsuarioModifica));
                 parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitudPruebasCompletas.NumeroFolioSolicitud));
+
                 parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, CreaTablaDocumentos(documentos: solicitudPruebasCompletas.Documentos)));
 
                 parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebasCompletas.Cotizaciones)));
+
+                parameters.Add(DB.CrearParametroSql("@Normas", SqlDbType.Structured, CreaTablaNormas(normas: solicitudPruebasCompletas.Normas)));
+
+                parameters.Add(DB.CrearParametroSql("@ServiciosAdicionales", SqlDbType.Structured, CreaTablaServiciosAdicionales(serviciosAdicionales: solicitudPruebasCompletas.ServiciosAdicionales)));
 
                 var solIdParameter = DB.CrearParametroSql("@SOL_Id", SqlDbType.BigInt, null);
                 solIdParameter.Direction = ParameterDirection.Output;
@@ -73,6 +78,7 @@ namespace Cemetlib.Data
             }
             return folio;
         }
+      
         public static int GuardaSolicitudPruebaParcial(PruebasParciales solicitudPruebaParcial)
         {
             int folio;
@@ -112,6 +118,7 @@ namespace Cemetlib.Data
             }
             return folio;
         }
+       
         public static int GuardaSolicitudDiagrama(DiagramaMarcado solicitud)
         {
             int folioSolicitud;
@@ -253,6 +260,57 @@ namespace Cemetlib.Data
             }
 
             return tablaEspElect;
+        }
+
+        private static DataTable CreaTablaNormas(List<Norma> normas)
+        {
+            DataTable tabla = new DataTable();
+
+            DataColumn column = new DataColumn
+            {
+                ColumnName = "NOR_CNR_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+            column = new DataColumn
+            {
+                ColumnName = "NOR_CNP_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+            foreach (var item in normas)
+            {
+                DataRow DR = tabla.NewRow();
+                DR[0] = item.IdNormaReferencia;
+                DR[1] = item.IdNormaParticular;
+                tabla.Rows.Add(DR);
+            }
+
+            return tabla;
+        }
+
+        private static DataTable CreaTablaServiciosAdicionales(List<ServicioAdicional> serviciosAdicionales)
+        {
+            DataTable tabla = new DataTable();
+
+            DataColumn column = new DataColumn
+            {
+                ColumnName = "CSA_Id",
+                DataType = typeof(string)
+            };
+            tabla.Columns.Add(column);
+
+
+            foreach (var item in serviciosAdicionales)
+            {
+                DataRow DR = tabla.NewRow();
+                DR[0] = item.IdServicioAdicional;
+                tabla.Rows.Add(DR);
+            }
+
+            return tabla;
         }
 
         public static DataTable ObtenerSolicitudes(int folio)

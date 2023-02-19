@@ -742,8 +742,8 @@
     <Content Include="Scripts\choices-select-init.js" />
     <Content Include="UserControls\Comun\CamposComunes.ascx" />
     <Content Include="UserControls\Comun\Cotizacion.ascx" />
-    <Content Include="UserControls\Comun\Cotizacion2.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
+    <Content Include="UserControls\Comun\EspecificacionesElectricas.ascx" />
     <Content Include="UserControls\Comun\ModalidadEntrega.ascx" />
     <Content Include="UserControls\Comun\ModalPopUp.ascx" />
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
@@ -1021,19 +1021,19 @@
     <Compile Include="UserControls\Comun\Cotizacion.ascx.designer.cs">
       <DependentUpon>Cotizacion.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Comun\Cotizacion2.ascx.cs">
-      <DependentUpon>Cotizacion2.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserControls\Comun\Cotizacion2.ascx.designer.cs">
-      <DependentUpon>Cotizacion2.ascx</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Comun\Datepicker.ascx.cs">
       <DependentUpon>Datepicker.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\Comun\Datepicker.ascx.designer.cs">
       <DependentUpon>Datepicker.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\EspecificacionesElectricas.ascx.cs">
+      <DependentUpon>EspecificacionesElectricas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\EspecificacionesElectricas.ascx.designer.cs">
+      <DependentUpon>EspecificacionesElectricas.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Comun\ModalidadEntrega.ascx.cs">
       <DependentUpon>ModalidadEntrega.ascx</DependentUpon>

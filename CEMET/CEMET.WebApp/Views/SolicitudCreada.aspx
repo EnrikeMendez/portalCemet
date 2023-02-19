@@ -28,7 +28,7 @@
                 <asp:Label runat="server" AssociatedControlID="TipoDeServicio" ID="lbl_TipoDeServicio" CssClass="form-label required-field">
                             Tipo de servicio:</asp:Label>
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-control" data-choices='{"searchEnabled":false, "allowHTML":true,"itemSelectText":""}' required=""/>
+                    <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-control" data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}'/>
                     <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>

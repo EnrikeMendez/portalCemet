@@ -52,8 +52,8 @@ namespace CEMET.WebApp.Views
             Controles.FillDropDownList(NormaParticular, catNormaParticular);
             List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
             Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
-            List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
-            Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
+            //List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
+            //Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
             List<Catalog> catMetodoPrueba = CatalogService.GetCatMetodoDePrueba();
             Controles.FillDropDownList(MetodoDePrueba, catMetodoPrueba);
 
@@ -78,7 +78,7 @@ namespace CEMET.WebApp.Views
             solicitudPruebasParciales.Descripcion = DescripcionDelProducto.Text;
             solicitudPruebasParciales.Marca = Marca.Text;
             solicitudPruebasParciales.Modelo = Modelo.Text;
-            solicitudPruebasParciales.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
+            solicitudPruebasParciales.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
             solicitudPruebasParciales.Observaciones = Observaciones.Obs;
             solicitudPruebasParciales.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
             solicitudPruebasParciales.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;

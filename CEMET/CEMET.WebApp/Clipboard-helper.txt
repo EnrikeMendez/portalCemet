@@ -21,3 +21,13 @@
 <uc:Datepicker runat="server" ID="Datepicker" IsReadOnlyTextbox="true" />
 
 
+data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' 
+
+
+<asp:DropDownList
+        runat="server"
+        ID="NormaParticular"
+        CssClass="form-control"
+        data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
+
+

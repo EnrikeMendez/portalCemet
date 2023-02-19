@@ -15,39 +15,48 @@ namespace CEMET.WebApp.UserControls.Comun
     {
 
         /// <summary>
-        /// Desgloce control.
+        /// ServicioSolicitado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Desgloce;
+        protected global::System.Web.UI.WebControls.DropDownList ServicioSolicitado;
 
         /// <summary>
-        /// Subtotal control.
+        /// Tarifa control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Subtotal;
+        protected global::System.Web.UI.WebControls.DropDownList Tarifa;
 
         /// <summary>
-        /// iva control.
+        /// AgregarServTarBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox iva;
+        protected global::System.Web.UI.WebControls.Button AgregarServTarBtn;
 
         /// <summary>
-        /// total control.
+        /// CustomValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox total;
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+
+        /// <summary>
+        /// cotizacionList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView cotizacionList;
     }
 }

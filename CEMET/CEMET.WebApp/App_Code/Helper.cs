@@ -68,7 +68,7 @@ namespace CEMET.WebApp.App_Code
         /// <returns></returns>
         public static string CreateTempPath(string usuarioId)
         {
-            return @"Uploads\Temp\" + usuarioId;
+            return ReadSetting(key: "FolderTemporalDocs") + usuarioId;
         }
     }
 }

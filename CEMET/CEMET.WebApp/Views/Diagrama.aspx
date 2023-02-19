@@ -3,8 +3,12 @@
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc1" TagName="SubirArchivo" %>
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc1" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc1" TagName="Observaciones" %>
-<%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
 <%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc1" TagName="CamposComunes" %>
+<%@ Register Src="~/UserControls/Comun/EspecificacionesElectricas.ascx" TagPrefix="uc1" TagName="EspecificacionesElectricas" %>
+<%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc1" TagName="ModalidadEntrega" %>
+
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -49,117 +53,25 @@
             Marca_ClientValidationFunction="Marca_ClientValidationFunction"
             Modelo_EsRequerido="true"
             Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
-            PaisDeOrigen_Visible="false"
+            PaisDeOrigen_Visible="true"
             ValidationGroup="diagramaCamposRequeridos" />
 
+        <uc1:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="diagramaCamposRequeridos" />
 
-        <%--        <div class="form-group col-md-6">
-            <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" CssClass="form-label required-field">
-                            Descripción del producto</asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>
-
-        <div class="form-group col-md-6">
-            <asp:Label runat="server" AssociatedControlID="Marca" CssClass="form-label required-field">
-                            Marca</asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Marca" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>
-
-        <div class="form-group col-md-6">
-            <asp:Label runat="server" AssociatedControlID="Modelo" CssClass="form-label required-field">
-                            Modelo</asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>--%>
-
-        <div class="col-md-12">
-            <div class="row align-items-center">
-                <div class="col-md-2">
-                    Especificaciones eléctricas de alimentación:
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Voltaje" CssClass="form-label required-field">
-                                Voltaje (V)
-                        </asp:Label>
-                        <div class="">
-                            <asp:DropDownList runat="server" ID="Voltaje" CssClass="form-select" />
-                            <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Voltaje" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row align-items-center">
-                        <div class="col-md-3">
-                            Consumo
-                        </div>
-                        <div class="col-md-9">
-                            <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="Corriente" CssClass="form-label required-field">
-                                        Corriente (A)
-                                </asp:Label>
-                                <div class="">
-                                    <asp:DropDownList runat="server" ID="Corriente" CssClass="form-select" />
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Corriente" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="Potencia" CssClass="form-label required-field">
-                                        Potencia (W)
-                                </asp:Label>
-                                <div class="">
-                                    <asp:DropDownList runat="server" ID="Potencia" CssClass="form-select" />
-                                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="Potencia" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="d-flex align-items-center mb-3 mt-2">
+            <h5 class="mb-0 me-3 me-md-4">Especificaciones eléctricas de alimentación</h5>
+            <div class="border-bottom flex-grow-1"></div>
         </div>
 
         <div class="col-md-12">
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" CssClass="form-label">
-                            Recolección</asp:Label>
-                <div class="">
-                    <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="ModalidadDeRecoleccion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                </div>
-            </div>
+            <uc1:EspecificacionesElectricas
+                runat="server"
+                ID="EspecificacionesElectricas"
+                EsRequerido="true"
+                ValidationGroup="diagramaCamposRequeridos" />
         </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ModalidadDeEntrega" CssClass="form-label">
-                    Entrega
-                    </asp:Label>
-                    <div class="">
-                        <asp:DropDownList runat="server" ID="ModalidadDeEntrega" CssClass="form-select" />
-                        <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="ModalidadDeEntrega" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="DiasHabiles" CssClass="form-label">
-                        Días hábiles
-                    </asp:Label>
-                    <div class="">
-                        <asp:DropDownList runat="server" ID="DiasHabiles" CssClass="form-select" />
-                        <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="DiasHabiles" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
     </div>
 
     <div class="d-flex align-items-center mb-3 mt-4">
@@ -180,7 +92,6 @@
 
     <uc1:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="diagramaCamposRequeridos" />
 
-    <hr class="my-4">
 
     <div class="row">
         <div class="col">
@@ -222,7 +133,7 @@
 
         function DescripcionDelProducto_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
-                        let t = "<%=CamposComunes.DescripcionDelProducto_Text%>";
+                let t = "<%=CamposComunes.DescripcionDelProducto_Text%>";
                 console.log("DescripcionDelProducto_Text", t);
                 e.IsValid = "<%=CamposComunes.DescripcionDelProducto_Text%>" !== '';
             }

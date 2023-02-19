@@ -4,7 +4,9 @@
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
-<%@ Register Src="~/UserControls/Comun/Cotizacion2.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+
+<%--PRESOLICITUD MM (P.PARCIALES) - P4--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -124,7 +126,7 @@
         Etiqueta="Documentos adicionales"
         Extensiones=".jpg" />
 
-    <div class="row">
+<%--    <div class="row">
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" ID="lbl_ModalidadDeRecoleccion" CssClass="form-label required-field">
                     Modalidad de recolección:
@@ -145,9 +147,9 @@
         </h5>
         <div class="border-bottom flex-grow-1"></div>
 
-    </div>
+    </div>--%>
 
-    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" />
+    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="diagramaCamposRequeridos" />
 
     <div class="d-flex align-items-center mb-3 mt-4">
         <h5 class="mb-0 me-3 me-md-4">

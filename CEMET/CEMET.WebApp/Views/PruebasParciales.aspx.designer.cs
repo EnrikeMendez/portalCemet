@@ -177,33 +177,6 @@ namespace CEMET.WebApp.Views
         protected global::CEMET.WebApp.UserControls.Comun.SubirArchivo DocsAdicionales;
 
         /// <summary>
-        /// lbl_ModalidadDeRecoleccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ModalidadDeRecoleccion;
-
-        /// <summary>
-        /// ModalidadDeRecoleccion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ModalidadDeRecoleccion;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
         /// ModalidadEntrega control.
         /// </summary>
         /// <remarks>
@@ -228,7 +201,7 @@ namespace CEMET.WebApp.Views
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion2 Cotizacion2;
+        protected global::CEMET.WebApp.UserControls.Comun.Cotizacion Cotizacion2;
 
         /// <summary>
         /// Observaciones control.

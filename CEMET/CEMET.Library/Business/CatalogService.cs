@@ -39,7 +39,7 @@ namespace Cemetlib.Business
             DataTable catalogo = ICatalogo.GetCatNorma();
             foreach (DataRow row in catalogo.Rows)
             {
-                catNorma.Add(new Catalog { Value = row["CNR_Clave"].ToString(), Text = row["CNR_Descripcion"].ToString() });
+                catNorma.Add(new Catalog { Value = row["CNR_Id"].ToString(), Text = string.Concat(row["CNR_Norma"].ToString(), " / ", row["CNR_Descripcion"].ToString()) });
             }
             return catNorma;
         }
@@ -49,7 +49,7 @@ namespace Cemetlib.Business
             DataTable catalogo = ICatalogo.GetCatNormaParticular();
             foreach (DataRow row in catalogo.Rows)
             {
-                catNormaParticular.Add(new Catalog { Value = row["CNP_Clave"].ToString(), Text = row["CNP_Descripcion"].ToString() });
+                catNormaParticular.Add(new Catalog { Value = row["CNP_Id"].ToString(), Text = string.Concat(row["CNP_Norma"].ToString(), " / ", row["CNP_Descripcion"].ToString()) });
             }
 
             return catNormaParticular;

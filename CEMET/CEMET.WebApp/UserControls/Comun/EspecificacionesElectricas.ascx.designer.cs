@@ -11,88 +11,88 @@ namespace CEMET.WebApp.UserControls.Comun
 {
 
 
-    public partial class ModalidadEntrega
+    public partial class EspecificacionesElectricas
     {
 
         /// <summary>
-        /// modalidadDeRecoleccion_Label control.
+        /// Voltaje_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label modalidadDeRecoleccion_Label;
+        protected global::System.Web.UI.WebControls.Label Voltaje_Label;
 
         /// <summary>
-        /// modalidadDeRecoleccion control.
+        /// Voltaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalidadDeRecoleccion;
+        protected global::System.Web.UI.WebControls.DropDownList Voltaje;
 
         /// <summary>
-        /// modalidadDeRecoleccion_RequiredFieldValidator control.
+        /// Voltaje_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator modalidadDeRecoleccion_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Voltaje_RequiredFieldValidator;
 
         /// <summary>
-        /// modalidadDeEntrega_Label control.
+        /// Corriente_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label modalidadDeEntrega_Label;
+        protected global::System.Web.UI.WebControls.Label Corriente_Label;
 
         /// <summary>
-        /// modalidadDeEntrega control.
+        /// Corriente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList modalidadDeEntrega;
+        protected global::System.Web.UI.WebControls.DropDownList Corriente;
 
         /// <summary>
-        /// modalidadDeEntrega_RequiredFieldValidator control.
+        /// Corriente_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator modalidadDeEntrega_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Corriente_RequiredFieldValidator;
 
         /// <summary>
-        /// diasHabiles_Label control.
+        /// Potencia_Label control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label diasHabiles_Label;
+        protected global::System.Web.UI.WebControls.Label Potencia_Label;
 
         /// <summary>
-        /// diasHabiles control.
+        /// Potencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList diasHabiles;
+        protected global::System.Web.UI.WebControls.DropDownList Potencia;
 
         /// <summary>
-        /// diasHabiles_RequiredFieldValidator control.
+        /// Potencia_RequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator diasHabiles_RequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Potencia_RequiredFieldValidator;
     }
 }

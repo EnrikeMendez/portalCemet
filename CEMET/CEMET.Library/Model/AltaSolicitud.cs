@@ -17,7 +17,6 @@ namespace Cemetlib.Model
         public List<Cotizacion> Cotizaciones { get; set; }
         public string Observaciones { get; set; }
         public bool TerminosYCondiciones { get; set; }
-        public List<string> UploadedDocs { get; set; }
         public string ModalidadEntrega { get; set; }
         public string DiasHabiles { get; set; }
         public bool Activo { get; set; }

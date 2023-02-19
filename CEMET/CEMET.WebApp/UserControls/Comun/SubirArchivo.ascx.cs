@@ -22,6 +22,15 @@ namespace CEMET.WebApp.UserControls.Comun
             get { return (string)Session[CreaLLaveUnica(llave: SavePathKey)]; }
             set { Session[CreaLLaveUnica(llave: SavePathKey)] = value; }
         }
+
+        /// <summary>
+        /// Para eliminar la ruta origen de código (c:/algto/algo/) y solo dejar la ruta final
+        /// </summary>
+        public string DocumentoRuta
+        {
+            get { return ((string)Session[CreaLLaveUnica(llave: SavePathKey)] ?? string.Empty).Replace(Request.PhysicalApplicationPath, string.Empty); }
+        }
+
         public string MaxSizeErrorMessage { get; set; }
         public string ExtensionNotAllowedErrorMessage { get; set; }
         public string Etiqueta { get; set; }
@@ -275,7 +284,7 @@ namespace CEMET.WebApp.UserControls.Comun
             return mediaType;
         }
 
-    
+
 
     }
 }

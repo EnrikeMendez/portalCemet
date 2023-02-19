@@ -41,18 +41,6 @@ namespace CEMET.WebApp.Views
                 //the page is being rendered for the first time
                 Controles.FillDropDownList(TipoDeServicio, CatalogService.GetCatTipoDeServicio(), agregarOpcionSeleccionar: true);
 
-                Controles.FillDropDownList(Voltaje, CatalogService.GetCatVoltaje(), agregarOpcionSeleccionar: true);
-
-                Controles.FillDropDownList(Corriente, CatalogService.GetCatVoltaje(), agregarOpcionSeleccionar: true);
-
-                Controles.FillDropDownList(Potencia, CatalogService.GetCatVoltaje(), agregarOpcionSeleccionar: true);
-
-                Controles.FillDropDownList(ModalidadDeRecoleccion, CatalogService.GetCatModalidadDeRecoleccion(), agregarOpcionSeleccionar: true);
-
-                Controles.FillDropDownList(DiasHabiles, CatalogService.GetCatDiasHabilesPorNorma(), agregarOpcionSeleccionar: true);
-
-                Controles.FillDropDownList(ModalidadDeEntrega, CatalogService.GetCatModalidadDeEntrega(), agregarOpcionSeleccionar: true);
-
                 TipoDeServicio.SelectedValue = "T3";
 
                 if (!string.IsNullOrWhiteSpace(folio))
@@ -125,22 +113,13 @@ namespace CEMET.WebApp.Views
             diagrama.Descripcion = CamposComunes.DescripcionDelProducto_Text;
             diagrama.Marca = CamposComunes.Marca_Text;
             diagrama.Modelo = CamposComunes.Modelo_Text;
-            if(!string.IsNullOrWhiteSpace(CamposComunes.PaisDeOrigen_Current_SelectedValue))
-            {
-                diagrama.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
-            }
+            diagrama.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
             //region Solicitud_Especificaciones_Electricas
-            diagrama.EspecificacionesElectricas = new List<EspecificacionElectrica>();
-            diagrama.EspecificacionesElectricas.Add(new EspecificacionElectrica
-            {
-                IdVoltaje = int.Parse(Voltaje.SelectedValue),
-                IdCorriente = Corriente.SelectedValue,
-                IdPotencia = Potencia.SelectedValue
-            });
+            diagrama.EspecificacionesElectricas = new List<EspecificacionElectrica>() { EspecificacionesElectricas.GetEspecificacionesElectricas() };
             //endregion
-            diagrama.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
-            diagrama.ModalidadEntrega = ModalidadDeEntrega.SelectedValue;
-            diagrama.DiasHabiles = DiasHabiles.SelectedValue;
+            diagrama.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
+            diagrama.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;
+            diagrama.DiasHabiles = ModalidadEntrega.DiasHabiles;
             //region Solicitud_Cotizacion
             diagrama.Cotizaciones = new List<Cotizacion>();
             foreach (var cotizacion in Cotizacion2.Cotizaciones)

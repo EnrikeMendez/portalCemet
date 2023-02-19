@@ -20,7 +20,6 @@ namespace CEMET.WebApp.Views
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            //string appPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             if (Page.IsPostBack)
             {
@@ -73,8 +72,8 @@ namespace CEMET.WebApp.Views
             //List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
             ////Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
             //CamposComunes.PaisDeOrigen_DataSource = catPaisOrigen;
-            List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
-            Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
+            //List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
+            //Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
         }
         private void FillDummyData()
         {
@@ -95,7 +94,7 @@ namespace CEMET.WebApp.Views
             solicitudPruebasCompletas.Descripcion = CamposComunes.DescripcionDelProducto_Text;
             solicitudPruebasCompletas.Marca = CamposComunes.Marca_Text;
             solicitudPruebasCompletas.Modelo = CamposComunes.Modelo_Text;
-            solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadDeRecoleccion.SelectedValue;
+            solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
             solicitudPruebasCompletas.Observaciones = Observaciones.Obs;
             solicitudPruebasCompletas.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
             solicitudPruebasCompletas.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;

@@ -93,7 +93,8 @@
             <asp:DropDownList
                 runat="server"
                 ID="PaisDeOrigen"
-                CssClass="form-select" />
+                CssClass="form-control"
+                data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
 
             <asp:CustomValidator
                 ID="PaisDeOrigen_CustomValidator"
