@@ -60,7 +60,7 @@ namespace Cemetlib.Business
             DataTable catalogo = ICatalogo.GetCatMetodoDePrueba();
             foreach (DataRow row in catalogo.Rows)
             {
-                catMetodoDePrueba.Add(new Catalog { Value = row["CMP_Clave"].ToString(), Text = row["CMP_Metodo"].ToString() });
+                catMetodoDePrueba.Add(new Catalog { Value = row["CMP_Id"].ToString(), Text = string.Concat(row["CMP_Metodo"].ToString(), " / ", row["CMP_Descripcion"].ToString()) });
             }
 
             return catMetodoDePrueba;

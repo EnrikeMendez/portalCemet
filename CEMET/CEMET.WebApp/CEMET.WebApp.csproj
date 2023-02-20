@@ -756,6 +756,7 @@
     <Content Include="Views\ProgramacionDeDevolucion.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
     <Content Include="Views\PruebasCompletasEE.aspx" />
+    <Content Include="Views\PruebasParcialesEE.aspx" />
     <Content Include="Views\RecepcionDeMuestras.aspx" />
     <Content Include="Views\ReporteDeDesviacion.aspx" />
     <Content Include="Views\ResponsivaControlDeMuestras.aspx" />
@@ -1139,6 +1140,13 @@
     </Compile>
     <Compile Include="Views\PruebasCompletasEE.aspx.designer.cs">
       <DependentUpon>PruebasCompletasEE.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PruebasParcialesEE.aspx.cs">
+      <DependentUpon>PruebasParcialesEE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PruebasParcialesEE.aspx.designer.cs">
+      <DependentUpon>PruebasParcialesEE.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\RecepcionDeMuestras.aspx.cs">
       <DependentUpon>RecepcionDeMuestras.aspx</DependentUpon>

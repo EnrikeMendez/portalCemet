@@ -3,10 +3,7 @@ using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
@@ -28,7 +25,6 @@ namespace CEMET.WebApp.Views
                     //porque no le pertenece el folio
                     Response.Redirect("PruebasCompletas.aspx");
                 }
-
             }
             else
             {
@@ -39,8 +35,6 @@ namespace CEMET.WebApp.Views
             }
             if (!Page.IsPostBack)
             {
-               
-               
                 List<Catalog> serviceTypeItems = new List<Catalog>()
                 {
                     new Catalog
@@ -62,6 +56,11 @@ namespace CEMET.WebApp.Views
                     {
                          Text = "Pruebas completas EE",
                          Value = "T5"
+                    },
+                    new Catalog
+                    {
+                         Text = "Pruebas Parciales EE",
+                         Value = "T6"
                     }
                 };
                 Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
@@ -91,7 +90,9 @@ namespace CEMET.WebApp.Views
                     break;
                 case "T5":
                     pagina = "PruebasCompletasEE";
-                    
+                    break;
+                case "T6":
+                    pagina = "PruebasParcialesEE";
                     break;
                 default:
                     throw new ArgumentException("La solicitud seleccionada es inválida.");

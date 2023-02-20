@@ -104,9 +104,16 @@ namespace Cemetlib.Data
                 parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitudPruebaParcial.FechaModifica));
                 parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitudPruebaParcial.UsuarioModifica));
                 parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitudPruebaParcial.NumeroFolioSolicitud));
+
                 parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, CreaTablaDocumentos(documentos: solicitudPruebaParcial.Documentos)));
 
                 parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitudPruebaParcial.Cotizaciones)));
+
+                parameters.Add(DB.CrearParametroSql("@Normas", SqlDbType.Structured, CreaTablaNormas(normas: solicitudPruebaParcial.Normas)));
+
+                parameters.Add(DB.CrearParametroSql("@ServiciosAdicionales", SqlDbType.Structured, CreaTablaServiciosAdicionales(serviciosAdicionales: solicitudPruebaParcial.ServiciosAdicionales)));
+
+                parameters.Add(DB.CrearParametroSql("@MetodosDePrueba", SqlDbType.Structured, CreaTablaMetodosDePruebas(metodoDePruebas: solicitudPruebaParcial.MetodoDePruebas)));
 
                 folio = context.EjecutarSP("SPC_AltaSolicitud", parameters);
 
@@ -307,6 +314,28 @@ namespace Cemetlib.Data
             {
                 DataRow DR = tabla.NewRow();
                 DR[0] = item.IdServicioAdicional;
+                tabla.Rows.Add(DR);
+            }
+
+            return tabla;
+        }
+
+        private static DataTable CreaTablaMetodosDePruebas(List<MetodoDePrueba> metodoDePruebas)
+        {
+            DataTable tabla = new DataTable();
+
+            DataColumn column = new DataColumn
+            {
+                ColumnName = "CMP_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+
+            foreach (var item in metodoDePruebas)
+            {
+                DataRow DR = tabla.NewRow();
+                DR[0] = item.IdMetodoDePrueba;
                 tabla.Rows.Add(DR);
             }
 

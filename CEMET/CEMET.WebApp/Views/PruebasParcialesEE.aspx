@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Presolicitud EE (P.Completas)" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasCompletasEE.aspx.cs" Inherits="CEMET.WebApp.Views.PruebasCompletasEE" %>
+﻿<%@ Page Title="Presolicitud EE (P.Parciales)" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="PruebasParcialesEE.aspx.cs" Inherits="CEMET.WebApp.Views.PruebasParcialesEE" %>
 
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc" TagName="TerminosYCondiciones" %>
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc" TagName="SubirArchivo" %>
@@ -7,10 +7,6 @@
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
 <%@ Register Src="~/UserControls/Comun/EspecificacionesElectricas.ascx" TagPrefix="uc" TagName="EspecificacionesElectricas" %>
 <%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc" TagName="CamposComunes" %>
-
-
-
-<%--PRESOLICITUD EE (P.COMPLETAS) - P7--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -38,7 +34,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:DropDownList runat="server" ID="TipoDeServicio" CssClass="form-select" Enabled="false" />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -54,7 +50,7 @@
                         ID="ServicioAdicional"
                         CssClass="form-control"
                         data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="ServicioAdicional" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="ServicioAdicional" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -71,7 +67,7 @@
                         CssClass="form-control"
                         onchange="Norma_ClienOnChange()"
                         data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -86,8 +82,26 @@
                         runat="server"
                         ID="NormaParticular"
                         CssClass="form-control"
-                        onchange="NormaParticular_ClienOnChange()"
                         data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="MetodoDePrueba" ID="MetodoDePrueba_Label" CssClass="form-label required-field">
+                    Método De Prueba
+                </asp:Label>
+                <div class="">
+                    <asp:ListBox
+                        DataValueField="Value"
+                        DataTextField="Text"
+                        runat="server"
+                        CssClass="form-select"
+                        ID="MetodoDePrueba"
+                        Rows="5"
+                        SelectionMode="Multiple"></asp:ListBox>
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="MetodoDePrueba" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -103,7 +117,7 @@
                         ID="Categoria"
                         CssClass="form-control"
                         data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="Categoria" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="Categoria" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -114,7 +128,7 @@
                 </asp:Label>
                 <div class="">
                     <asp:TextBox runat="server" ID="ReferenciaCertificacion" CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasCompletasValGroup" Display="Static" ControlToValidate="ReferenciaCertificacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesEEValGroup" Display="Static" ControlToValidate="ReferenciaCertificacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -130,20 +144,9 @@
             Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
             PaisDeOrigen_EsRequerido="true"
             PaisDeOrigen_ClientValidationFunction="PaisDeOrigen_ClientValidationFunction"
-            ValidationGroup="PruebasCompletasValGroup" />
+            ValidationGroup="PruebasParcialesEEValGroup" />
 
-        <div class="col-md-6" id="Calibre_Container">
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="Calibre" CssClass="form-label">
-                    Calibre:
-                </asp:Label>
-                <div class="">
-                    <asp:TextBox runat="server" ID="Calibre" CssClass="form-control" />
-                </div>
-            </div>
-        </div>
-
-        <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="PruebasCompletasValGroup" />
+        <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="PruebasParcialesEEValGroup" />
     </div>
 
     <div class="d-flex align-items-center mb-3 mt-4">
@@ -168,28 +171,28 @@
         runat="server"
         ID="InstructivoManual"
         Etiqueta="Instructivo o manual"
-        VisualizaNombreDeArchivoComoLink="true"
+        visualizanombredearchivocomolink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="Marcado"
         Etiqueta="Marcado"
-        VisualizaNombreDeArchivoComoLink="true"
+        visualizanombredearchivocomolink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="Diagrama"
         Etiqueta="Diagrama"
-        VisualizaNombreDeArchivoComoLink="true"
+        visualizanombredearchivocomolink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="DocsAdicionales"
         Etiqueta="Documentos adicionales"
-        VisualizaNombreDeArchivoComoLink="true"
+        visualizanombredearchivocomolink="true"
         Extensiones=".jpg" />
 
     <div class="d-flex align-items-center mb-3 mt-4">
@@ -200,7 +203,7 @@
     <uc1:Cotizacion2
         runat="server"
         ID="Cotizacion2"
-        ValidationGroupForm="PruebasCompletasValGroup"
+        ValidationGroupForm="PruebasParcialesEEValGroup"
         ValorIVA="0.16"
         EsRequerido="true"
         OnClientChangeEventDropdown="Cotizacion2_ActivaBotonAgregar()"
@@ -208,19 +211,17 @@
 
     <uc:Observaciones runat="server" ID="Observaciones" />
 
-    <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasCompletasValGroup" />
-
-
+    <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasParcialesEEValGroup" />
 
     <div class="row">
         <div class="col">
             <asp:Button
                 ID="GuardaPruebCompBtn"
                 runat="server"
-                ValidationGroup="PruebasCompletasValGroup"
+                ValidationGroup="PruebasParcialesEEValGroup"
                 Text="Guardar"
                 CssClass="btn btn-primary"
-                OnClick="GuardaPruebCompBtn_Click"/>
+                OnClick="GuardaPruebCompBtn_Click" />
         </div>
     </div>
 
@@ -260,14 +261,12 @@
 
         function Cotizacion2_ValidateConceptosList(sender, e) {
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
-            //console.log("b", e.IsValid);
-
         }
 
         function DescripcionDelProducto_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
-                //console.log("DescripcionDelProducto_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -278,14 +277,12 @@
             else {
                 e.IsValid = true;
             }
-            //console.log("6", e.IsValid);
-
         }
 
         function Marca_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.Marca_ClientID %>").val();
-                //console.log("Marca_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -296,14 +293,12 @@
             else {
                 e.IsValid = true;
             }
-            //console.log("u", e.IsValid);
-
         }
 
         function Modelo_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.Modelo_ClientID %>").val();
-                //console.log("Modelo_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -314,15 +309,12 @@
             else {
                 e.IsValid = true;
             }
-
-            //console.log("t", e.IsValid);
-
         }
 
         function PaisDeOrigen_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.PaisDeOrigen_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.PaisDeOrigen_ClientID %>").val();
-                //console.log("PaisDeOrigen_SelectedValue", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -333,33 +325,18 @@
             else {
                 e.IsValid = true;
             }
-
-            //console.log("s", e.IsValid);
         }
 
         function Norma_ClienOnChange() {
             let normaId = $("#" + "<%= Norma.ClientID %>").val();
-
-            if (normaId == "8") {
+            //  NOM-003 y NOM-001
+            if (["8", "9"].indexOf(normaId) != -1) {
                 $("#normaParticular_Container").show();
             } else {
                 $("#normaParticular_Container").hide();
             }
         }
 
-        function NormaParticular_ClienOnChange() {
-            let normaParticularId = $("#" + "<%= NormaParticular.ClientID %>").val();
-
-            //066 = 19
-            //177 = 17
-            if (["19", "17"].indexOf(normaParticularId) != -1) {
-                $("#Calibre_Container").show();
-            } else {
-                $("#Calibre_Container").hide();
-            }
-        }
-
     </script>
 
 </asp:Content>
-

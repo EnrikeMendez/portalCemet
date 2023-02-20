@@ -8,18 +8,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class PruebasCompletasEE : System.Web.UI.Page
+    public partial class PruebasParcialesEE : System.Web.UI.Page
     {
-        private const string NormaIdBandera = "8"; // NOM-003-SCFI
-        //066 = 19
-        //177 = 17
-        private readonly string[] NormaParticularIdBandera = new string[] { "19", "17" };
+        private readonly string[] NormaIdBandera = new string[] { "8", "9" }; //  NOM-003 y NOM-001
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,13 +46,13 @@ namespace CEMET.WebApp.Views
                 FillCatalogs();
                 FillDummyData();
 
-                TipoDeServicio.SelectedValue = "T1";
+                TipoDeServicio.SelectedValue = "T2";
 
                 string rootSavePath = Helper.CreateTempPath(usuarioId: usuarioId);
-                string saveDirIns = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_EE_InstructivoManual");
-                string saveMarcado = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_EE_Marcado");
-                string saveDirDiagrama = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_EE_Diagrama");
-                string saveDirDocs = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasCompletas_EE_DocumentosAdicionales");
+                string saveDirIns = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_EE_InstructivoManual");
+                string saveMarcado = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_EE_Marcado");
+                string saveDirDiagrama = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_EE_Diagrama");
+                string saveDirDocs = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_EE_DocumentosAdicionales");
 
                 InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
                 Marcado.SavePath = Path.Combine(appPath, saveMarcado);
@@ -74,6 +70,9 @@ namespace CEMET.WebApp.Views
         {
             Controles.FillDropDownList(ServicioAdicional, CatalogService.GetCatServicioAdicional());
             Controles.FillDropDownList(NormaParticular, CatalogService.GetCatNormaParticular());
+
+            MetodoDePrueba.DataSource = CatalogService.GetCatMetodoDePrueba().Select(x => new ListItem(text: x.Text, value: x.Value));
+            MetodoDePrueba.DataBind();
 
             List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
             Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
@@ -94,60 +93,59 @@ namespace CEMET.WebApp.Views
 
         private void CrearDto()
         {
-            PruebasCompletas solicitudPruebasCompletas = new PruebasCompletas();
-            solicitudPruebasCompletas.TipoServicio = TipoDeServicio.SelectedValue;
-            solicitudPruebasCompletas.Norma = Norma.SelectedValue;
+            var pruebasParcialesEE = new PruebasParciales();
+            pruebasParcialesEE.TipoServicio = TipoDeServicio.SelectedValue;
+            pruebasParcialesEE.Norma = Norma.SelectedValue;
 
-            solicitudPruebasCompletas.ServiciosAdicionales = new List<ServicioAdicional>()
+            pruebasParcialesEE.ServiciosAdicionales = new List<ServicioAdicional>()
             {
                 new ServicioAdicional { IdServicioAdicional = ServicioAdicional.SelectedValue}
             };
 
-            if (Norma.SelectedValue == NormaIdBandera)
+            if (NormaIdBandera.Contains(Norma.SelectedValue))
             {
-                solicitudPruebasCompletas.Normas = new List<Norma>
+                pruebasParcialesEE.Normas = new List<Norma>
                 {
                     new Norma {
                         IdNormaReferencia = int.Parse(Norma.SelectedValue),
                         IdNormaParticular = int.Parse(NormaParticular.SelectedValue)
                     }
                 };
-
-                if (NormaParticularIdBandera.Contains(NormaParticular.SelectedValue))
-                {
-                    solicitudPruebasCompletas.Calibre = Calibre.Text;
-                }
             }
 
-            solicitudPruebasCompletas.Categoria = Categoria.SelectedValue;
-            solicitudPruebasCompletas.ReferenciaCertificacion = ReferenciaCertificacion.Text;
+            pruebasParcialesEE.MetodoDePruebas = MetodoDePrueba.Items.OfType<ListItem>()
+                .Where(x => x.Selected)
+                .Select(x => new MetodoDePrueba { IdMetodoDePrueba = int.Parse(x.Value) })
+                .ToList();
+            pruebasParcialesEE.Categoria = Categoria.SelectedValue;
+            pruebasParcialesEE.ReferenciaCertificacion = ReferenciaCertificacion.Text;
 
-            solicitudPruebasCompletas.Descripcion = CamposComunes.DescripcionDelProducto_Text;
-            solicitudPruebasCompletas.Marca = CamposComunes.Marca_Text;
-            solicitudPruebasCompletas.Modelo = CamposComunes.Modelo_Text;
-            solicitudPruebasCompletas.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
+            pruebasParcialesEE.Descripcion = CamposComunes.DescripcionDelProducto_Text;
+            pruebasParcialesEE.Marca = CamposComunes.Marca_Text;
+            pruebasParcialesEE.Modelo = CamposComunes.Modelo_Text;
+            pruebasParcialesEE.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
 
-            solicitudPruebasCompletas.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
-            solicitudPruebasCompletas.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;
-            solicitudPruebasCompletas.DiasHabiles = ModalidadEntrega.DiasHabiles;
+            pruebasParcialesEE.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
+            pruebasParcialesEE.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;
+            pruebasParcialesEE.DiasHabiles = ModalidadEntrega.DiasHabiles;
 
-            solicitudPruebasCompletas.Observaciones = Observaciones.Obs;
-            solicitudPruebasCompletas.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
+            pruebasParcialesEE.Observaciones = Observaciones.Obs;
+            pruebasParcialesEE.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
 
-            solicitudPruebasCompletas.Activo = true;
-            solicitudPruebasCompletas.UsuarioCrea = 1;//****
-            solicitudPruebasCompletas.UsuarioModifica = null;
-            solicitudPruebasCompletas.FechaModifica = null;
+            pruebasParcialesEE.Activo = true;
+            pruebasParcialesEE.UsuarioCrea = 1;//****
+            pruebasParcialesEE.UsuarioModifica = null;
+            pruebasParcialesEE.FechaModifica = null;
 
-            solicitudPruebasCompletas.EspecificacionesElectricas = new List<EspecificacionElectrica>()
+            pruebasParcialesEE.EspecificacionesElectricas = new List<EspecificacionElectrica>()
             {
                 EspecificacionesElectricas.GetEspecificacionesElectricas()
             };
 
-            solicitudPruebasCompletas.Cotizaciones = new List<Cotizacion>();
+            pruebasParcialesEE.Cotizaciones = new List<Cotizacion>();
             foreach (var cotizacion in Cotizacion2.Cotizaciones)
             {
-                solicitudPruebasCompletas.Cotizaciones.Add(new Cotizacion
+                pruebasParcialesEE.Cotizaciones.Add(new Cotizacion
                 {
                     IdCotizacion = cotizacion.IdCotizacion,
                     IdServicio = cotizacion.IdServicio,
@@ -156,9 +154,9 @@ namespace CEMET.WebApp.Views
                     Tarifa = cotizacion.Tarifa
                 });
             }
-            solicitudPruebasCompletas.Subtotal = float.Parse(Cotizacion2.SubTotal);
-            solicitudPruebasCompletas.Total = float.Parse(Cotizacion2.Total);
-            solicitudPruebasCompletas.Iva = (float)Cotizacion2.ValorIVA;
+            pruebasParcialesEE.Subtotal = float.Parse(Cotizacion2.SubTotal);
+            pruebasParcialesEE.Total = float.Parse(Cotizacion2.Total);
+            pruebasParcialesEE.Iva = (float)Cotizacion2.ValorIVA;
 
             List<Documentos> documentosSolicitud = new List<Documentos>();
 
@@ -199,16 +197,17 @@ namespace CEMET.WebApp.Views
                    Ruta = DocsAdicionales.DocumentoRuta,
                    Tipo = "2"//Tipo Adicional
                })
-           );
+            );
 
-            solicitudPruebasCompletas.Documentos = documentosSolicitud;
+            pruebasParcialesEE.Documentos = documentosSolicitud;
+
             string folioSolicitud = Request.QueryString["folio"];
             if (!string.IsNullOrEmpty(folioSolicitud))
             {
-                solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(folioSolicitud);
+                pruebasParcialesEE.NumeroFolioSolicitud = int.Parse(folioSolicitud);
             }
             List<string> errores = new List<string>();
-            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasCompletas);
+            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(pruebasParcialesEE);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             Folio.Text = $"Folio guardado {idFolio}";
             Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
