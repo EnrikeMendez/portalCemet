@@ -125,7 +125,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-start">
                                         <!--Slide action-->
-                                        <a href="#" class="btn btn-primary btn-lg">
+                                        <a href="#services" class="btn btn-primary btn-lg">
                                             Nuestros Servicios
                                         </a>
                                     </li>
@@ -155,7 +155,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-start">
                                         <!--Slide action-->
-                                        <a href="#" class="btn btn-primary btn-lg">
+                                        <a href="#aboutUs" class="btn btn-primary btn-lg">
                                             Sobre Nosotros
                                         </a>
                                     </li>
@@ -185,7 +185,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-start">
                                         <!--Slide action-->
-                                        <a href="#" class="btn btn-primary btn-lg">
+                                        <a href="#contact" class="btn btn-primary btn-lg">
                                             Contacto
                                         </a>
                                     </li>
@@ -461,7 +461,7 @@
                                         placeholder="john@gmail.com" id="email"
                                         aria-label="jackwayley@gmail.com" required>
                                     <div class="invalid-feedback">
-                                        Please enter a valid email address
+                                        Introduce una dirección de correo electrónico válida
                                     </div>
                                 </div>
 
@@ -473,7 +473,7 @@
                                 <div class="col-sm-12 mb-3">
                                     <label class="form-label" for="subject">Teléfono</label>
                                     <input type="text" class="form-control" name="subject" id="subject"
-                                        placeholder="Teléfono" required>
+                                        placeholder="55 5555 5555" required>
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -481,10 +481,10 @@
                             <!-- Message -->
                             <div class="mb-3">
                                 <label for="message" class="form-label">Mensaje</label>
-                                <textarea class="form-control" name="message" placeholder="Ingrese su mensaje"
+                                <textarea class="form-control" name="message" id="message" placeholder="Ingrese su mensaje"
                                     required></textarea>
                                 <div class="invalid-feedback">
-                                    Please enter a message in the textarea.
+                                    Introduzca un mensaje
                                 </div>
                             </div>
 
@@ -528,7 +528,7 @@
                             <p>Teléfono:&nbsp;(55) 88 695704
                               <br>Ing. Omar Castañeda Silva
                               <br>Gerente del Laboratorio
-                              <br>Email: <a rel="noopener" href="#!">omarcs@cemet.com.mx</a>
+                              <br>Email: <a rel="noopener" href="mailto:omarcs@cemet.com.mx?Subject=Contacto">omarcs@cemet.com.mx</a>
                             </p>
                         </div>
                     </div>
@@ -540,7 +540,7 @@
                           <p>Teléfono:&nbsp;(55) 88 695704
                             <br>Lic. Lorena Lidé Libreros
                             <br>C. Coordinadora Administrativa/Calidad
-                            <br>Email: <a rel="noopener" href="#!">lorenallc@cemet.com.mx</a>
+                            <br>Email: <a rel="noopener" href="mailto:lorenallc@cemet.com.mx?Subject=Contacto">lorenallc@cemet.com.mx</a>
                           </p>
                       </div>
                   </div>
@@ -777,7 +777,6 @@
               navigation: { nextEl: ".swiperClassic-button-next", prevEl: ".swiperClassic-button-prev" }
           });
       </script>
-
   </body>
 
 </html>

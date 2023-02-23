@@ -61,7 +61,57 @@ namespace CEMET.WebApp.Views
                     {
                          Text = "Pruebas Parciales EE",
                          Value = "T6"
-                    }
+                    },
+                    new Catalog
+                    {
+                         Text = "Programación de recolección (*)",
+                         Value = "P10"
+                    },
+                    new Catalog
+                    {
+                         Text = "Recepción de muestras (*)",
+                         Value = "P11"
+                    },
+                    new Catalog
+                    {
+                         Text = "Evaluación de presolicitud (*)",
+                         Value = "P12"
+                    },
+                    new Catalog
+                    {
+                         Text = "Comunicado de hallazgos (*)",
+                         Value = "P13"
+                    },
+                    new Catalog
+                    {
+                         Text = "Notificación de ingreso FOP-07 (*)",
+                         Value = "P14"
+                    },
+                    new Catalog
+                    {
+                         Text = "Responsiva control de muestras (*)",
+                         Value = "P15"
+                    },
+                    new Catalog
+                    {
+                         Text = "Revisión de lista de evaluación (*)",
+                         Value = "P16"
+                    },
+                    new Catalog
+                    {
+                         Text = "Reporte de desviación FOP-08 (*)",
+                         Value = "P17"
+                    },
+                    new Catalog
+                    {
+                         Text = "Modalidad de devolución (*)",
+                         Value = "P21"
+                    },
+                    new Catalog
+                    {
+                         Text = "Consultar (*)",
+                         Value = "P25"
+                    },
                 };
                 Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
             }
@@ -94,6 +144,36 @@ namespace CEMET.WebApp.Views
                 case "T6":
                     pagina = "PruebasParcialesEE";
                     break;
+                case "P10":
+                    pagina = "ProgramacionDeRecoleccion";
+                    break;
+                case "P11":
+                    pagina = "RecepcionDeMuestras";
+                    break;
+                case "P12":
+                    pagina = "EvaluacionDePresolicitud";
+                    break;
+                case "P13":
+                    pagina = "ComunicadoDeHallazgos";
+                    break;
+                case "P14":
+                    pagina = "NotificacionDeIngreso";
+                    break;
+                case "P15":
+                    pagina = "ResponsivaControlDeMuestras";
+                    break;
+                case "P16":
+                    pagina = "RevisionDeListaDeEvaluacion";
+                    break;
+                case "P17":
+                    pagina = "ReporteDeDesviacion";
+                    break;
+                case "P21":
+                    pagina = "ProgramacionDeDevolucion";
+                    break;
+                case "P25":
+                    pagina = "Consultar";
+                    break;
                 default:
                     throw new ArgumentException("La solicitud seleccionada es inválida.");
             }
@@ -103,7 +183,7 @@ namespace CEMET.WebApp.Views
 
         protected void No_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Default.aspx");
+            Response.Redirect("/Views/Solicitudes.aspx");
         }
     }
 }

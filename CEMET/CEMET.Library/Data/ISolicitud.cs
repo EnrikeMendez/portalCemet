@@ -16,7 +16,7 @@ namespace Cemetlib.Data
         {
             DB context = new DB();
             string query = $@"SELECT * FROM Solicitud_Servicio 
-                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id";
+                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id ORDER BY SOL_Id desc ";
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }
@@ -331,12 +331,14 @@ namespace Cemetlib.Data
             };
             tabla.Columns.Add(column);
 
-
-            foreach (var item in metodoDePruebas)
+            if (metodoDePruebas != null)
             {
-                DataRow DR = tabla.NewRow();
-                DR[0] = item.IdMetodoDePrueba;
-                tabla.Rows.Add(DR);
+                foreach (var item in metodoDePruebas)
+                {
+                    DataRow DR = tabla.NewRow();
+                    DR[0] = item.IdMetodoDePrueba;
+                    tabla.Rows.Add(DR);
+                }
             }
 
             return tabla;
