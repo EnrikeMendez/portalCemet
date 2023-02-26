@@ -139,7 +139,7 @@
     <script type="text/javascript">
 
         function InstructivoManual_ValidaListaDocs(sender, e) {
-            console.log("InstructivoManual_ValidaListaDocs");
+
             if ("<%=InstructivoManual.EsRequerido%>".toLowerCase() == "true")
                 e.IsValid = "<%=InstructivoManual.ListaDeDocumentos.Any()%>".toLowerCase() == 'true';
             else {
@@ -148,7 +148,6 @@
         }
 
         function Cotizacion2_ActivaBotonAgregar() {
-            console.log("Cotizacion2_ActivaBotonAgregar");
             let serv = "<%= Cotizacion2.ServicioSolicitadoClientId %>";
             let tarf = "<%= Cotizacion2.TarifaClientId %>";
 
@@ -173,14 +172,13 @@
         }
 
         function Cotizacion2_ValidateConceptosList(sender, e) {
-            console.log("Cotizacion2_ValidateConceptosList");
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
         }
 
         function DescripcionDelProducto_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
-                console.log("DescripcionDelProducto_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -196,7 +194,7 @@
         function Marca_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.Marca_ClientID %>").val();
-                console.log("Marca_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -212,7 +210,7 @@
         function Modelo_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.Modelo_ClientID %>").val();
-                console.log("Modelo_Text", t);
+
                 if (t) {
                     e.IsValid = true;
                 }
@@ -228,7 +226,7 @@
         function PaisDeOrigen_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.PaisDeOrigen_EsRequerido.ToString().ToLower()%>" == "true") {
                 let t = $("#" + "<%= CamposComunes.PaisDeOrigen_ClientID %>").val();
-                console.log("PaisDeOrigen_SelectedValue", t);
+
                 if (t) {
                     e.IsValid = true;
                 }

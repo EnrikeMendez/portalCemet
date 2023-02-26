@@ -1,10 +1,56 @@
-﻿using System;
+﻿using Cemetlib.Business;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
+using System.Linq;
+using System.Web.UI;
 
 namespace CEMET.WebApp.App_Code
 {
+
+    /// <summary>
+    /// Clase intermediaria para métodos de configuración que se repiten en las vistas, esta clase hereda Page
+    /// y esta debe ser heredada por la clase de la vista
+    /// </summary>
+    public class SetupPage : Page
+    {
+        /// <summary>
+        /// Inicializa el control de CamposComunes
+        /// </summary>
+        /// <param name="folio"></param>
+        /// <param name="camposComunes"></param>
+        public void InicializaCamposComunes(int folio, UserControls.Comun.CamposComunes camposComunes)
+        {
+            var solicitudes = new SolicitudService().GetSolicitudes(folio: folio);
+
+            if (solicitudes.Any())
+            {
+                var lastPP = solicitudes.LastOrDefault();
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Descripcion))
+                {
+                    camposComunes.DescripcionDelProducto_Text = lastPP.Descripcion;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Marca))
+                {
+                    camposComunes.Marca_Text = lastPP.Marca;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.Modelo))
+                {
+                    camposComunes.Modelo_Text = lastPP.Modelo;
+                }
+
+                if (!string.IsNullOrWhiteSpace(lastPP.PaisOrigen))
+                {
+                    camposComunes.PaisDeOrigen_SelectedValue = lastPP.PaisOrigen;
+                }
+            }
+        }
+    }
+
     public static class Helper
     {
         /// <summary>

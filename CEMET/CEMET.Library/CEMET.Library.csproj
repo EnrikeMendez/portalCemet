@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Business\CatalogService.cs" />
     <Compile Include="Business\ServicioAltaDeSolicitud.cs" />
+    <Compile Include="Business\SolicitudService.cs" />
     <Compile Include="Business\UserService.cs" />
     <Compile Include="Common\Controles.cs" />
     <Compile Include="Common\DB.cs" />

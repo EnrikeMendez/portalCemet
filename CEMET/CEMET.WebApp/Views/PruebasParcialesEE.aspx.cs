@@ -1,7 +1,6 @@
 ﻿using CEMET.WebApp.App_Code;
 using Cemetlib.Business;
 using Cemetlib.Common;
-using Cemetlib.Data;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class PruebasParcialesEE : System.Web.UI.Page
+    public partial class PruebasParcialesEE : SetupPage
     {
         private readonly string[] NormaIdBandera = new string[] { "8", "9" }; //  NOM-003 y NOM-001
 
@@ -61,7 +60,7 @@ namespace CEMET.WebApp.Views
 
                 if (!string.IsNullOrWhiteSpace(folio))
                 {
-                    InicializaCamposComunes(folio: int.Parse(folio));
+                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
                 }
             }
         }
@@ -222,44 +221,5 @@ namespace CEMET.WebApp.Views
             }
         }
 
-        private void InicializaCamposComunes(int folio)
-        {
-            var db = ISolicitud.ObtenerSolicitudes(folio: folio);
-            var ppList = new List<PruebasCompletas>();
-
-            if (db != null && db.Rows.Count > 0)
-            {
-                ppList = db.AsEnumerable().Select(row =>
-                  new PruebasCompletas
-                  {
-                      Descripcion = row.Field<string>("SOL_Dsc_Producto"),
-                      Marca = row.Field<string>("SOL_Marca"),
-                      Modelo = row.Field<string>("SOL_Modelo"),
-                      PaisOrigen = row.Field<string>("SOL_CPA_Id")
-                  }).ToList();
-
-                var lastPP = ppList.Last();
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Descripcion))
-                {
-                    CamposComunes.DescripcionDelProducto_Text = lastPP.Descripcion;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Marca))
-                {
-                    CamposComunes.Marca_Text = lastPP.Marca;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Modelo))
-                {
-                    CamposComunes.Modelo_Text = lastPP.Modelo;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.PaisOrigen))
-                {
-                    CamposComunes.PaisDeOrigen_SelectedValue = lastPP.PaisOrigen;
-                }
-            }
-        }
     }
 }

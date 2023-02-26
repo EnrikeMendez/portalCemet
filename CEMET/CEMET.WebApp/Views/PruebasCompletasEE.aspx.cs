@@ -14,7 +14,7 @@ using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class PruebasCompletasEE : System.Web.UI.Page
+    public partial class PruebasCompletasEE : SetupPage
     {
         private const string NormaIdBandera = "8"; // NOM-003-SCFI
         //066 = 19
@@ -65,7 +65,7 @@ namespace CEMET.WebApp.Views
 
                 if (!string.IsNullOrWhiteSpace(folio))
                 {
-                    InicializaCamposComunes(folio: int.Parse(folio));
+                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
                 }
             }
         }
@@ -223,44 +223,5 @@ namespace CEMET.WebApp.Views
             }
         }
 
-        private void InicializaCamposComunes(int folio)
-        {
-            var db = ISolicitud.ObtenerSolicitudes(folio: folio);
-            var ppList = new List<PruebasCompletas>();
-
-            if (db != null && db.Rows.Count > 0)
-            {
-                ppList = db.AsEnumerable().Select(row =>
-                  new PruebasCompletas
-                  {
-                      Descripcion = row.Field<string>("SOL_Dsc_Producto"),
-                      Marca = row.Field<string>("SOL_Marca"),
-                      Modelo = row.Field<string>("SOL_Modelo"),
-                      PaisOrigen = row.Field<string>("SOL_CPA_Id")
-                  }).ToList();
-
-                var lastPP = ppList.Last();
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Descripcion))
-                {
-                    CamposComunes.DescripcionDelProducto_Text = lastPP.Descripcion;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Marca))
-                {
-                    CamposComunes.Marca_Text = lastPP.Marca;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.Modelo))
-                {
-                    CamposComunes.Modelo_Text = lastPP.Modelo;
-                }
-
-                if (!string.IsNullOrWhiteSpace(lastPP.PaisOrigen))
-                {
-                    CamposComunes.PaisDeOrigen_SelectedValue = lastPP.PaisOrigen;
-                }
-            }
-        }
     }
 }

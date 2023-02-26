@@ -102,7 +102,7 @@
     <script type="text/javascript">
 
         function Cotizacion2_ActivaBotonAgregar() {
-            console.log("Cotizacion2_ActivaBotonAgregar");
+
             let serv = "<%= Cotizacion2.ServicioSolicitadoClientId %>";
             let tarf = "<%= Cotizacion2.TarifaClientId %>";
 
@@ -127,15 +127,20 @@
         }
 
         function Cotizacion2_ValidateConceptosList(sender, e) {
-            console.log("Cotizacion2_ValidateConceptosList");
+
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
         }
 
         function DescripcionDelProducto_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
-                let t = "<%=CamposComunes.DescripcionDelProducto_Text%>";
-                console.log("DescripcionDelProducto_Text", t);
-                e.IsValid = "<%=CamposComunes.DescripcionDelProducto_Text%>" !== '';
+                 let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
             }
             else {
                 e.IsValid = true;
@@ -144,9 +149,14 @@
 
         function Marca_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
-                let t = "<%=CamposComunes.Marca_Text%>";
-                console.log("Marca_Text", t);
-                e.IsValid = "<%=CamposComunes.Marca_Text%>" !== '';
+                let t = $("#" + "<%= CamposComunes.Marca_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
             }
             else {
                 e.IsValid = true;
@@ -155,9 +165,14 @@
 
         function Modelo_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
-                let t = "<%=CamposComunes.Modelo_Text%>";
-                console.log("Modelo_Text", t);
-                e.IsValid = "<%=CamposComunes.Modelo_Text%>" !== '';
+                let t = $("#" + "<%= CamposComunes.Modelo_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
             }
             else {
                 e.IsValid = true;

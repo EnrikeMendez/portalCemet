@@ -168,28 +168,24 @@
         runat="server"
         ID="InstructivoManual"
         Etiqueta="Instructivo o manual"
-        VisualizaNombreDeArchivoComoLink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="Marcado"
         Etiqueta="Marcado"
-        VisualizaNombreDeArchivoComoLink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="Diagrama"
         Etiqueta="Diagrama"
-        VisualizaNombreDeArchivoComoLink="true"
         Extensiones=".jpg" />
 
     <uc:SubirArchivo
         runat="server"
         ID="DocsAdicionales"
         Etiqueta="Documentos adicionales"
-        VisualizaNombreDeArchivoComoLink="true"
         Extensiones=".jpg" />
 
     <div class="d-flex align-items-center mb-3 mt-4">
@@ -220,7 +216,7 @@
                 ValidationGroup="PruebasCompletasValGroup"
                 Text="Guardar"
                 CssClass="btn btn-primary"
-                OnClick="GuardaPruebCompBtn_Click"/>
+                OnClick="GuardaPruebCompBtn_Click" />
         </div>
     </div>
 

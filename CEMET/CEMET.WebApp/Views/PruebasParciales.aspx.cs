@@ -1,30 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using CEMET.WebApp.App_Code;
 using Cemetlib.Business;
 using Cemetlib.Common;
 using Cemetlib.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web.UI;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class PresolicitudParcial : System.Web.UI.Page
+    public partial class PresolicitudParcial : SetupPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             string usuarioId = "User123";
             string appPath = Request.PhysicalApplicationPath;
-            string saveDirIns = @"Uploads\" + usuarioId + @"\PruebasParciales\InstructivoManual";
-            string saveDirDocs = @"Uploads\" + usuarioId + @"\PruebasParciales\DocsAdicionales";
-            InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
-            DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
+
             if (!Page.IsPostBack)
             {
-                FillCatalogs();
-                FillDummyData();
                 var folio = Request.QueryString["folio"];
 
                 if (UserService.ValidaFolio(folio: folio, out var redirect))
@@ -39,8 +33,26 @@ namespace CEMET.WebApp.Views
                     FolioContainer.Visible = true;
                     Folio.Text = string.Concat("Folio ", folio.Trim());
                 }
+
+                FillCatalogs();
+                FillDummyData();
+
+                TipoDeServicio.SelectedValue = "T2";
+
+                string rootSavePath = Helper.CreateTempPath(usuarioId: usuarioId);
+                string saveDirIns = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_InstructivoManual");
+                string saveDirDocs = rootSavePath + "\\" + Helper.ReadSetting(key: "PruebasParciales_DocumentosAdicionales");
+
+                InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
+                DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
+
+                if (!string.IsNullOrWhiteSpace(folio))
+                {
+                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
+                }
             }
-            TipoDeServicio.SelectedValue = "T2";
+
+
         }
         private void FillCatalogs()
         {
@@ -50,19 +62,12 @@ namespace CEMET.WebApp.Views
             Controles.FillDropDownList(Norma, catNorma);
             List<Catalog> catNormaParticular = CatalogService.GetCatNormaParticular();
             Controles.FillDropDownList(NormaParticular, catNormaParticular);
-            List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
-            Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
-            //List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
-            //Controles.FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
             List<Catalog> catMetodoPrueba = CatalogService.GetCatMetodoDePrueba();
             Controles.FillDropDownList(MetodoDePrueba, catMetodoPrueba);
 
         }
         private void FillDummyData()
         {
-            DescripcionDelProducto.Text = "Test descripción";
-            Marca.Text = "Test marca";
-            Modelo.Text = "Test modelo";
             Observaciones.Obs = "";
             TermYCond.UsuarioEstaDeAcuerdo = true;
             
@@ -75,18 +80,24 @@ namespace CEMET.WebApp.Views
             solicitudPruebasParciales.NormaParticular = NormaParticular.SelectedValue;
             solicitudPruebasParciales.MetodoPrueba = MetodoDePrueba.SelectedValue;
             solicitudPruebasParciales.TipoServicio = TipoDeServicio.SelectedValue;
-            solicitudPruebasParciales.Descripcion = DescripcionDelProducto.Text;
-            solicitudPruebasParciales.Marca = Marca.Text;
-            solicitudPruebasParciales.Modelo = Modelo.Text;
+
+            solicitudPruebasParciales.Descripcion = CamposComunes.DescripcionDelProducto_Text;
+            solicitudPruebasParciales.Marca = CamposComunes.Marca_Text;
+            solicitudPruebasParciales.Modelo = CamposComunes.Modelo_Text;
+            solicitudPruebasParciales.PaisOrigen = CamposComunes.PaisDeOrigen_Current_SelectedValue;
+
             solicitudPruebasParciales.ModalidadRecoleccion = ModalidadEntrega.ModalidadDeRecoleccion;
-            solicitudPruebasParciales.Observaciones = Observaciones.Obs;
-            solicitudPruebasParciales.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
             solicitudPruebasParciales.ModalidadEntrega = ModalidadEntrega.ModalidadDeEntrega;
             solicitudPruebasParciales.DiasHabiles = ModalidadEntrega.DiasHabiles;
+
+            solicitudPruebasParciales.Observaciones = Observaciones.Obs;
+            solicitudPruebasParciales.TerminosYCondiciones = TermYCond.UsuarioEstaDeAcuerdo;
+
             solicitudPruebasParciales.Activo = true;
             solicitudPruebasParciales.UsuarioCrea = 1;//****
             solicitudPruebasParciales.UsuarioModifica = null;
             solicitudPruebasParciales.FechaModifica = null;
+
             List<Cotizacion> cotizaciones = new List<Cotizacion>();
             foreach (var cotizacion in Cotizacion2.Cotizaciones)
             {
@@ -111,7 +122,7 @@ namespace CEMET.WebApp.Views
                 InstructivoManual.ListaDeDocumentos.Select(x => new Documentos
                 {
                     Nombre = x.Nombre,
-                    Ruta = InstructivoManual.SavePath, //con string truena
+                    Ruta = InstructivoManual.DocumentoRuta,
                     Tipo = "1"//Tipo instructivo
                 })
             );
@@ -122,13 +133,14 @@ namespace CEMET.WebApp.Views
                    DocsAdicionales.ListaDeDocumentos.Select(x => new Documentos
                    {
                        Nombre = x.Nombre,
-                       Ruta = DocsAdicionales.SavePath,
+                       Ruta = DocsAdicionales.DocumentoRuta,
                        Tipo = "2"//Tipo Adicional
                    })
                );
             }
 
             solicitudPruebasParciales.Documentos = documentosSolicitud;
+
             string folioSolicitud = Request.QueryString["folio"];
             if (!string.IsNullOrEmpty(folioSolicitud))
             {

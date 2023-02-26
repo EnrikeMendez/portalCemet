@@ -5,6 +5,8 @@
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc" TagName="ModalidadEntrega" %>
 <%@ Register Src="~/UserControls/Comun/Observaciones.ascx" TagPrefix="uc" TagName="Observaciones" %>
 <%@ Register Src="~/UserControls/Comun/Cotizacion.ascx" TagPrefix="uc1" TagName="Cotizacion2" %>
+<%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc" TagName="CamposComunes" %>
+
 
 <%--PRESOLICITUD MM (P.PARCIALES) - P4--%>
 
@@ -23,7 +25,6 @@
     <div class="d-flex align-items-center mb-3 mt-2">
         <h5 class="mb-0 me-3 me-md-4">Servicio requerido</h5>
         <div class="border-bottom flex-grow-1"></div>
-        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
     </div>
     <div class="row d-flex">
         <div class="form-group col-md-6 p-3">
@@ -39,7 +40,8 @@
                     Norma
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="Norma" CssClass="form-select" />
+                <asp:DropDownList runat="server" ID="Norma" CssClass="form-control"
+                    data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}'/>
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesValGroup" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
@@ -48,7 +50,8 @@
                     Norma Particular
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="NormaParticular" CssClass="form-select" />
+                <asp:DropDownList runat="server" ID="NormaParticular" CssClass="form-control"
+                    data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}'/>
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesValGroup" Display="Static" ControlToValidate="NormaParticular" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
@@ -58,50 +61,27 @@
                     Metodo de prueba
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="MetodoDePrueba" CssClass="form-select" />
+                <asp:DropDownList runat="server" ID="MetodoDePrueba" CssClass="form-control"
+                    data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}'/>
                 <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesValGroup" Display="Static" ControlToValidate="MetodoDePrueba" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
 
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="DescripcionDelProducto" CssClass="form-label required-field">
-                Descripción del producto
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="DescripcionDelProducto" CssClass="form-control"/>
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="PruebasParcialesValGroup" Display="Static" ControlToValidate="DescripcionDelProducto" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="Marca" CssClass="form-label">
-                Marca
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Marca" CssClass="form-control"/>
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="Modelo" CssClass="form-label">
-                Modelo
-            </asp:Label>
-            <div class="">
-                <asp:TextBox runat="server" ID="Modelo" CssClass="form-control"/>
-            </div>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="PaisDeOrigen" ID="lbl_PaisDeOrigen" CssClass="form-label">
-                    Pais de Origen
-            </asp:Label>
-            <div class="">
-                <asp:DropDownList runat="server" ID="PaisDeOrigen" CssClass="form-select" />
-            </div>
-        </div>
+        <uc:CamposComunes 
+            runat="server"
+            ID="CamposComunes"
+            DescripcionDelProducto_EsRequerido="true"
+            DescripcionDelProducto_ClientValidationFunction="DescripcionDelProducto_ClientValidationFunction"
+            Marca_EsRequerido="true"
+            Marca_ClientValidationFunction="Marca_ClientValidationFunction"
+            Modelo_EsRequerido="true"
+            Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
+            PaisDeOrigen_EsRequerido="true"
+            PaisDeOrigen_ClientValidationFunction="PaisDeOrigen_ClientValidationFunction"
+            ValidationGroup="PruebasParcialesValGroup" />
     </div>
 
-    <%--
-            https://es.stackoverflow.com/questions/41008/error-de-servidor-en-la-aplicaci%C3%B3n#:~:text=Argumento%20de%20devoluci%C3%B3n%20o%20de,%22%20%25%3E%20en%20una%20p%C3%A1gina.
-    --%>
     <div class="d-flex align-items-center mb-3 mt-4">
         <h5 class="mb-0 me-3 me-md-4">
             <asp:Label ID="TituloFileUploader" runat="server">
@@ -126,30 +106,7 @@
         Etiqueta="Documentos adicionales"
         Extensiones=".jpg" />
 
-<%--    <div class="row">
-        <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="ModalidadDeRecoleccion" ID="lbl_ModalidadDeRecoleccion" CssClass="form-label required-field">
-                    Modalidad de recolección:
-            </asp:Label>
-        </div>
-        <div class="form-group col-md-6 p-3">
-            <asp:DropDownList runat="server" ID="ModalidadDeRecoleccion" CssClass="form-select" required="" />
-        </div>
-    </div>
-
-
-
-    <div class="d-flex align-items-center mb-3 mt-4">
-        <h5 class="mb-0 me-3 me-md-4">
-            <asp:Label ID="Label2" runat="server">
-                    Modalidad de entrega
-            </asp:Label>
-        </h5>
-        <div class="border-bottom flex-grow-1"></div>
-
-    </div>--%>
-
-    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="diagramaCamposRequeridos" />
+    <uc:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="PruebasParcialesValGroup" />
 
     <div class="d-flex align-items-center mb-3 mt-4">
         <h5 class="mb-0 me-3 me-md-4">
@@ -212,9 +169,72 @@
             console.log("Cotizacion2_ValidateConceptosList");
             e.IsValid = "<%=Cotizacion2.Cotizaciones.Any()%>".toLowerCase() == 'true';
         }
+
+        function DescripcionDelProducto_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
+               let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Marca_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Marca_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.Marca_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function Modelo_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.Modelo_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.Modelo_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+        function PaisDeOrigen_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.PaisDeOrigen_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.PaisDeOrigen_ClientID %>").val();
+
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
     </script>
-
-
 
     <uc:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="PruebasParcialesValGroup" />
 
