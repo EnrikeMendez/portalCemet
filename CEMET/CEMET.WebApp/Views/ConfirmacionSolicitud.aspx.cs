@@ -23,7 +23,7 @@ namespace CEMET.WebApp.Views
 
         protected void No_Click(object sender, EventArgs e)
         {
-            int folio = 80;
+            var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
             FolioSolicitud folioSolicitud = new FolioSolicitud();
             folioSolicitud.Folio = folio;
             ServicioFolioSolicitud servicioFolioSolicitud = new ServicioFolioSolicitud(folioSolicitud);
