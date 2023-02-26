@@ -749,6 +749,7 @@
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
     <Content Include="UserControls\Comun\Observaciones.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
+    <Content Include="Views\ConfirmacionSolicitud.aspx" />
     <Content Include="Views\Consultar.aspx" />
     <Content Include="Views\Diagrama.aspx" />
     <Content Include="Views\EvaluacionDePresolicitud.aspx" />
@@ -1091,6 +1092,13 @@
     </Compile>
     <Compile Include="Views\ComunicadoDeHallazgos.aspx.designer.cs">
       <DependentUpon>ComunicadoDeHallazgos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmacionSolicitud.aspx.cs">
+      <DependentUpon>ConfirmacionSolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ConfirmacionSolicitud.aspx.designer.cs">
+      <DependentUpon>ConfirmacionSolicitud.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Consultar.aspx.cs">
       <DependentUpon>Consultar.aspx</DependentUpon>
