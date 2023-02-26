@@ -191,7 +191,7 @@ namespace CEMET.WebApp.Views
 
         protected void No_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Views/Solicitudes.aspx");
+            Response.Redirect("/Views/ConfirmacionSolicitud.aspx");
         }
     }
 }

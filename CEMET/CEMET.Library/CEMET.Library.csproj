@@ -46,10 +46,12 @@
     <Compile Include="Business\CatalogService.cs" />
     <Compile Include="Business\ServicioAltaDeSolicitud.cs" />
     <Compile Include="Business\SolicitudService.cs" />
+    <Compile Include="Business\ServicioFolioSolicitud.cs" />
     <Compile Include="Business\UserService.cs" />
     <Compile Include="Common\Controles.cs" />
     <Compile Include="Common\DB.cs" />
     <Compile Include="Common\Log.cs" />
+    <Compile Include="Data\IFolioSolicitud.cs" />
     <Compile Include="Data\ISolicitud.cs" />
     <Compile Include="Data\ICatalogo.cs" />
     <Compile Include="Data\IUser.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Model\Cotizacion.cs" />
     <Compile Include="Model\DiagramaMarcado.cs" />
     <Compile Include="Model\EspecificacionElectrica.cs" />
+    <Compile Include="Model\FolioSolicitud.cs" />
     <Compile Include="Model\MetodoDePrueba.cs" />
     <Compile Include="Model\Norma.cs" />
     <Compile Include="Model\PruebasCompletas.cs" />
