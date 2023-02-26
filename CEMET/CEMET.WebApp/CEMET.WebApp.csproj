@@ -752,6 +752,7 @@
     <Content Include="Views\Consultar.aspx" />
     <Content Include="Views\Diagrama.aspx" />
     <Content Include="Views\EvaluacionDePresolicitud.aspx" />
+    <Content Include="Views\Marcado.aspx" />
     <Content Include="Views\NotificacionDeIngreso.aspx" />
     <Content Include="Views\ProgramacionDeDevolucion.aspx" />
     <Content Include="Views\ProgramacionDeRecoleccion.aspx" />
@@ -1114,6 +1115,13 @@
     </Compile>
     <Compile Include="Views\EvaluacionDePresolicitud.aspx.designer.cs">
       <DependentUpon>EvaluacionDePresolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Marcado.aspx.cs">
+      <DependentUpon>Marcado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Marcado.aspx.designer.cs">
+      <DependentUpon>Marcado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\NotificacionDeIngreso.aspx.cs">
       <DependentUpon>NotificacionDeIngreso.aspx</DependentUpon>

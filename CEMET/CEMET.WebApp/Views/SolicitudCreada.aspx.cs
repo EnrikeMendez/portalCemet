@@ -22,8 +22,8 @@ namespace CEMET.WebApp.Views
                 {
                     //porque no tiene permisos
                     Response.Redirect("../Default.aspx");
-                    //porque no le pertenece el folio
-                    Response.Redirect("PruebasCompletas.aspx");
+                    ////porque no le pertenece el folio
+                    //Response.Redirect("PruebasCompletas.aspx");
                 }
             }
             else
@@ -51,6 +51,11 @@ namespace CEMET.WebApp.Views
                     {
                          Text = "Diagrama",
                          Value = "T3"
+                    },
+                    new Catalog
+                    {
+                         Text = "Marcado",
+                         Value = "T4"
                     },
                     new Catalog
                     {
@@ -137,6 +142,9 @@ namespace CEMET.WebApp.Views
                     break;
                 case "T3":
                     pagina = "Diagrama";
+                    break;
+                case "T4":
+                    pagina = "Marcado";
                     break;
                 case "T5":
                     pagina = "PruebasCompletasEE";

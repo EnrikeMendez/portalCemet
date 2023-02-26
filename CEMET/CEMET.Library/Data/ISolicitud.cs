@@ -181,6 +181,63 @@ namespace Cemetlib.Data
 
             return folioSolicitud;
         }
+       
+        public static int GuardaSolicitudMarcado(DiagramaMarcado solicitud)
+        {
+            int folioSolicitud;
+            try
+            {
+                DB context = new DB();
+                List<SqlParameter> parameters = new List<SqlParameter>();
+
+                parameters.Add(DB.CrearParametroSql("@SOL_CTS_Id", SqlDbType.VarChar, solicitud.TipoServicio));
+                parameters.Add(DB.CrearParametroSql("@SOL_NOR_Id", SqlDbType.VarChar, solicitud.Norma));
+                //Control campos comunes
+                parameters.Add(DB.CrearParametroSql("@SOL_Dsc_Producto", SqlDbType.VarChar, solicitud.Descripcion));
+                parameters.Add(DB.CrearParametroSql("@SOL_Marca", SqlDbType.VarChar, solicitud.Marca));
+                parameters.Add(DB.CrearParametroSql("@SOL_Modelo", SqlDbType.VarChar, solicitud.Modelo));
+                parameters.Add(DB.CrearParametroSql("@SOL_CPA_Id", SqlDbType.VarChar, solicitud.PaisOrigen));
+                //Control recolección
+                parameters.Add(DB.CrearParametroSql("@SOL_CMR_Id", SqlDbType.VarChar, solicitud.ModalidadRecoleccion));
+                parameters.Add(DB.CrearParametroSql("@SOL_CME_Id", SqlDbType.VarChar, solicitud.ModalidadEntrega));
+                parameters.Add(DB.CrearParametroSql("@SOL_CDH_Id", SqlDbType.VarChar, solicitud.DiasHabiles));
+                //Control Cotización
+                parameters.Add(DB.CrearParametroSql("@SOL_Subtotal", SqlDbType.Float, solicitud.Subtotal));
+                parameters.Add(DB.CrearParametroSql("@SOL_Iva", SqlDbType.Float, solicitud.Iva));
+                parameters.Add(DB.CrearParametroSql("@SOL_Total", SqlDbType.VarChar, solicitud.Total));
+
+                parameters.Add(DB.CrearParametroSql("@SOL_Observaciones", SqlDbType.VarChar, solicitud.Observaciones));
+
+                parameters.Add(DB.CrearParametroSql("@SOL_Activo", SqlDbType.Bit, solicitud.Activo));
+                parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Creacion", SqlDbType.BigInt, solicitud.UsuarioCrea));
+                parameters.Add(DB.CrearParametroSql("@SOL_FechaModificacion", SqlDbType.DateTime, solicitud.FechaModifica));
+                parameters.Add(DB.CrearParametroSql("@SOL_USU_Id_Modificacion", SqlDbType.BigInt, solicitud.UsuarioModifica));
+
+                parameters.Add(DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, solicitud.NumeroFolioSolicitud));
+
+                //Control Documentos
+                parameters.Add(DB.CrearParametroSql("@Documentos", SqlDbType.Structured, CreaTablaDocumentos(documentos: solicitud.Documentos)));
+
+                //Control Cotización
+                parameters.Add(DB.CrearParametroSql("@Cotizaciones", SqlDbType.Structured, CreaTablaCotizaciones(cotizaciones: solicitud.Cotizaciones)));
+
+                //Control Electricas
+                parameters.Add(DB.CrearParametroSql("@EspecificacionesElectricas", SqlDbType.Structured, CreaTablaEspecificacionesElectricas(espElectricas: solicitud.EspecificacionesElectricas)));
+
+                var solIdParameter = DB.CrearParametroSql("@SOL_Id", SqlDbType.BigInt, null);
+                solIdParameter.Direction = ParameterDirection.Output;
+                parameters.Add(solIdParameter);
+
+                folioSolicitud = context.EjecutarSP("SPC_AltaSolicitud", parameters, out Dictionary<string, object> idSolicitud);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return folioSolicitud;
+        }
 
         private static DataTable CreaTablaDocumentos(List<Documentos> documentos)
         {

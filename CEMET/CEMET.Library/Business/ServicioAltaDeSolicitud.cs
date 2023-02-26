@@ -44,6 +44,8 @@ namespace Cemetlib.Business
                         folio = ISolicitud.GuardaSolicitudDiagrama(diagrama);
                         break;
                     case "T4":
+                        DiagramaMarcado marcado = (DiagramaMarcado)Solicitud;
+                        folio = ISolicitud.GuardaSolicitudMarcado(marcado);
                         break;
                     default:
                         throw new ArgumentException("La solicitud seleccionada es inválida.");

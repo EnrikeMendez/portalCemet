@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Diagrama" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="Diagrama.aspx.cs" Inherits="CEMET.WebApp.Views.Diagrama" %>
+﻿<%@ Page Title="Marcado" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="Marcado.aspx.cs" Inherits="CEMET.WebApp.Views.Marcado" %>
 
 <%@ Register Src="~/UserControls/Comun/SubirArchivo.ascx" TagPrefix="uc1" TagName="SubirArchivo" %>
 <%@ Register Src="~/UserControls/Comun/TerminosYCondiciones.ascx" TagPrefix="uc1" TagName="TerminosYCondiciones" %>
@@ -7,9 +7,6 @@
 <%@ Register Src="~/UserControls/Comun/CamposComunes.ascx" TagPrefix="uc1" TagName="CamposComunes" %>
 <%@ Register Src="~/UserControls/Comun/EspecificacionesElectricas.ascx" TagPrefix="uc1" TagName="EspecificacionesElectricas" %>
 <%@ Register Src="~/UserControls/Comun/ModalidadEntrega.ascx" TagPrefix="uc1" TagName="ModalidadEntrega" %>
-
-
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -39,7 +36,20 @@
                         ID="TipoDeServicio"
                         CssClass="form-select"
                         Enabled="false" />
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="diagramaCamposRequeridos" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" ID="TipoDeServicioReqVal" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="marcadoCamposRequeridos" Display="Static" ControlToValidate="TipoDeServicio" CssClass="text-danger" ErrorMessage="El campo es requerido" ID="TipoDeServicioReqVal" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="Norma" ID="lbl_Norma" CssClass="form-label required-field">
+                    Norma
+                </asp:Label>
+                <div class="">
+                    <asp:DropDownList runat="server" ID="Norma" CssClass="form-control"
+                        data-choices='{"searchEnabled":true, "allowHTML":true,"itemSelectText":""}' />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="marcadoCamposRequeridos" Display="Static" ControlToValidate="Norma" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
         </div>
@@ -53,10 +63,11 @@
             Marca_ClientValidationFunction="Marca_ClientValidationFunction"
             Modelo_EsRequerido="true"
             Modelo_ClientValidationFunction="Modelo_ClientValidationFunction"
-            PaisDeOrigen_Visible="true"
-            ValidationGroup="diagramaCamposRequeridos" />
+            PaisDeOrigen_EsRequerido="true"
+            PaisDeOrigen_ClientValidationFunction="PaisDeOrigen_ClientValidationFunction"
+            ValidationGroup="PruebasParcialesValGroup" />
 
-        <uc1:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="diagramaCamposRequeridos" />
+        <uc1:ModalidadEntrega runat="server" ID="ModalidadEntrega" EsRequerido="true" ValidationGroup="marcadoCamposRequeridos" />
 
         <div class="d-flex align-items-center mb-3 mt-2">
             <h5 class="mb-0 me-3 me-md-4">Especificaciones eléctricas de alimentación</h5>
@@ -68,9 +79,25 @@
                 runat="server"
                 ID="EspecificacionesElectricas"
                 EsRequerido="true"
-                ValidationGroup="diagramaCamposRequeridos" />
+                ValidationGroup="marcadoCamposRequeridos" />
         </div>
 
+        <div class="d-flex align-items-center mb-3 mt-4">
+            <h5 class="mb-0 me-3 me-md-4">Documentos</h5>
+            <div class="border-bottom flex-grow-1"></div>
+        </div>
+
+        <uc1:SubirArchivo
+            runat="server"
+            ID="FichaTecnicaDelEquipo"
+            Etiqueta="Ficha Técnica del Equipo"
+            Extensiones=".jpg" />
+
+        <uc1:SubirArchivo
+            runat="server"
+            ID="DocsAdicionales"
+            Etiqueta="Documentos adicionales"
+            Extensiones=".jpg" />
 
     </div>
 
@@ -82,7 +109,7 @@
     <uc1:Cotizacion2
         runat="server"
         ID="Cotizacion2"
-        ValidationGroupForm="diagramaCamposRequeridos"
+        ValidationGroupForm="marcadoCamposRequeridos"
         EsRequerido="true"
         OnClientChangeEventDropdown="Cotizacion2_ActivaBotonAgregar()"
         ClientValidationFunctionForValidator="Cotizacion2_ValidateConceptosList"
@@ -90,12 +117,12 @@
 
     <uc1:Observaciones runat="server" ID="Observaciones" />
 
-    <uc1:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="diagramaCamposRequeridos" />
+    <uc1:TerminosYCondiciones runat="server" ID="TermYCond" ValidationGroupForm="marcadoCamposRequeridos" />
 
 
     <div class="row">
         <div class="col">
-            <asp:Button ID="GuardarDiagramaBtn" runat="server" OnClick="GuardarDiagramaBtn_Click" Text="Guardar" CssClass="btn btn-primary" ValidationGroup="diagramaCamposRequeridos" />
+            <asp:Button ID="GuardarDiagramaBtn" runat="server" OnClick="GuardarDiagramaBtn_Click" Text="Guardar" CssClass="btn btn-primary" ValidationGroup="marcadoCamposRequeridos" />
         </div>
     </div>
 
@@ -133,7 +160,7 @@
 
         function DescripcionDelProducto_ClientValidationFunction(sender, e) {
             if ("<%=CamposComunes.DescripcionDelProducto_EsRequerido.ToString().ToLower()%>" == "true") {
-                 let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
+                let t = $("#" + "<%= CamposComunes.DescripcionDelProducto_ClientID %>").val();
 
                 if (t) {
                     e.IsValid = true;
@@ -179,6 +206,21 @@
             }
         }
 
-    </script>
+        function PaisDeOrigen_ClientValidationFunction(sender, e) {
+            if ("<%=CamposComunes.PaisDeOrigen_EsRequerido.ToString().ToLower()%>" == "true") {
+                let t = $("#" + "<%= CamposComunes.PaisDeOrigen_ClientID %>").val();
 
+                if (t) {
+                    e.IsValid = true;
+                }
+                else {
+                    e.IsValid = false;
+                }
+            }
+            else {
+                e.IsValid = true;
+            }
+        }
+
+    </script>
 </asp:Content>
