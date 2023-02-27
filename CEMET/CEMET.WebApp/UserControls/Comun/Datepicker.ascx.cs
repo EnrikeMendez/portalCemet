@@ -1,70 +1,121 @@
-﻿using System;
+﻿using CEMET.WebApp.App_Code;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.UserControls.Comun
 {
-    //https://stackoverflow.com/questions/1469280/asp-net-datetime-picker
-    //https://learn.microsoft.com/en-us/dotnet/api/system.web.ui.webcontrols.calendar?view=netframework-4.8.1
-
-    public partial class Datepicker : System.Web.UI.UserControl
+    public partial class Datepicker : SetupUserControl
     {
-        public const string DateFormatDefault = "yyyy/MM/dd";
+        //public const string DateFormatDefault = "dd/MM/yyyy";
+        //private const string FormatoFechaKey = "FormatoFechaKeyDatPic";
+        private const string RegexParaFechaKey = "RegexParaFechaDatPic";
 
-        private string _DateFormat;
+        public bool EsRequerido { get; set; }
 
-        public bool IsReadOnlyCalendar { get; set; }
+        public bool EsSoloLectura { get; set; }
 
-        public bool IsReadOnlyTextbox { get; set; }
+        public string Etiqueta { get; set; }
 
-        public DateTime? SelectedDate { get; set; }
+        public string ValidationGroup { get; set; }
 
-        public string DateFormat
+        public string FechaSeleccionada
         {
-            get { return FormatoDeFecha(); }
-            set { _DateFormat = value; }
+            get { return FechaSeleccionadaTxt.Text; }
+            set { FechaSeleccionadaTxt.Text = value; }
         }
 
-        public string GetSelectedDateFormated
+        public string FormatoDeFecha { get; set; }
+
+        public string RegexParaFecha
         {
-            get { return SelectedDate.HasValue ? null : SelectedDate.Value.ToString(FormatoDeFecha()); }
+            get { return (string)Session[CreaLLaveUnica(llave: RegexParaFechaKey)]; }
+            set { Session[CreaLLaveUnica(llave: RegexParaFechaKey)] = value; }
         }
+
+        public DateTime? FechaFinal { get; set; }
+
+        public DateTime? FechaInicio { get; set; }
+
+        public string OnClientShownEvent { get; set; }
+
+        public string FechaSeleccionada_ClientValidationFunction { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Page.IsPostBack)
             {
-                if (SelectedDate.HasValue)
+
+            }
+            else
+            {
+                Calendario.Format = FormatoDeFecha;
+                Calendario.StartDate = FechaInicio;
+                Calendario.EndDate = FechaFinal;
+                Calendario.OnClientShown = OnClientShownEvent;
+
+                FechaSeleccionadaTxt.Attributes.Add("placeholder", FormatoDeFecha);
+
+                if (!string.IsNullOrWhiteSpace(Etiqueta))
                 {
-                    Calendario.SelectedDate = SelectedDate.Value;
-                    Calendario.TodaysDate = SelectedDate.Value;
+                    FechaSeleccionadaLabel.Text = Etiqueta;
+                }
+
+                if (EsSoloLectura)
+                {
+                    FechaSeleccionadaTxt.Enabled = false;
                 }
                 else
                 {
-                    Calendario.SelectedDate = DateTime.Now;
-                    Calendario.TodaysDate = DateTime.Now;
+                    if (EsRequerido)
+                    {
+                        FechaSeleccionadaLabel.CssClass = "form-label required-field";
+                        FechaSeleccionadaTxtReqVal.ValidationGroup = ValidationGroup;
+
+                        if (!string.IsNullOrWhiteSpace(FechaSeleccionada_ClientValidationFunction))
+                        {
+                            FechaSeleccionadaTxtReqVal.ClientValidationFunction = FechaSeleccionada_ClientValidationFunction;
+                        }
+                    }
+                    else
+                    {
+                        FechaSeleccionadaTxtReqVal.IsValid = true;
+                    }
                 }
-
-                FechaSeleccionada.Text = Calendario.SelectedDate.ToString(FormatoDeFecha());
-                FechaSeleccionada.ReadOnly = IsReadOnlyTextbox;
-
-                FechaLabel.InnerText = FechaLabel.InnerText.Replace("XXXXX", FormatoDeFecha());
-                Calendario.Enabled = !IsReadOnlyCalendar;
             }
         }
 
-        protected void Calendario_SelectionChanged(object sender, EventArgs e)
+        protected void FechaSeleccionadaTxtReqVal_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            FechaSeleccionada.Text = Calendario.SelectedDate.ToString(FormatoDeFecha());
-            SelectedDate = Calendario.SelectedDate;
+            if (EsRequerido)
+            {
+                args.IsValid = !string.IsNullOrEmpty(FechaSeleccionadaTxt.Text) && ValidaFecha();
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(FechaSeleccionadaTxt.Text))
+                {
+                    args.IsValid = true;
+                }
+                else
+                {
+                    args.IsValid = ValidaFecha();
+                }
+            }
         }
 
-        private string FormatoDeFecha()
+        protected bool ValidaFecha()
         {
-            return _DateFormat ?? DateFormatDefault;
+            Regex regex = new Regex(@RegexParaFecha);
+            bool isValid = regex.IsMatch(FechaSeleccionadaTxt.Text.Trim()) &&
+                DateTime.TryParseExact(FechaSeleccionadaTxt.Text.Trim(), Calendario.Format, new CultureInfo("en-GB"), DateTimeStyles.None, out _);
+
+            return isValid;
         }
     }
 }

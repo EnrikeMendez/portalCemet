@@ -11,10 +11,19 @@ namespace CEMET.WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack)
             {
-                Datepicker.SelectedDate = new DateTime(1989, 4, 10);
+
             }
+            else
+            {
+
+            }
+        }
+
+        protected void ServerButton_Click(object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "key", "launchModal();", true);
         }
     }
 }

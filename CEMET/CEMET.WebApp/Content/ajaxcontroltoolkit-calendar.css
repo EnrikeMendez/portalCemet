@@ -1,0 +1,125 @@
+﻿
+/*datepicker*/
+
+.ajax__calendar * {
+}
+
+.ajax__calendar_container {
+    font-size: 13px;
+}
+
+.ajax__calendar_body {
+    /*width: 500px;*/
+}
+
+.ajax__calendar_days, .ajax__calendar_months, .ajax__calendar_years {
+}
+
+    .ajax__calendar_days table, .ajax__calendar_months table, .ajax__calendar_years table {
+    }
+
+.ajax__calendar_container TABLE {
+}
+
+.ajax__calendar_container TD {
+}
+
+.ajax__calendar_header {
+}
+
+.ajax__calendar_prev {
+}
+
+.ajax__calendar_next {
+}
+
+.ajax__calendar_title {
+}
+
+.ajax__calendar_footer {
+}
+
+.ajax__calendar_today {
+}
+
+.ajax__calendar_dayname {
+}
+
+.ajax__calendar_day {
+}
+
+.ajax__calendar_month {
+}
+
+.ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_container {
+}
+
+.ajax__calendar .ajax__calendar_footer {
+}
+
+.ajax__calendar .ajax__calendar_dayname {
+}
+
+.ajax__calendar .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_month {
+}
+
+.ajax__calendar .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_active .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_active .ajax__calendar_month {
+}
+
+.ajax__calendar .ajax__calendar_active .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_today .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_today .ajax__calendar_month {
+}
+
+.ajax__calendar .ajax__calendar_today .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_other .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_other .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_hover .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_hover .ajax__calendar_month {
+}
+
+.ajax__calendar .ajax__calendar_hover .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_hover .ajax__calendar_title {
+}
+
+.ajax__calendar .ajax__calendar_hover .ajax__calendar_today {
+}
+
+/* styles for invalid dates as defined by startDate and endDate*/
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_day {
+}
+
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_month {
+}
+
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_year {
+}
+
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_today {
+}

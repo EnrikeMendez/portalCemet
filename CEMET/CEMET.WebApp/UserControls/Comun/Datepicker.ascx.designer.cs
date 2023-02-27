@@ -15,30 +15,48 @@ namespace CEMET.WebApp.UserControls.Comun
     {
 
         /// <summary>
+        /// FechaSeleccionadaLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FechaSeleccionadaLabel;
+
+        /// <summary>
+        /// FechaSeleccionadaTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FechaSeleccionadaTxt;
+
+        /// <summary>
+        /// FechaSeleccionadaBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton FechaSeleccionadaBtn;
+
+        /// <summary>
         /// Calendario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendario;
+        protected global::AjaxControlToolkit.CalendarExtender Calendario;
 
         /// <summary>
-        /// FechaLabel control.
+        /// FechaSeleccionadaTxtReqVal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FechaLabel;
-
-        /// <summary>
-        /// FechaSeleccionada control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FechaSeleccionada;
+        protected global::System.Web.UI.WebControls.CustomValidator FechaSeleccionadaTxtReqVal;
     }
 }
