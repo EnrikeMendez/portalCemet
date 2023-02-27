@@ -27,7 +27,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                var folio = Request.QueryString["folio"];
+                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
 
                 if (UserService.ValidaFolio(folio: folio, out var redirect))
                 {
@@ -149,7 +149,9 @@ namespace CEMET.WebApp.Views
             }
 
             solicitudPruebasCompletas.Documentos = documentosSolicitud;
-            string folioSolicitud = Request.QueryString["folio"];
+
+            var folioSolicitud = Session["Folio"] != null ? Session["Folio"].ToString() : "";
+
             if (!string.IsNullOrEmpty(folioSolicitud))
             {
                 solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(folioSolicitud);
@@ -168,7 +170,9 @@ namespace CEMET.WebApp.Views
             //}
 
             Folio.Text = $"Folio guardado {idFolio}";
-            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
+
+            Session["Folio"] = idFolio;
+            Response.Redirect($"SolicitudCreada.aspx");
 
         }
 

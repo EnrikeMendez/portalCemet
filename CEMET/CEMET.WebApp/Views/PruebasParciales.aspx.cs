@@ -19,7 +19,9 @@ namespace CEMET.WebApp.Views
 
             if (!Page.IsPostBack)
             {
-                var folio = Request.QueryString["folio"];
+                FillCatalogs();
+                FillDummyData();
+                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
 
                 if (UserService.ValidaFolio(folio: folio, out var redirect))
                 {
@@ -140,8 +142,7 @@ namespace CEMET.WebApp.Views
             }
 
             solicitudPruebasParciales.Documentos = documentosSolicitud;
-
-            string folioSolicitud = Request.QueryString["folio"];
+            var folioSolicitud = Session["Folio"] != null ? Session["Folio"].ToString() : "";
             if (!string.IsNullOrEmpty(folioSolicitud))
             {
                 solicitudPruebasParciales.NumeroFolioSolicitud = int.Parse(folioSolicitud);
@@ -150,7 +151,8 @@ namespace CEMET.WebApp.Views
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasParciales);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             Folio.Text = $"Folio guardado {idFolio}";
-            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
+            Session["Folio"] = idFolio;
+            Response.Redirect($"SolicitudCreada.aspx");
 
         }
         protected void GuardaPruebParcialBtn_Click(object sender, EventArgs e)

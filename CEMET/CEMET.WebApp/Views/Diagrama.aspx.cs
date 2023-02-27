@@ -20,7 +20,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                var folio = Request.QueryString["folio"];
+                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
 
                 if (UserService.ValidaFolio(folio: folio, out var redirect))
                 {
@@ -53,7 +53,8 @@ namespace CEMET.WebApp.Views
 
             if (Page.IsValid)
             {
-                CreaDTO(folio: Request.QueryString["folio"]);
+                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
+                CreaDTO(folio: folio);
             }
             else
             {
@@ -112,7 +113,8 @@ namespace CEMET.WebApp.Views
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(diagrama);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
 
-            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
+            Session["Folio"] = idFolio;
+            Response.Redirect($"SolicitudCreada.aspx");
         }
     }
 }

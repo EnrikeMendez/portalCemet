@@ -7,11 +7,11 @@ using System.Web.UI;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class SolicitudCreada : System.Web.UI.Page
+    public partial class SolicitudCreada : System.Web.UI.Page 
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var folio = Request.QueryString["folio"];
+            var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
 
             if (UserService.ValidaFolio(folio: folio, out var redirect))
             {
@@ -120,7 +120,7 @@ namespace CEMET.WebApp.Views
                 };
                 Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
             }
-           
+
         }
         protected void SiBtn_Click(object sender, EventArgs e)
         {
@@ -129,7 +129,6 @@ namespace CEMET.WebApp.Views
         }
         protected void AgregarBtn_Click(object sender, EventArgs e)
         {
-            string folioSolicitud = Request.QueryString["folio"];
             string pagina = string.Empty;
             string tipoSolicitud = TipoDeServicio.SelectedItem.Value;
             switch (tipoSolicitud)
@@ -185,7 +184,7 @@ namespace CEMET.WebApp.Views
                 default:
                     throw new ArgumentException("La solicitud seleccionada es inválida.");
             }
-            string redirectPage = string.IsNullOrEmpty(folioSolicitud) ? $"{pagina}.aspx" : $"{pagina}.aspx?folio={folioSolicitud}";
+            string redirectPage = $"{pagina}.aspx";
             Response.Redirect(redirectPage);
         }
 

@@ -5,7 +5,7 @@
         <div class="row" runat="server" id="MsgSolicitudCreada">
             <h1>Solicitud creada correctamente</h1>
             <label>Se ha creado correctamente la solicitud vinculada al folio numero: </label>
-            <asp:Label runat="server" ID="lb_solicitud"><%Response.Write(Request.QueryString["folio"]);%></asp:Label>
+            <asp:Label runat="server" ID="lb_solicitud"><%Response.Write(Session["folio"]);%></asp:Label>
             <label>¿Desea agregar otra solicitud al folio creado?</label><br />
 
         </div>

@@ -34,7 +34,7 @@
                 Horario
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="Horario" CssClass="form-control" placeholder="Horario" />
+                <asp:TextBox runat="server" ID="Horario" CssClass="form-control" placeholder="Horario" TextMode="Time" />
             </div>
         </div>
         <div class="form-group col-md-4 p-3">
@@ -88,8 +88,10 @@
             <div class="m-2">
                 <div class="row row-cols-auto">
                     <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            1</span>
+                        <asp:CheckBox ID="checkbox1" runat="server"
+                            Text="Presolicitud"
+                            TextAlign="Right"
+                             />
                     </div>
                     <div class="col border border-dark border-2 m-1">
                         <span>Presolicitud<br />
