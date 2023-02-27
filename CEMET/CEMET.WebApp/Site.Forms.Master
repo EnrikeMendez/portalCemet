@@ -20,7 +20,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager runat="server">
+        <asp:ScriptManager runat="server"
+            EnableScriptGlobalization="true"
+            EnableScriptLocalization="true">
             <Scripts>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />

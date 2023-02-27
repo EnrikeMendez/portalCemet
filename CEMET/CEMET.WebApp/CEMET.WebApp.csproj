@@ -171,6 +171,7 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Clipboard-helper.txt" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\ajaxcontroltoolkit-calendar.css" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\assan\assets\css\splitting-text.css" />

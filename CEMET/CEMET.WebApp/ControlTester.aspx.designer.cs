@@ -24,15 +24,6 @@ namespace CEMET.WebApp
         protected global::CEMET.WebApp.UserControls.Comun.Datepicker Datepicker;
 
         /// <summary>
-        /// ClientButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ClientButton;
-
-        /// <summary>
         /// ModalPanel control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace CEMET.WebApp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpe;
+
+        /// <summary>
+        /// ClientButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ClientButton;
 
         /// <summary>
         /// ServerButton control.

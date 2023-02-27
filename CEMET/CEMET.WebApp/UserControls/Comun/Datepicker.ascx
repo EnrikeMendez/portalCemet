@@ -1,26 +1,37 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Datepicker.ascx.cs" Inherits="CEMET.WebApp.UserControls.Comun.Datepicker" %>
 
 <div class="form-group">
-    <asp:Calendar
-        ID="Calendario"
+    <asp:Label
+        ID="FechaSeleccionadaLabel"
         runat="server"
-        OnSelectionChanged="Calendario_SelectionChanged"
-        CssClass="table table-bordered">
-        <OtherMonthDayStyle ForeColor="LightGray"></OtherMonthDayStyle>
+        AssociatedControlID="FechaSeleccionadaTxt"
+        CssClass="form-label">
+        Mi datepicker
+    </asp:Label>
+    <div>
+        <div class="input-group">
+            <asp:TextBox ID="FechaSeleccionadaTxt" runat="server" CssClass="form-control" autocomplete="off" />
+            <button class="btn btn-primary" type="button" id="FechaSeleccionadaBtn" runat="server">
+                <i class="fa fa-calendar"></i>
+            </button>
+        </div>
+        <ajaxToolkit:CalendarExtender
+            PopupButtonID="FechaSeleccionadaBtn"
+            ID="Calendario"
+            runat="server"
+            TargetControlID="FechaSeleccionadaTxt"
+            FirstDayOfWeek="Sunday"
+            Animated="true" />
 
-        <TitleStyle CssClass="Hola"></TitleStyle>
-
-        <%--    <DayStyle BackColor="gray"></DayStyle>
-
-    <SelectedDayStyle BackColor="LightGray"
-        Font-Bold="True"></SelectedDayStyle>--%>
-    </asp:Calendar>
-
-    <div class="input-group mt-3">
-        <span class="input-group-text" id="FechaLabel" runat="server">Fecha (XXXXX)</span>
-        <asp:TextBox ID="FechaSeleccionada" runat="server" CssClass="form-control">
-
-        </asp:TextBox>
+        <asp:CustomValidator
+            ID="FechaSeleccionadaTxtReqVal"
+            runat="server"
+            CssClass="text-danger"
+            EnableClientScript="true"
+            Display="Static"
+            OnServerValidate="FechaSeleccionadaTxtReqVal_ServerValidate"
+            ErrorMessage="El campo es requerido">
+        </asp:CustomValidator>
     </div>
 </div>
 
