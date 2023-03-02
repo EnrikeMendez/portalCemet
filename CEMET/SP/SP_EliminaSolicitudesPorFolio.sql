@@ -30,10 +30,6 @@ BEGIN
 		DELETE doc
 		FROM Solicitud_Documentos doc
 			INNER JOIN @SolicitudServicio sol ON doc.DOC_SOL_Id = sol.SOL_Id
-
-		DELETE sols
-		FROM Solicitud_Servicio sols
-			INNER JOIN @SolicitudServicio sol ON sols.SOL_Id = sol.SOL_Id
     
 		DELETE nor
 		FROM Solicitud_Norma nor
@@ -46,6 +42,10 @@ BEGIN
 		DELETE met
 		FROM RSolicitud_Metodo_Prueba met
 			INNER JOIN @SolicitudServicio sol ON met.SOL_Id = sol.SOL_Id
+
+		DELETE sols
+		FROM Solicitud_Servicio sols
+			INNER JOIN @SolicitudServicio sol ON sols.SOL_Id = sol.SOL_Id
 
 	  IF @@TRANCOUNT > 0  
 	   COMMIT TRAN  

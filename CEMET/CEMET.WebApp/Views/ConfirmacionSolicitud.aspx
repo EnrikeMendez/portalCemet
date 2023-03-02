@@ -3,7 +3,7 @@
     <div class="container py-12 text-center">
         <div class="row" runat="server" id="MsgSolicitudCreada">
             <h1>¿Confirmas que la información capturada sea guardada?</h1>
-            <label>*Si se selecciona "No" las solicitudes previamente creadas para el folio [NumeroFolio] serán eliminadas</label><br />
+            <label>*Si se selecciona "No" las solicitudes previamente creadas para el folio <% Response.Write( Session["Folio"] != null ? Session["Folio"].ToString() : ""); %> serán eliminadas</label><br />
 
         </div>
        
