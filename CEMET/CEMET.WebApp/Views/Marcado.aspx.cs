@@ -63,7 +63,8 @@ namespace CEMET.WebApp.Views
         {
             if (Page.IsValid)
             {
-                CreaDTO(folio: Request.QueryString["folio"]);
+                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
+                CreaDTO(folio: folio);
             }
         }
 
