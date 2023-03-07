@@ -49,13 +49,26 @@ namespace CEMET.WebApp.App_Code
                 }
             }
         }
+
+        public string FolioActual
+        {
+            get
+            {
+                return Session["Folio"] != null ? Session["Folio"].ToString() : "";
+            }
+            set
+            {
+                Session["Folio"] = value;
+            }
+        }
+
     }
 
     /// <summary>
     /// Clase intermediaria para métodos de configuración que se repiten en los controles, esta clase hereda UserControl
     /// y esta debe ser heredada por la clase del control
     /// </summary>
-    public class SetupUserControl: UserControl
+    public class SetupUserControl : UserControl
     {
         /// <summary>
         /// Crea un key-string con el ID del control

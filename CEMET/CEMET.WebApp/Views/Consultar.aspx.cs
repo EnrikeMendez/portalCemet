@@ -1,4 +1,5 @@
-﻿using Cemetlib.Business;
+﻿using CEMET.WebApp.App_Code;
+using Cemetlib.Business;
 using Cemetlib.Common;
 using Cemetlib.Data;
 using Cemetlib.Model;
@@ -12,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class Consultar : System.Web.UI.Page
+    public partial class Consultar : SetupPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

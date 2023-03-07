@@ -23,9 +23,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-                if (UserService.ValidaFolio(folio: folio, out var redirect))
+                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -35,7 +33,7 @@ namespace CEMET.WebApp.Views
                         //Response.Redirect("PruebasCompletas.aspx");
                     }
                     FolioContainer.Visible = true;
-                    Folio.Text = string.Concat("Folio ", folio.Trim());
+                    Folio.Text = string.Concat("Folio ", FolioActual.Trim());
                 }
 
                 //the page is being rendered for the first time
@@ -52,9 +50,9 @@ namespace CEMET.WebApp.Views
                 FichaTecnicaDelEquipo.SavePath = Path.Combine(appPath, saveFichaTecnica);
                 DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
 
-                if (!string.IsNullOrWhiteSpace(folio))
+                if (!string.IsNullOrWhiteSpace(FolioActual))
                 {
-                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
+                    InicializaCamposComunes(folio: int.Parse(FolioActual), camposComunes: CamposComunes);
                 }
             }
         }
@@ -63,8 +61,8 @@ namespace CEMET.WebApp.Views
         {
             if (Page.IsValid)
             {
-                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-                CreaDTO(folio: folio);
+                //var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
+                CreaDTO(folio: FolioActual);
             }
         }
 
@@ -135,14 +133,14 @@ namespace CEMET.WebApp.Views
             if (!string.IsNullOrWhiteSpace(folio))
             {
                 diagrama.NumeroFolioSolicitud = int.Parse(folio.Trim());
-                FolioContainer.Visible = true;
-                Folio.Text = string.Concat("Folio ", folio.Trim());
             }
+
             List<string> errores = new List<string>();
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(diagrama);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
+            FolioActual = idFolio.ToString();
 
-            Response.Redirect($"SolicitudCreada.aspx?folio={idFolio}");
+            Response.Redirect($"SolicitudCreada.aspx");
         }
     }
 }

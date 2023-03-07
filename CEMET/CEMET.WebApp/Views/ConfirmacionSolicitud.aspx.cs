@@ -1,4 +1,5 @@
-﻿using Cemetlib.Business;
+﻿using CEMET.WebApp.App_Code;
+using Cemetlib.Business;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class ConfirmacionSolicitud : System.Web.UI.Page
+    public partial class ConfirmacionSolicitud : SetupPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,9 +24,8 @@ namespace CEMET.WebApp.Views
 
         protected void No_Click(object sender, EventArgs e)
         {
-            var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "0";
             FolioSolicitud folioSolicitud = new FolioSolicitud();
-            folioSolicitud.Folio = int.Parse(folio);
+            folioSolicitud.Folio = int.Parse(FolioActual);
             ServicioFolioSolicitud servicioFolioSolicitud = new ServicioFolioSolicitud(folioSolicitud);
             servicioFolioSolicitud.EliminarSolicitudesAsociadas();
 

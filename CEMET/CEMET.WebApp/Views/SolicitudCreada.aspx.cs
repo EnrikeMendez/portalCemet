@@ -1,4 +1,5 @@
-﻿using Cemetlib.Business;
+﻿using CEMET.WebApp.App_Code;
+using Cemetlib.Business;
 using Cemetlib.Common;
 using Cemetlib.Model;
 using System;
@@ -7,13 +8,11 @@ using System.Web.UI;
 
 namespace CEMET.WebApp.Views
 {
-    public partial class SolicitudCreada : System.Web.UI.Page 
+    public partial class SolicitudCreada : SetupPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-            if (UserService.ValidaFolio(folio: folio, out var redirect))
+            if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
             {
                 frmTipoServicio.Visible = false;
                 MsgSolicitudCreada.Visible = true;

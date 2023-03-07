@@ -27,9 +27,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-                if (UserService.ValidaFolio(folio: folio, out var redirect))
+                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -39,7 +37,7 @@ namespace CEMET.WebApp.Views
                         Response.Redirect("PruebasCompletas.aspx");
                     }
                     FolioContainer.Visible = true;
-                    Folio.Text = string.Concat("Folio ", folio.Trim());
+                    Folio.Text = string.Concat("Folio ", FolioActual.Trim());
                 }
 
                 FillCatalogs();
@@ -58,9 +56,9 @@ namespace CEMET.WebApp.Views
                 Diagrama.SavePath = Path.Combine(appPath, saveDirDiagrama);
                 DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
 
-                if (!string.IsNullOrWhiteSpace(folio))
+                if (!string.IsNullOrWhiteSpace(FolioActual))
                 {
-                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
+                    InicializaCamposComunes(folio: int.Parse(FolioActual), camposComunes: CamposComunes);
                 }
             }
         }
@@ -200,20 +198,17 @@ namespace CEMET.WebApp.Views
 
             pruebasParcialesEE.Documentos = documentosSolicitud;
 
-            var folioSolicitud = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-            if (!string.IsNullOrEmpty(folioSolicitud))
+            if (!string.IsNullOrEmpty(FolioActual))
             {
-                pruebasParcialesEE.NumeroFolioSolicitud = int.Parse(folioSolicitud);
+                pruebasParcialesEE.NumeroFolioSolicitud = int.Parse(FolioActual);
             }
+
             List<string> errores = new List<string>();
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(pruebasParcialesEE);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
-            Folio.Text = $"Folio guardado {idFolio}";
+            FolioActual = idFolio.ToString();
 
-            Session["Folio"] = idFolio;
             Response.Redirect($"SolicitudCreada.aspx");
-
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)

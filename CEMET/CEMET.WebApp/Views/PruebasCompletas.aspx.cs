@@ -27,19 +27,17 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                var folio = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-                if (UserService.ValidaFolio(folio: folio, out var redirect))
+                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
                         //porque no tiene permisos
                         Response.Redirect("../Default.aspx");
                         //porque no le pertenece el folio
-                        Response.Redirect("PruebasCompletas.aspx");
+                        //Response.Redirect("PruebasCompletas.aspx");
                     }
                     FolioContainer.Visible = true;
-                    Folio.Text = string.Concat("Folio ", folio.Trim());
+                    Folio.Text = string.Concat("Folio ", FolioActual.Trim());
                 }
 
                 FillCatalogs();
@@ -54,9 +52,9 @@ namespace CEMET.WebApp.Views
                 InstructivoManual.SavePath = Path.Combine(appPath, saveDirIns);
                 DocsAdicionales.SavePath = Path.Combine(appPath, saveDirDocs);
 
-                if (!string.IsNullOrWhiteSpace(folio))
+                if (!string.IsNullOrWhiteSpace(FolioActual))
                 {
-                    InicializaCamposComunes(folio: int.Parse(folio), camposComunes: CamposComunes);
+                    InicializaCamposComunes(folio: int.Parse(FolioActual), camposComunes: CamposComunes);
                 }
             }
         }
@@ -150,16 +148,17 @@ namespace CEMET.WebApp.Views
 
             solicitudPruebasCompletas.Documentos = documentosSolicitud;
 
-            var folioSolicitud = Session["Folio"] != null ? Session["Folio"].ToString() : "";
-
-            if (!string.IsNullOrEmpty(folioSolicitud))
+            if (!string.IsNullOrEmpty(FolioActual))
             {
-                solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(folioSolicitud);
+                solicitudPruebasCompletas.NumeroFolioSolicitud = int.Parse(FolioActual);
             }
+
             List<string> errores = new List<string>();
             ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasCompletas);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
+            FolioActual = idFolio.ToString();
 
+            Response.Redirect($"SolicitudCreada.aspx");
             //var destinationFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Helper.ReadSetting(key: "PruebasCompletas_InstructivoManual").Replace("{NoSolicitud}", servicioAltaDeSolicitud.Solicitud.SolicitudId.ToString()));
             //Helper.MoveAllFiles(sourceFolderPath: InstructivoManual.SavePath, destinationFolderPath: destinationFolderPath);
 
@@ -168,12 +167,6 @@ namespace CEMET.WebApp.Views
             //    destinationFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Helper.ReadSetting(key: "PruebasCompletas_DocumentosAdicionales").Replace("{NoSolicitud}", servicioAltaDeSolicitud.Solicitud.SolicitudId.ToString()));
             //    Helper.MoveAllFiles(sourceFolderPath: DocsAdicionales.SavePath, destinationFolderPath: destinationFolderPath);
             //}
-
-            Folio.Text = $"Folio guardado {idFolio}";
-
-            Session["Folio"] = idFolio;
-            Response.Redirect($"SolicitudCreada.aspx");
-
         }
 
         protected void GuardaPruebCompBtn_Click(object sender, EventArgs e)
