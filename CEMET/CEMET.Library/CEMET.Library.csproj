@@ -63,6 +63,7 @@
     <Compile Include="Model\FolioSolicitud.cs" />
     <Compile Include="Model\MetodoDePrueba.cs" />
     <Compile Include="Model\Norma.cs" />
+    <Compile Include="Model\ProgramacionRecoleccion.cs" />
     <Compile Include="Model\PruebasCompletas.cs" />
     <Compile Include="Model\PruebasParciales.cs" />
     <Compile Include="Model\Role.cs" />

@@ -20,7 +20,15 @@ namespace Cemetlib.Data
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }
-
+        public static DataTable ObtenerSolicitudesParaProgramaRecoleccion()
+        {
+            DB context = new DB();
+            string query = $@"SELECT * FROM Solicitud_Servicio
+                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id
+                                WHERE SOL_Programacion_Recoleccion IS NULL ORDER BY SOL_Id desc";
+            DataTable solicitudes = context.ObtieneDataTable(query);
+            return solicitudes;
+        }
         public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas, out int solicitudId)
         {
             int folio;
@@ -401,6 +409,27 @@ namespace Cemetlib.Data
             return tabla;
         }
 
+        private static DataTable CreaTablaProgramacionSolicitudes(List<int> solicitudes)
+        {
+            DataTable tabla = new DataTable();
+
+            DataColumn column = new DataColumn
+            {
+                ColumnName = "SOL_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+            foreach (int item in solicitudes)
+            {
+                DataRow DR = tabla.NewRow();
+                DR[0] = item;
+                tabla.Rows.Add(DR);
+            }
+
+            return tabla;
+        }
+
         public static DataTable ObtenerSolicitudes(int folio)
         {
             DB context = new DB();
@@ -413,6 +442,23 @@ namespace Cemetlib.Data
 
             DataTable catalogo = context.ObtieneDataTable(query, parametros: parameters);
             return catalogo;
+        }
+        public static void ProgramarRecoleccion(ProgramacionRecoleccion programacion)
+        {
+            DB context = new DB();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(DB.CrearParametroSql("@PROG_NO_Programacion", SqlDbType.Int, programacion.NumeroProgramacion));
+            parameters.Add(DB.CrearParametroSql("@PROG_Fecha_Recoleccion", SqlDbType.DateTime, programacion.FechaRecoleccion));
+            parameters.Add(DB.CrearParametroSql("@PROG_Contacto", SqlDbType.VarChar, programacion.Contacto));
+            parameters.Add(DB.CrearParametroSql("@PROG_Telefono", SqlDbType.VarChar, programacion.Telefono));
+            parameters.Add(DB.CrearParametroSql("@PROG_Direccion", SqlDbType.VarChar, programacion.Direccion));
+            parameters.Add(DB.CrearParametroSql("@PROG_Cantidad_Bultos", SqlDbType.Int, programacion.CantidadBultos));
+            parameters.Add(DB.CrearParametroSql("@PROG_Cantidad_Solicitudes", SqlDbType.Int, programacion.CantidadSolicitudes));
+            parameters.Add(DB.CrearParametroSql("@PROG_Referencias_Adicionales", SqlDbType.VarChar, programacion.ReferenciasAdicionales));
+            
+            parameters.Add(DB.CrearParametroSql("@Solicitudes", SqlDbType.Structured, CreaTablaProgramacionSolicitudes(programacion.Solicitudes)));
+
+            context.EjecutarSP("SP_ProgramarRecoleccion", parameters);
         }
     }
 }

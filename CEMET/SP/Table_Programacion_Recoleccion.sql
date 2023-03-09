@@ -1,4 +1,4 @@
-CREATE TABLE dbo.Programacion_Recoleccion_Solicitud(
+CREATE TABLE dbo.Programacion_Recoleccion(
 	PROG_Id int PRIMARY KEY IDENTITY (1, 1),
 	PROG_NO_Programacion int NOT NULL,
 	PROG_Fecha_Recoleccion DATETIME NOT NULL,
@@ -9,3 +9,6 @@ CREATE TABLE dbo.Programacion_Recoleccion_Solicitud(
 	PROG_Cantidad_Solicitudes int NOT NULL,
 	PROG_Referencias_Adicionales varchar(255) NULL
 )
+
+
+

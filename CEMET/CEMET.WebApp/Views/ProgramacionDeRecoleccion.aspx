@@ -3,13 +3,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="py-5 text-center">
-        <h1>Alta de nuevo servicio</h1>
+        <h1>Programación de recolección</h1>
     </div>
 
-    <div class="d-flex align-items-center mb-3 mt-2">
-        <h5 class="mb-0 me-3 me-md-4">Programación de recolección</h5>
-        <div class="border-bottom flex-grow-1"></div>
-    </div>
+    
 
     <div class="row">
         <div class="form-group col-md-6 p-3">
@@ -17,7 +14,8 @@
                 No. de programación
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="NoDeProgramacion" CssClass="form-control" placeholder="No. de programación" />
+                <asp:TextBox runat="server" ID="NoDeProgramacion" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="NoDeProgramacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
         <div class="form-group col-md-6 p-3">
@@ -25,7 +23,8 @@
                 Fecha de recolección
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="FechaDeRecoleccion" CssClass="form-control" placeholder="Fecha de recolección" TextMode="Date" />
+                <asp:TextBox runat="server" ID="FechaDeRecoleccion" CssClass="form-control" TextMode="Date" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="FechaDeRecoleccion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -34,7 +33,8 @@
                 Horario
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="Horario" CssClass="form-control" placeholder="Horario" TextMode="Time" />
+                <asp:TextBox runat="server" ID="Horario" CssClass="form-control" TextMode="Time" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="Horario" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
         <div class="form-group col-md-4 p-3">
@@ -42,7 +42,8 @@
                 Contacto
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="Contacto" CssClass="form-control" placeholder="Contacto" />
+                <asp:TextBox runat="server" ID="Contacto" CssClass="form-control" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="Contacto" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
         <div class="form-group col-md-4 p-3">
@@ -50,7 +51,8 @@
                 Teléfono
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="Telefono" CssClass="form-control" placeholder="Teléfono" TextMode="Phone" />
+                <asp:TextBox runat="server" ID="Telefono" CssClass="form-control" TextMode="Phone" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="Telefono" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -59,7 +61,8 @@
                 Dirección
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="Direccion" CssClass="form-control" placeholder="Dirección" />
+                <asp:TextBox runat="server" ID="Direccion" CssClass="form-control"  />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="Direccion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -68,7 +71,8 @@
                 Cantidad de bultos a entregar
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="CantidadDeBultosAEntregar" CssClass="form-control" placeholder="Cantidad de bultos a entregar" TextMode="Number" />
+                <asp:TextBox runat="server" ID="CantidadDeBultosAEntregar" CssClass="form-control" TextMode="Number" />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="CantidadDeBultosAEntregar" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
         <div class="form-group col-md-6 p-3">
@@ -76,45 +80,41 @@
                 Cantidad de presolicitudes
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="CantidadDePresolicitudes" CssClass="form-control" placeholder="Cantidad de presolicitudes" TextMode="Number" value="6" />
+                <asp:TextBox runat="server" ID="CantidadDePresolicitudes" CssClass="form-control" TextMode="Number"  />
+                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecoleccionValGroup" Display="Static" ControlToValidate="CantidadDePresolicitudes" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
         <div class="form-group col-md-12 p-3">
-            <asp:Label runat="server" AssociatedControlID="NumerosDePresolicitud" CssClass="form-label required-field">
+            <asp:Label runat="server" CssClass="form-label required-field">
                 Números de presolicitud
                 <%--<br />Se despliega una cantidad de celdas igual a la cantidad de presolicitudes--%>
             </asp:Label>
-            <div class="m-2">
-                <div class="row row-cols-auto">
-                    <div class="col border border-dark border-2 m-1">
-                        <asp:CheckBox ID="checkbox1" runat="server"
-                            Text="Presolicitud"
-                            TextAlign="Right"
-                             />
-                    </div>
-                    <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            2</span>
-                    </div>
-                    <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            3</span>
-                    </div>
-                    <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            4</span>
-                    </div>
-                    <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            5</span>
-                    </div>
-                    <div class="col border border-dark border-2 m-1">
-                        <span>Presolicitud<br />
-                            6</span>
-                    </div>
-                </div>
-                <asp:TextBox runat="server" ID="NumerosDePresolicitud" CssClass="form-control" placeholder="Números de presolicitud" Visible="false" />
+            <div class="table table-sm py-3" style="overflow-x: auto; width: 100%;">
+
+                <asp:GridView ID="gv_Solicitudes" runat="server" GridLines="Horizontal" AutoGenerateColumns="false" CssClass="table  table-sm table-bordered table-condensed table-responsive-sm table-hover table-striped">
+                    <Columns>
+                        <asp:TemplateField >
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chbItem" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="SOL_Folio" HeaderText="Folio" />
+                        <asp:BoundField DataField="SOL_Id" HeaderText="Id solicitud" />
+                        <asp:BoundField DataField="CTS_Descripcion" HeaderText="Tipo de servicio" />
+                        <asp:BoundField DataField="SOL_Referencia_Certificacion" HeaderText="Referencia certificación" />
+                        <asp:BoundField DataField="SOL_Dsc_Producto" HeaderText="Descripción producto" />
+                        <asp:BoundField DataField="SOL_Marca" HeaderText="Marca" />
+                        <asp:BoundField DataField="SOL_Modelo" HeaderText="Modelo" />
+                        <asp:BoundField DataField="SOL_Calibre" HeaderText="Calibre" />
+                        <asp:BoundField DataField="SOL_Total" HeaderText="Total" />
+                        <asp:BoundField DataField="SOL_Observaciones" HeaderText="Observaciones" />
+                        <asp:BoundField DataField="SOL_Activo" HeaderText="Activo" />
+                        <asp:BoundField DataField="SOL_FechaCreacion" HeaderText="Fecha creación" />
+
+                    </Columns>
+                </asp:GridView>
+
             </div>
         </div>
 
@@ -123,14 +123,14 @@
                 Referencias adicionales
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="ReferenciasAdicionales" CssClass="form-control" placeholder="Referencias adicionales" />
+                <asp:TextBox runat="server" ID="ReferenciasAdicionales" CssClass="form-control"/>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col text-center">
             <br />
-            <asp:Button runat="server" CssClass="btn btn-danger" Text="Guardar" type="button" />
+            <asp:Button runat="server" CssClass="btn btn-danger" ValidationGroup="RecoleccionValGroup" Text="Guardar" type="button" OnClick="Guardar_Click"/>
         </div>
     </div>
 

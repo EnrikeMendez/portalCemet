@@ -3,7 +3,7 @@ using Cemetlib.Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
+using System;
 namespace Cemetlib.Business
 {
     public class SolicitudService
@@ -26,6 +26,20 @@ namespace Cemetlib.Business
             }
 
             return ppList;
+        }
+        public void ProgramarRecoleccion(ProgramacionRecoleccion programacionRecolecciones)
+        {
+            if (programacionRecolecciones.Solicitudes.Count == 0)
+            {
+                throw new ArgumentException("No se ha seleccionado ninguna solicitud. Por favor seleccione al menos una para continuar.");
+            }
+            if (programacionRecolecciones.Solicitudes.Count != programacionRecolecciones.CantidadSolicitudes)
+            {
+                throw new ArgumentException("La cantidad de solicitudes ingresada no coincide con la cantidad de solicitudes seleccionadas.");
+            }
+            //Valida telefono
+            
+            ISolicitud.ProgramarRecoleccion(programacionRecolecciones);
         }
     }
 }
