@@ -12,19 +12,17 @@
             <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
         </div>
         <div class="row d-flex align-items-end">
-            <div class="form-group col-md-6 p-3">
+            <div class="form-group col-md-4 p-3">
                 <asp:Label runat="server" AssociatedControlID="TipoDeConsulta" ID="lbl_TipoDeConsulta" CssClass="form-label required-field">
-                            Tipo de consulta:</asp:Label>
+                            Tipo de servicio:</asp:Label>
 
-            </div>
-            <div class="form-group col-md-6 p-3">
                 <div class="">
                     <asp:DropDownList runat="server" ID="TipoDeConsulta" CssClass="form-select" required="" />
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeConsulta" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
 
-            <div class="form-group col-md-6 p-3">
+            <div class="form-group col-md-4 p-3">
 
                 <div class="">
                     <asp:Label runat="server" AssociatedControlID="DelPeriodo" ID="lbl_DelPeriodo" CssClass="form-label required-field">
@@ -33,7 +31,7 @@
                     <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DelPeriodo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
                 </div>
             </div>
-            <div class="form-group col-md-6 p-3">
+            <div class="form-group col-md-4 p-3">
 
                 <div class="">
                     <asp:Label runat="server" AssociatedControlID="AlPeriodo" ID="lbl_AlPeriodo" CssClass="form-label required-field">

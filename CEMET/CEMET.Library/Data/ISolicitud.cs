@@ -16,7 +16,7 @@ namespace Cemetlib.Data
         {
             DB context = new DB();
             string query = $@"SELECT * FROM Solicitud_Servicio 
-                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id ORDER BY SOL_Id desc ";
+                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id ORDER BY SOL_Folio desc ";
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }

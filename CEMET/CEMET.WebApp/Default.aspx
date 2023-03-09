@@ -58,6 +58,16 @@
           <!--end:logo-->
 
           <!--begin:navbar-no-collapse-items-->
+          <div class="d-flex align-items-center navbar-no-collapse-items order-lg-last">
+            <!--Navbar toggler button-->
+            <button class="navbar-toggler order-last" type="button" data-bs-toggle="collapse"
+              data-bs-target="#mainNavbarTheme" aria-controls="mainNavbarTheme" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon">
+                <i></i>
+              </span>
+            </button>
+          </div>
           <!--end:navbar-no-collapse-items-->
 
           <!--begin:navbar-collapse-->
@@ -119,7 +129,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-end">
                                         <!--Slide subheading-->
-                                        <p class="lead mb-4 mb-lg-5">
+                                        <p class="lead mb-4 mb-lg-5 text-truncate">
                                           LABORATORIO DE ENSAYO ACREDITADO POR EMA, A.C., CON NUMERO DE ACREDITACIÓN: Metal Mecánica: MM-0692-098/15 Eléctrica Electrónica: EE-0793-028/16
                                         </p>
                                     </li>
@@ -149,7 +159,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-end">
                                         <!--Slide subheading-->
-                                        <p class="lead mb-4 mb-lg-5">
+                                        <p class="lead mb-4 mb-lg-5 text-truncate">
                                           CEMET es un laboratorio acreditado por la Entidad Mexicana de Acreditación A.C. (EMA) y aprobado por la Dirección General de Normas de la Secretaria de Economía, así como por la Comisión Nacional para el Uso Eficiente de la Energía.
                                         </p>
                                     </li>
@@ -179,7 +189,7 @@
                                     </li>
                                     <li data-carousel-layer="fade-end">
                                         <!--Slide subheading-->
-                                        <p class="lead mb-4 mb-lg-5">
+                                        <p class="lead mb-4 mb-lg-5 text-truncate">
                                           El Centro de Metrología y Ensayos Técnicos (CEMET), es un Laboratorio que ofrece servicio de pruebas físicas de calidad para determinar la seguridad de sus productos bajo los lineamientos de la norma NMX-EC-17025- IMNC-2018 (ISO/IEC 17025:2017).
                                         </p>
                                     </li>
@@ -776,7 +786,7 @@
               },
               navigation: { nextEl: ".swiperClassic-button-next", prevEl: ".swiperClassic-button-prev" }
           });
-      </script>
+        </script>
   </body>
 
 </html>

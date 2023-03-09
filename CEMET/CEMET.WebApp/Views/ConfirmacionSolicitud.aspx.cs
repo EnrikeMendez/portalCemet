@@ -19,7 +19,7 @@ namespace CEMET.WebApp.Views
 
         protected void SiBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Default.aspx");
+            Response.Redirect("/Views/Solicitudes.aspx");
         }
 
         protected void No_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace CEMET.WebApp.Views
             ServicioFolioSolicitud servicioFolioSolicitud = new ServicioFolioSolicitud(folioSolicitud);
             servicioFolioSolicitud.EliminarSolicitudesAsociadas();
 
-            Response.Redirect("/Default.aspx");
+            Response.Redirect("/Views/Solicitudes.aspx");
         }
     }
 }
