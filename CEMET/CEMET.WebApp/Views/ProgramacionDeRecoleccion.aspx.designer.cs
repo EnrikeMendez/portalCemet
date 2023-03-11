@@ -15,6 +15,15 @@ namespace CEMET.WebApp.Views
     {
 
         /// <summary>
+        /// FormularioRecoleccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FormularioRecoleccion;
+
+        /// <summary>
         /// NoDeProgramacion control.
         /// </summary>
         /// <remarks>
@@ -103,5 +112,23 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReferenciasAdicionales;
+
+        /// <summary>
+        /// MensajeExito control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MensajeExito;
+
+        /// <summary>
+        /// MsgSolicitudCreada control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MsgSolicitudCreada;
     }
 }

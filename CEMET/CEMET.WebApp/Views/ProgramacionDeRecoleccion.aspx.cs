@@ -1,6 +1,5 @@
 ﻿using CEMET.WebApp.App_Code;
 using Cemetlib.Business;
-using Cemetlib.Data;
 using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
@@ -14,15 +13,17 @@ namespace CEMET.WebApp.Views
 {
     public partial class ProgramacionDeRecoleccion : SetupPage
     {
+        protected List<int> SolicitudesProgramadas{ get; set; }
+        protected bool RecoleccionGuardada { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 DataTable solicitudes = new DataTable();
-                solicitudes = ISolicitud.ObtenerSolicitudesParaProgramaRecoleccion();
-
+                solicitudes = new SolicitudService().ObtenerSolicitudesParaProgramaRecoleccion();
                 gv_Solicitudes.DataSource = solicitudes;
                 gv_Solicitudes.DataBind();
+                MensajeExito.Visible = false;
             }
         }
         protected void Guardar_Click(object sender, EventArgs e)
@@ -48,14 +49,19 @@ namespace CEMET.WebApp.Views
                     programacionRecoleccion.CantidadSolicitudes = int.Parse(CantidadDePresolicitudes.Text);
                     programacionRecoleccion.Contacto = Contacto.Text;
                     programacionRecoleccion.Direccion = Direccion.Text;
-                    programacionRecoleccion.FechaRecoleccion = DateTime.Parse(FechaDeRecoleccion.Text);
+                    DateTime fechaRecoleccion = DateTime.Parse(FechaDeRecoleccion.Text);
+                    TimeSpan horario = TimeSpan.Parse(Horario.Text);
+                    
+                    programacionRecoleccion.FechaRecoleccion = new DateTime(fechaRecoleccion.Year, fechaRecoleccion.Month, fechaRecoleccion.Day, horario.Hours, horario.Minutes, horario.Seconds);
                     programacionRecoleccion.NumeroProgramacion = int.Parse(NoDeProgramacion.Text);
                     programacionRecoleccion.ReferenciasAdicionales = ReferenciasAdicionales.Text;
                     programacionRecoleccion.Telefono = Telefono.Text;
 
                     SolicitudService solicitudService = new SolicitudService();
                     solicitudService.ProgramarRecoleccion(programacionRecoleccion);
-                    Response.Redirect("../Default.aspx");
+                    SolicitudesProgramadas = programacionRecoleccion.Solicitudes;
+                    FormularioRecoleccion.Visible = false;
+                    MensajeExito.Visible = true;
                 }
             }
         }

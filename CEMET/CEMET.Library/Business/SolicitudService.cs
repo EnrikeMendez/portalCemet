@@ -41,5 +41,9 @@ namespace Cemetlib.Business
             
             ISolicitud.ProgramarRecoleccion(programacionRecolecciones);
         }
+        public DataTable ObtenerSolicitudesParaProgramaRecoleccion()
+        {
+            return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccion();
+        }
     }
 }
