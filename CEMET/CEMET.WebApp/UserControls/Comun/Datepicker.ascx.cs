@@ -24,17 +24,17 @@ namespace CEMET.WebApp.UserControls.Comun
 
         public string ValidationGroup { get; set; }
 
-        //public string FechaSeleccionada
-        //{
-        //    get { return FechaSeleccionadaTxt.Text; }
-        //    set { FechaSeleccionadaTxt.Text = value; }
-        //}
-
-        public DateTime? FechaSeleccionada
+        public string FechaSeleccionada
         {
-            get { return Calendario.SelectedDate; }
-            set { Calendario.SelectedDate = value; }
+            get { return FechaSeleccionadaTxt.Text; }
+            set { FechaSeleccionadaTxt.Text = value; }
         }
+
+        //public DateTime? FechaSeleccionada
+        //{
+        //    get { return Calendario.SelectedDate; }
+        //    set { Calendario.SelectedDate = value; }
+        //}
 
         public string FormatoDeFecha { get; set; }
 

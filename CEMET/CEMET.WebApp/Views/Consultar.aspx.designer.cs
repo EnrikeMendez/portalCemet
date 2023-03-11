@@ -33,31 +33,13 @@ namespace CEMET.WebApp.Views
         protected global::System.Web.UI.WebControls.DropDownList TipoDeConsulta;
 
         /// <summary>
-        /// Control lbl_DelPeriodo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_DelPeriodo;
-
-        /// <summary>
         /// Control DelPeriodo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox DelPeriodo;
-
-        /// <summary>
-        /// Control lbl_AlPeriodo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_AlPeriodo;
+        protected global::CEMET.WebApp.UserControls.Comun.Datepicker DelPeriodo;
 
         /// <summary>
         /// Control AlPeriodo.
@@ -66,7 +48,7 @@ namespace CEMET.WebApp.Views
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AlPeriodo;
+        protected global::CEMET.WebApp.UserControls.Comun.Datepicker AlPeriodo;
 
         /// <summary>
         /// Control gv_Solicitudes.

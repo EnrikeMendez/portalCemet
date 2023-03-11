@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Consultar" Language="C#" MasterPageFile="~/Site.Forms.Master" AutoEventWireup="true" CodeBehind="Consultar.aspx.cs" Inherits="CEMET.WebApp.Views.Consultar" %>
 
+<%@ Register Src="~/UserControls/Comun/Datepicker.ascx" TagPrefix="uc" TagName="Datepicker" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="py-5 text-center">
         <h1>Consultar</h1>
@@ -9,7 +11,6 @@
         <div class="d-flex align-items-center mb-3 mt-2">
             <h5 class="mb-0 me-3 me-md-4">Consultar</h5>
             <div class="border-bottom flex-grow-1"></div>
-            <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
         </div>
         <div class="row d-flex align-items-end">
             <div class="form-group col-md-4 p-3">
@@ -17,28 +18,37 @@
                             Tipo de servicio:</asp:Label>
 
                 <div class="">
-                    <asp:DropDownList runat="server" ID="TipoDeConsulta" CssClass="form-select" required="" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="TipoDeConsulta" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
+                    <asp:DropDownList runat="server" ID="TipoDeConsulta" CssClass="form-select" />
+                    <asp:RequiredFieldValidator runat="server" ValidationGroup="ConsultaValGroup" Display="Static" ControlToValidate="TipoDeConsulta" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                 </div>
             </div>
 
             <div class="form-group col-md-4 p-3">
 
-                <div class="">
-                    <asp:Label runat="server" AssociatedControlID="DelPeriodo" ID="lbl_DelPeriodo" CssClass="form-label required-field">
-                            Del periodo:</asp:Label>
-                    <asp:TextBox runat="server" ID="DelPeriodo" CssClass="form-control" TextMode="Date" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="DelPeriodo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
-                </div>
+                <uc:Datepicker
+                    runat="server"
+                    ID="DelPeriodo"
+                    EsRequerido ="true"
+                    Etiqueta ="Del periodo: "
+                    OnClientShownEvent ="true"
+                    FormatoDeFecha ="yyyy-MM-dd"
+                    RegexParaFecha ="^\d{4}-((0\d)|(1[012]))-(([012]\d)|3[01])$"
+                    ValidationGroup ="ConsultaValGroup"/>
             </div>
+
+
             <div class="form-group col-md-4 p-3">
 
-                <div class="">
-                    <asp:Label runat="server" AssociatedControlID="AlPeriodo" ID="lbl_AlPeriodo" CssClass="form-label required-field">
-                            Al periodo:</asp:Label>
-                    <asp:TextBox runat="server" ID="AlPeriodo" CssClass="form-control" required="" TextMode="Date" />
-                    <%--<asp:RequiredFieldValidator runat="server" ControlToValidate="AlPeriodo" CssClass="text-danger" ErrorMessage="El campo es requerido" />--%>
-                </div>
+                
+                <uc:Datepicker
+                    runat="server"
+                    ID="AlPeriodo"
+                    EsRequerido ="true"
+                    Etiqueta ="Al periodo: "
+                    OnClientShownEvent ="true"
+                    FormatoDeFecha ="yyyy-MM-dd"
+                    RegexParaFecha ="^\d{4}-((0\d)|(1[012]))-(([012]\d)|3[01])$"
+                    ValidationGroup ="ConsultaValGroup"/>
             </div>
         </div>
 
@@ -46,7 +56,7 @@
 
         <div class="row">
             <div class="col">
-                <asp:Button runat="server" Text="Consultar" CssClass="btn btn-primary" />
+                <asp:Button runat="server" Text="Consultar" ValidationGroup="ConsultaValGroup" CssClass="btn btn-primary" OnClick="Consultar_Click" />
             </div>
         </div>
 
@@ -54,7 +64,7 @@
 
         <div class="table table-sm py-3" style="overflow-x: auto; width: 100%;">
 
-            <asp:GridView ID="gv_Solicitudes" runat="server" GridLines="Horizontal" AllowPaging="true" PageSize="10" OnPageIndexChanging="Gv_IndexChanged" AutoGenerateColumns="false" CssClass="table  table-sm table-bordered table-condensed table-responsive-sm table-hover table-striped">
+            <asp:GridView ID="gv_Solicitudes" runat="server" GridLines="Horizontal" AllowPaging="true" PageSize="10" OnPageIndexChanging="Gv_IndexChanged" AutoGenerateColumns="false" CssClass="table  table-sm table-bordered table-condensed table-responsive-sm table-hover table-striped" ShowHeaderWhenEmpty="false" EmptyDataText="No se encontraron solicitudes para los criterios de búsqueda ingresados.">
                 <Columns>
                     <asp:BoundField DataField="SOL_Folio" HeaderText="Folio" />
                     <asp:BoundField DataField="SOL_Id" HeaderText="Id solicitud" />

@@ -38,12 +38,22 @@ namespace Cemetlib.Business
                 throw new ArgumentException("La cantidad de solicitudes ingresada no coincide con la cantidad de solicitudes seleccionadas.");
             }
             //Valida telefono
-            
+
             ISolicitud.ProgramarRecoleccion(programacionRecolecciones);
         }
+        public DataTable ObtieneSolicitudes(string TipoDeConsulta, string DelPeriodo, string AlPeriodo)
+        {
+            DataTable solicitudes = new DataTable();
+            solicitudes = ISolicitud.ObtenerSolicitudesFiltradas(TipoDeConsulta, DelPeriodo, AlPeriodo);
+
+            return solicitudes;
+
+        }
+
         public DataTable ObtenerSolicitudesParaProgramaRecoleccion()
         {
             return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccion();
+
         }
     }
 }

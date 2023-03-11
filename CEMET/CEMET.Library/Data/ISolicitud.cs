@@ -20,6 +20,18 @@ namespace Cemetlib.Data
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }
+
+        public static DataTable ObtenerSolicitudesFiltradas(string TipoDeConsulta, string DelPeriodo, string AlPeriodo)
+        {
+            DB context = new DB();
+            string query = $@"SELECT * FROM Solicitud_Servicio 
+                                INEER JOIN CTipo_Servicio ON SOL_CTS_Id = CTS_Id 
+                                WHERE SOL_CTS_Id = '{TipoDeConsulta}'
+                                AND SOL_FechaCreacion BETWEEN '{DelPeriodo}T00:00:00.000' AND '{AlPeriodo}T23:59:59.999'
+                                ORDER BY SOL_Folio desc ";
+            DataTable catalogo = context.ObtieneDataTable(query);
+            return catalogo;
+        }
         public static DataTable ObtenerSolicitudesParaProgramaRecoleccion()
         {
             DB context = new DB();
