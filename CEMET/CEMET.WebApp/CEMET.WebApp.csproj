@@ -745,10 +745,12 @@
     <Content Include="UserControls\Comun\Cotizacion.ascx" />
     <Content Include="UserControls\Comun\Datepicker.ascx" />
     <Content Include="UserControls\Comun\EspecificacionesElectricas.ascx" />
+    <Content Include="UserControls\Comun\Hallazgo.ascx" />
     <Content Include="UserControls\Comun\ModalidadEntrega.ascx" />
     <Content Include="UserControls\Comun\ModalPopUp.ascx" />
     <Content Include="UserControls\Comun\NotificacionSolicitudDeServicio.ascx" />
     <Content Include="UserControls\Comun\Observaciones.ascx" />
+    <Content Include="UserControls\Comun\PreSolicitudSelect.ascx" />
     <Content Include="Views\ComunicadoDeHallazgos.aspx" />
     <Content Include="Views\ConfirmacionSolicitud.aspx" />
     <Content Include="Views\Consultar.aspx" />
@@ -1041,6 +1043,13 @@
     <Compile Include="UserControls\Comun\EspecificacionesElectricas.ascx.designer.cs">
       <DependentUpon>EspecificacionesElectricas.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Comun\Hallazgo.ascx.cs">
+      <DependentUpon>Hallazgo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\Hallazgo.ascx.designer.cs">
+      <DependentUpon>Hallazgo.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Comun\ModalidadEntrega.ascx.cs">
       <DependentUpon>ModalidadEntrega.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1068,6 +1077,13 @@
     </Compile>
     <Compile Include="UserControls\Comun\Observaciones.ascx.designer.cs">
       <DependentUpon>Observaciones.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Comun\PreSolicitudSelect.ascx.cs">
+      <DependentUpon>PreSolicitudSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Comun\PreSolicitudSelect.ascx.designer.cs">
+      <DependentUpon>PreSolicitudSelect.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Comun\SubirArchivo.ascx.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>

@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEMET.WebApp.Views
+namespace CEMET.WebApp.UserControls.Comun
 {
 
 
-    public partial class EvaluacionDePresolicitud
+    public partial class PreSolicitudSelect
     {
 
         /// <summary>
-        /// EvaluacionesLV control.
+        /// PresolicitudesSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView EvaluacionesLV;
+        protected global::System.Web.UI.WebControls.DropDownList PresolicitudesSelect;
     }
 }

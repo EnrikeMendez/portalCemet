@@ -41,6 +41,32 @@ namespace Cemetlib.Data
             DataTable solicitudes = context.ObtieneDataTable(query);
             return solicitudes;
         }
+
+        public static List<Catalog> ObtenerSolicitudesParaProgramaRecoleccionCat()
+        {
+            DB context = new DB();
+            string query = $@"SELECT * FROM [dbo].[VSolicitud_Servicio] ORDER BY SOL_Id desc";
+            DataTable solicitudes = context.ObtieneDataTable(query);
+
+            List<Catalog> catalogo = new List<Catalog>();
+
+            foreach (DataRow row in solicitudes.Rows)
+            {
+                catalogo.Add(new Catalog
+                {
+                    Value = row["SOL_Id"].ToString(),
+                    Text = string.Concat(
+                        "Solicitud: ", row["SOL_Id"].ToString(),
+                        " / Folio: ", row["SOL_Folio"].ToString(), " / ",
+                        row["CTS_Descripcion"].ToString(), " / ",
+                        row["CPA_Nombre"].ToString()
+                    )
+                });
+            }
+
+            return catalogo;
+        }
+
         public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas, out int solicitudId)
         {
             int folio;
@@ -98,7 +124,7 @@ namespace Cemetlib.Data
             }
             return folio;
         }
-      
+
         public static int GuardaSolicitudPruebaParcial(PruebasParciales solicitudPruebaParcial)
         {
             int folio;
@@ -145,7 +171,7 @@ namespace Cemetlib.Data
             }
             return folio;
         }
-       
+
         public static int GuardaSolicitudDiagrama(DiagramaMarcado solicitud)
         {
             int folioSolicitud;
@@ -201,7 +227,7 @@ namespace Cemetlib.Data
 
             return folioSolicitud;
         }
-       
+
         public static int GuardaSolicitudMarcado(DiagramaMarcado solicitud)
         {
             int folioSolicitud;
@@ -467,7 +493,7 @@ namespace Cemetlib.Data
             parameters.Add(DB.CrearParametroSql("@PROG_Cantidad_Bultos", SqlDbType.Int, programacion.CantidadBultos));
             parameters.Add(DB.CrearParametroSql("@PROG_Cantidad_Solicitudes", SqlDbType.Int, programacion.CantidadSolicitudes));
             parameters.Add(DB.CrearParametroSql("@PROG_Referencias_Adicionales", SqlDbType.VarChar, programacion.ReferenciasAdicionales));
-            
+
             parameters.Add(DB.CrearParametroSql("@Solicitudes", SqlDbType.Structured, CreaTablaProgramacionSolicitudes(programacion.Solicitudes)));
 
             context.EjecutarSP("SP_ProgramarRecoleccion", parameters);

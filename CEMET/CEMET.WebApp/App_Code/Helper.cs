@@ -5,6 +5,8 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web.UI;
+using Cemetlib.Model;
+using System.Web.UI.WebControls;
 
 namespace CEMET.WebApp.App_Code
 {
@@ -62,6 +64,11 @@ namespace CEMET.WebApp.App_Code
             }
         }
 
+        protected T BuscaControlEnTemplate<T>(string idControl, ref ListView listView)
+        {
+            //https://stackoverflow.com/questions/433846/access-a-control-inside-a-the-layouttemplate-of-a-listview
+            return (T)Convert.ChangeType(listView.FindControl(idControl), typeof(T));
+        }
 
     }
 

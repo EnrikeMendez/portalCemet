@@ -202,18 +202,31 @@ namespace Cemetlib.Business
             DataTable catalogo = ICatalogo.GetCatVeredicto();
             foreach (DataRow row in catalogo.Rows)
             {
-                catVeredicto.Add(new Catalog { Value = row["CSS_Id"].ToString(), Text = row["CSS_Descripcion"].ToString() });
+                catVeredicto.Add(new Catalog { Value = row["VER_Id"].ToString(), Text = row["VER_Descripcion"].ToString() });
             }
 
             return catVeredicto;
         }
-        public static List<Catalog> GetCatHallazgo()
+        
+        public static List<Catalog> GetCatEvaluacion()
         {
-            List<Catalog> catHallazgo = new List<Catalog>();
-            DataTable catalogo = ICatalogo.GetCatHallazgo();
+            List<Catalog> catVeredicto = new List<Catalog>();
+            DataTable catalogo = ICatalogo.GetCatEvaluacion();
             foreach (DataRow row in catalogo.Rows)
             {
-                catHallazgo.Add(new Catalog { Value = row["CSS_Id"].ToString(), Text = row["CSS_Descripcion"].ToString() });
+                catVeredicto.Add(new Catalog { Value = row["CEVAL_Id"].ToString(), Text = row["CEVAL_Punto_Evaluado"].ToString() });
+            }
+
+            return catVeredicto;
+        }
+
+        public static List<Catalog> GetCatHallazgo(int idEvaluacion)
+        {
+            List<Catalog> catHallazgo = new List<Catalog>();
+            DataTable catalogo = ICatalogo.GetCatHallazgo(evaluacionId: idEvaluacion);
+            foreach (DataRow row in catalogo.Rows)
+            {
+                catHallazgo.Add(new Catalog { Value = row["HAL_Id"].ToString(), Text = row["HAL_Hallazgo"].ToString() });
             }
 
             return catHallazgo;

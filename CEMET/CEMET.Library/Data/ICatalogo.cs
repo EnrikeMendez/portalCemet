@@ -3,6 +3,7 @@ using Cemetlib.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -134,15 +135,29 @@ namespace Cemetlib.Data
         public static DataTable GetCatVeredicto()
         {
             DB context = new DB();
-            string query = $@"SELECT * FROM ";
+            string query = $@"SELECT * FROM CVeredicto";
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }
-        public static DataTable GetCatHallazgo()
+        
+        public static DataTable GetCatEvaluacion()
         {
             DB context = new DB();
-            string query = $@"SELECT * FROM ";
+            string query = $@"SELECT * FROM CEvaluacion";
             DataTable catalogo = context.ObtieneDataTable(query);
+            return catalogo;
+        }
+        public static DataTable GetCatHallazgo(int evaluacionId)
+        {
+            DB context = new DB();
+
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                DB.CrearParametroSql("@HAL_CEVAL_Id", SqlDbType.Int, evaluacionId)
+            };
+
+            string query = $@"SELECT * FROM CHallazgo where HAL_CEVAL_Id = @HAL_CEVAL_Id";
+            DataTable catalogo = context.ObtieneDataTable(sql: query, parametros: parameters);
             return catalogo;
         }
         public static DataTable GetCatResponsivaDeMuestras()
@@ -163,7 +178,7 @@ namespace Cemetlib.Data
         public static DataTable GetCatDiasHabilesPorNorma()
         {
             DB context = new DB();
-            string query = $@"SELECT * FROM [usr_qa].[VDias_Habiles_Norma]";
+            string query = $@"SELECT * FROM [dbo].[VDias_Habiles_Norma]";
             DataTable catalogo = context.ObtieneDataTable(query);
             return catalogo;
         }

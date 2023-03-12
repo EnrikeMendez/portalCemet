@@ -55,5 +55,10 @@ namespace Cemetlib.Business
             return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccion();
 
         }
+
+        public List<Catalog> ObtenerSolicitudesParaProgramaRecoleccionCat()
+        {
+            return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccionCat();
+        }
     }
 }
