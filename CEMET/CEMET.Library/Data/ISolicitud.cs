@@ -516,5 +516,57 @@ namespace Cemetlib.Data
 
             context.EjecutarSP("SP_ProgramarRecoleccion", parameters);
         }
+
+        private static DataTable CreaTablaHallazgos(List<Evaluacion> evaluaciones)
+        {
+            DataTable tabla = new DataTable();
+
+            DataColumn column = new DataColumn
+            {
+                ColumnName = "VER_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+            column = new DataColumn
+            {
+                ColumnName = "HAL_Id",
+                DataType = typeof(int)
+            };
+            tabla.Columns.Add(column);
+
+            if (evaluaciones != null)
+            {
+                foreach (var item in evaluaciones)
+                {
+                    DataRow DR = tabla.NewRow();
+                    DR[0] = item.IdVeredicto;
+                    if (item.IdHallazgo.HasValue)
+                    {
+                        DR[1] = item.IdHallazgo.Value;
+                    }
+                    tabla.Rows.Add(DR);
+                }
+            }
+
+            return tabla;
+        }
+
+        public static void GuardaEvaluacionDePresolictud(EvaluacionPresolicitud evaluacionPresolicitud)
+        {
+            DB context = new DB();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(DB.CrearParametroSql("@SOL_Id", SqlDbType.BigInt, evaluacionPresolicitud.IdSolicitud));
+            parameters.Add(DB.CrearParametroSql("@SEVAL_No_Evaluacion", SqlDbType.BigInt, evaluacionPresolicitud.IdEvaluacionDeSolicitudDeServicio));
+            parameters.Add(DB.CrearParametroSql("@SEVAL_Cant_Hallazgos_Encntrds", SqlDbType.Int, evaluacionPresolicitud.CantidadDeHallazgos));
+            parameters.Add(DB.CrearParametroSql("@SEVAL_Sugerencias", SqlDbType.VarChar, evaluacionPresolicitud.Sugerencias));
+            parameters.Add(DB.CrearParametroSql("@SEVAL_USU_Id_Creacion", SqlDbType.BigInt, evaluacionPresolicitud.UsuarioCrea));
+
+
+
+            parameters.Add(DB.CrearParametroSql("@Hallazgos", SqlDbType.Structured, CreaTablaHallazgos(evaluacionPresolicitud.Evaluaciones)));
+
+            context.EjecutarSP("SPC_AltaEvaluacionDePresolicitud", parameters);
+        }
     }
 }

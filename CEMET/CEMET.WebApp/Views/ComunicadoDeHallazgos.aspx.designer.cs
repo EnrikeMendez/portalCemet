@@ -15,13 +15,13 @@ namespace CEMET.WebApp.Views
     {
 
         /// <summary>
-        /// NoDePresolicitud control.
+        /// PreSolicitudSelect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NoDePresolicitud;
+        protected global::CEMET.WebApp.UserControls.Comun.PreSolicitudSelect PreSolicitudSelect;
 
         /// <summary>
         /// Fecha control.
@@ -30,7 +30,7 @@ namespace CEMET.WebApp.Views
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Fecha;
+        protected global::CEMET.WebApp.UserControls.Comun.Datepicker Fecha;
 
         /// <summary>
         /// NoDeListaDeEvaluacion control.
@@ -49,6 +49,15 @@ namespace CEMET.WebApp.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CantidadDeHallazgos;
+
+        /// <summary>
+        /// EvaluacionesLV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView EvaluacionesLV;
 
         /// <summary>
         /// EnviarAlCorreo control.

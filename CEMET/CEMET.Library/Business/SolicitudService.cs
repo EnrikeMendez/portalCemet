@@ -71,5 +71,12 @@ namespace Cemetlib.Business
         {
             return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccionCat();
         }
+
+        public void GuardaEvaluacionDePresolictud(EvaluacionPresolicitud evaluacionPresolicitud)
+        {
+            //Validaciones
+
+            ISolicitud.GuardaEvaluacionDePresolictud(evaluacionPresolicitud: evaluacionPresolicitud);
+        }
     }
 }

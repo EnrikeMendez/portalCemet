@@ -17,6 +17,11 @@ namespace CEMET.WebApp.UserControls.Comun
 
         public int IdEvaluacion { get; set; }
 
+        public int IdHallazgo
+        {
+            get { return int.Parse(HallazgoSl.SelectedValue); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)

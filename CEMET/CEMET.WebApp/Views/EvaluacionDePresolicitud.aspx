@@ -93,7 +93,7 @@
                             <tr>
                                 <td scope="row" colspan="2" class="align-middle p-3">
                                     <asp:Label runat="server"
-                                        AssociatedControlID="CantidadDeHallazgosEncontrados"
+                                        AssociatedControlID="NoDeListaDeEvaluacion"
                                         ID="Label1"
                                         CssClass="form-label required-field">No. de Lista de evaluación de solicitud de servicio</asp:Label>
                                 </td>
@@ -102,6 +102,16 @@
                                     <asp:RequiredFieldValidator runat="server" ValidationGroup="EvaluacionDePreForm" Display="Static"
                                         ControlToValidate="NoDeListaDeEvaluacion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
                                 </td>
+                            </tr>
+                            <tr>
+                                <th class="align-middle text-center p-3">No.
+                                </th>
+                                <th class="align-middle text-center p-3">Descripción de la evaluación
+                                </th>
+                                <th class="align-middle text-center p-3">Veredicto
+                                </th>
+                                <th class="align-middle text-center p-3 w-25">Hallazgos
+                                </th>
                             </tr>
                             <tr id="groupPlaceholder"></tr>
                             <tr>
@@ -136,12 +146,18 @@
                         <div class="col-md-12 text-center mt-5">
                             <asp:Button runat="server"
                                 ID="ValidarBtn"
-                                CssClass="btn btn-danger"
+                                CssClass="btn btn-warning"
                                 OnClick="ValidarBtn_Click"
                                 Text="Validar"
-                                type="button"
-                                ValidationGroup="EvaluacionDePreForm" />
-                            <asp:Button runat="server" CssClass="btn btn-danger" Text="Aceptar" type="button" />
+                                type="button" />
+                            <asp:Button
+                                ID="GuardarBtn"
+                                OnClick="GuardarBtn_Click"  
+                                runat="server"
+                                CssClass="btn btn-primary"
+                                Text="Aceptar"
+                                ValidationGroup="EvaluacionDePreForm"
+                                type="button" />
                         </div>
                     </div>
                 </LayoutTemplate>

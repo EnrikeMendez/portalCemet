@@ -30,11 +30,11 @@ namespace CEMET.WebApp.UserControls.Comun
             set { FechaSeleccionadaTxt.Text = value; }
         }
 
-        //public DateTime? FechaSeleccionada
-        //{
-        //    get { return Calendario.SelectedDate; }
-        //    set { Calendario.SelectedDate = value; }
-        //}
+        public DateTime? FechaSeleccionadaDT
+        {
+            get { return Calendario.SelectedDate; }
+            set { Calendario.SelectedDate = value; }
+        }
 
         public string FormatoDeFecha { get; set; }
 

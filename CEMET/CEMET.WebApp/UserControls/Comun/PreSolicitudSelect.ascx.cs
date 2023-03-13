@@ -14,6 +14,12 @@ namespace CEMET.WebApp.UserControls.Comun
 
         public bool EsRequerido { get; set; }
 
+        public int IdSolicitud {
+            get {
+                return int.Parse(PresolicitudesSelect.SelectedValue);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)

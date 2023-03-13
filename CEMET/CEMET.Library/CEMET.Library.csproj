@@ -60,6 +60,8 @@
     <Compile Include="Model\Cotizacion.cs" />
     <Compile Include="Model\DiagramaMarcado.cs" />
     <Compile Include="Model\EspecificacionElectrica.cs" />
+    <Compile Include="Model\Evaluacion.cs" />
+    <Compile Include="Model\EvaluacionPresolicitud.cs" />
     <Compile Include="Model\FolioSolicitud.cs" />
     <Compile Include="Model\MetodoDePrueba.cs" />
     <Compile Include="Model\Norma.cs" />
