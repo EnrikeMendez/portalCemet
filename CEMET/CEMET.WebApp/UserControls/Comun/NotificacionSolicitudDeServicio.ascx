@@ -55,13 +55,13 @@
                         <div class="row g-2 mt-4">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="Folio" CssClass="form-label required-field">
+                                    <asp:Label runat="server" AssociatedControlID="Folios" CssClass="form-label required-field">
                     Folios
                                     </asp:Label>
 
                                     <div class="input-group mb-3">
                                         <asp:Button runat="server" CssClass="btn btn-outline-secondary" Text="Agregar" />
-                                        <asp:TextBox runat="server" ID="Folio" CssClass="form-control" />
+                                        <asp:TextBox runat="server" ID="Folios" CssClass="form-control" />
                                     </div>
                                 </div>
                             </div>

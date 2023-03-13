@@ -50,6 +50,17 @@ namespace Cemetlib.Business
 
         }
 
+        public FolioSolicitud ObtenerFolioSolicitud(int folio)
+        {
+            var db = ISolicitud.ObtenerFolioSolicitud(folio: folio);
+            var folioSolicitud = new FolioSolicitud();
+            folioSolicitud.Folio = Convert.ToInt32(db.Rows[0].Field<long>("FOL_Folio"));
+            folioSolicitud.FechaCarga = db.Rows[0].Field<DateTime>("FOL_FechaCarga");
+            folioSolicitud.CantidadDeServiciosSolicitados = db.Rows[0].Field<int>("CantidadDeServiciosSolicitados");
+
+            return folioSolicitud;
+        }
+
         public DataTable ObtenerSolicitudesParaProgramaRecoleccion()
         {
             return ISolicitud.ObtenerSolicitudesParaProgramaRecoleccion();

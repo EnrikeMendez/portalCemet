@@ -21,7 +21,7 @@
                  Fecha de ingreso
                 </asp:Label>
                 <div class="">
-                    <asp:TextBox runat="server" ID="FechaDeIngreso" CssClass="form-control" TextMode="Date" />
+                    <asp:TextBox runat="server" ID="FechaDeIngreso" CssClass="form-control" Enabled="false" />
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                  Cantidad de servicios solicitados:
                 </asp:Label>
                 <div class="">
-                    <asp:TextBox runat="server" ID="CantidadDeServiciosSolicitados" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="CantidadDeServiciosSolicitados" CssClass="form-control" Enabled="false" />
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                     No. de servicio (s) (Solicitud)
                 </asp:Label>
                 <div class="">
-                    <asp:TextBox runat="server" ID="NoDeServicio" CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="NoDeServicio" CssClass="form-control" Enabled="false" />
                 </div>
             </div>
         </div>
@@ -52,8 +52,9 @@
     <hr />
     <%--For each de entidades de solicitud de servicio--%>
 
+   
+
     <uc1:NotificacionSolicitudDeServicio runat="server" ID="NotificacionSolicitudDeServicio" />
-    <uc1:NotificacionSolicitudDeServicio runat="server" ID="NotificacionSolicitudDeServicio1" />
 
     <div class="row">
         <div class="col-md-6">

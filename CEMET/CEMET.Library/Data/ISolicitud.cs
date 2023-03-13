@@ -481,6 +481,24 @@ namespace Cemetlib.Data
             DataTable catalogo = context.ObtieneDataTable(query, parametros: parameters);
             return catalogo;
         }
+
+        public static DataTable ObtenerFolioSolicitud(int folio)
+        {
+            DB context = new DB();
+            string query = $@"SELECT  f.FOL_Folio, f.FOL_FechaCarga, COUNT(s.SOL_Folio) CantidadDeServiciosSolicitados FROM Folio_Solicitud f
+                                INNER JOIN Solicitud_Servicio s ON F.FOL_Folio =S.SOL_Folio
+                                WHERE FOL_Folio ={folio}
+                                GROUP BY FOL_Folio, f.FOL_FechaCarga";
+
+            List<SqlParameter> parameters2 = new List<SqlParameter>
+            {
+                DB.CrearParametroSql("@FOL_Folio", SqlDbType.BigInt, folio)
+            };
+
+            DataTable catalogo = context.ObtieneDataTable(query, parametros: parameters2);
+            return catalogo;
+        }
+
         public static void ProgramarRecoleccion(ProgramacionRecoleccion programacion)
         {
             DB context = new DB();

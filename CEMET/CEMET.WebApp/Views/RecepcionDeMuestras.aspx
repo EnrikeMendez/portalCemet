@@ -8,37 +8,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="py-5 text-center">
-        <h1>Recepción de muestras</h1>
+        <h1>Alta de nuevo servicio</h1>
+    </div>
+
+    <div class="d-flex align-items-center mb-3 mt-2">
+        <h5 class="mb-0 me-3 me-md-4">Programación de recolección</h5>
+        <div class="border-bottom flex-grow-1"></div>
     </div>
 
     <div class="row">
         <div class="form-group col-md-6 p-3">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="PresolicitudesPendientes" CssClass="form-label">
-                    Presolicitudes pendientes
-                </asp:Label>
-                <asp:TextBox runat="server" ID="PresolicitudesPendientes" CssClass="form-control" />
-
+                <asp:TextBox runat="server" ID="PresolicitudesPendientes" CssClass="form-control" placeholder="Presolicitudes pendientes" />
+                <%--<label for="floatingSelect">Works with selects</label>--%>
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="Transportista" CssClass="form-label">
-                    Transportista
-                </asp:Label>
-                <asp:TextBox runat="server" ID="Transportista" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="Transportista" CssClass="form-control" placeholder="Transportista" />
             </div>
         </div>
 
         <div class="form-group col-md-4 p-3">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="Guia" CssClass="form-label required-field">
-                    Guía
-                </asp:Label>
-                <asp:TextBox runat="server" ID="Guia" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Guia" CssClass="text-danger" ErrorMessage="El campo es requerido" />
-            
+                <asp:TextBox runat="server" ID="Guia" CssClass="form-control" placeholder="Guía" />
             </div>
         </div>
 
@@ -47,8 +41,8 @@
                     Peso en guía
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="PesoEnGuia" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="PesoEnGuia" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+
+                <asp:TextBox runat="server" ID="PesoEnGuia" CssClass="form-control" placeholder="Peso en guía" />
             </div>
         </div>
 
@@ -57,19 +51,18 @@
                     Peso en laboratorio
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="PesoEnLaboratorio" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="PesoEnLaboratorio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+
+                <asp:TextBox runat="server" ID="PesoEnLaboratorio" CssClass="form-control" placeholder="Peso en laboratorio" />
             </div>
         </div>
 
         <div class="form-group col-md-12 p-3">
             <asp:Label runat="server" AssociatedControlID="CantidadDeBultos" CssClass="form-label required-field">
-                Cantidad de bultos
+    Cantidad de bultos
             </asp:Label>
             <div class="">
 
-                <asp:DropDownList runat="server" ID="CantidadDeBultos" CssClass="form-select" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadDeBultos" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:DropDownList runat="server" ID="CantidadDeBultos" CssClass="form-select" placeholder="Cantidad de bultos" />
             </div>
         </div>
 
@@ -81,20 +74,18 @@
 
         <div class="form-group col-md-6 p-3">
             <div class="">
-                <asp:Label runat="server" AssociatedControlID="NumeroDeSolicitudDeRecoleccion" CssClass="form-label">
-                   Número de solicitud de recolección
-                </asp:Label>
-                <asp:TextBox runat="server" ID="NumeroDeSolicitudDeRecoleccion" CssClass="form-control" TextMode="Number" />
+                <asp:TextBox runat="server" ID="NumeroDeSolicitudDeRecoleccion" CssClass="form-control" placeholder="Número de solicitud de recolección" TextMode="Number" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="Incidencias" CssClass="form-label required-field">
-                Incidencias
+    Incidencias
             </asp:Label>
             <div class="">
-                <asp:DropDownList runat="server" ID="Incidencias" CssClass="form-select" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Incidencias" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+
+
+                <asp:DropDownList runat="server" ID="Incidencias" CssClass="form-select" placeholder="Incidencias" />
             </div>
         </div>
 
@@ -104,8 +95,7 @@
             </asp:Label>
             <div class="">
 
-                <asp:DropDownList runat="server" ID="CantidadDeFotografiasASubir" CssClass="form-select" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadDeFotografiasASubir" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:DropDownList runat="server" ID="CantidadDeFotografiasASubir" CssClass="form-select" placeholder="Cantidad de fotografías a subir" />
             </div>
         </div>
 
@@ -134,21 +124,21 @@
     <div class="row">
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="NoDeManifiestoEntrada" CssClass="form-label required-field">
-                Número de manifiesto de entrada
+    Número de manifiesto de entrada
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="NoDeManifiestoEntrada" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="NoDeManifiestoEntrada" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+
+                <asp:TextBox runat="server" ID="NoDeManifiestoEntrada" CssClass="form-control" placeholder="Número de manifiesto de entrada" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="CantidadDeMuestrasARecibir" CssClass="form-label required-field">
-                Cantidad de muestras a recibir
+    Cantidad de muestras a recibir
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="CantidadDeMuestrasARecibir" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadDeMuestrasARecibir" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+
+                <asp:TextBox runat="server" ID="CantidadDeMuestrasARecibir" CssClass="form-control" placeholder="Cantidad de muestras a recibir" />
             </div>
         </div>
     </div>
@@ -169,7 +159,6 @@
             </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Descripcion" CssClass="form-control" placeholder="Descripción" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Descripcion" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -179,7 +168,6 @@
             </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Modelo" CssClass="form-control" placeholder="Modelo" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Modelo" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -189,7 +177,6 @@
             </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Marca" CssClass="form-control" placeholder="Marca" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Marca" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -199,7 +186,6 @@
             </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="Serie" CssClass="form-control" placeholder="Serie" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Serie" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -209,7 +195,6 @@
             </asp:Label>
             <div class="">
                 <asp:DropDownList runat="server" ID="Cantidad" CssClass="form-select" placeholder="Cantidad" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="Cantidad" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -220,7 +205,6 @@
             <div class="">
 
                 <asp:TextBox runat="server" ID="CantidadDeFotografiasASubirModal" CssClass="form-select" placeholder="Cantidad de fotografías a subir" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadDeFotografiasASubirModal" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -233,7 +217,6 @@
                     Registro de inspección visual
                 </asp:Label>
                 <asp:DropDownList runat="server" ID="RegistroDeInspecciónVisual" CssClass="form-select" placeholder="Registro de inspección visual" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="RegistroDeInspecciónVisual" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
     </div>
@@ -256,7 +239,6 @@
         <div class="form-group col-md-6 p-3">
             <div class="">
                 <asp:DropDownList runat="server" ID="CapturarAccesoriosDeMuestra" CssClass="form-select" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CapturarAccesoriosDeMuestra" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
     </div>
@@ -278,8 +260,7 @@
                 Cuántos accesorios se reciben
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="NumeroDeAccesoriosRecibidos" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="NumeroDeAccesoriosRecibidos" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:TextBox runat="server" ID="NumeroDeAccesoriosRecibidos" CssClass="form-control" placeholder="Cuántos accesorios se reciben" />
             </div>
         </div>
 
@@ -288,47 +269,38 @@
                 Descripción
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="DescripcionAccesorio" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="DescripcionAccesorio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:TextBox runat="server" ID="DescripcionAccesorio" CssClass="form-control" placeholder="Descripción" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="NumeroDeParteAccesorio" CssClass="form-label required-field">
-                 Número de parte
+                Número de parte
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="NumeroDeParteAccesorio" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="NumeroDeParteAccesorio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:TextBox runat="server" ID="NumeroDeParteAccesorio" CssClass="form-control" placeholder="Número de parte" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
             <asp:Label runat="server" AssociatedControlID="CantidadAccesorio" CssClass="form-label required-field">
-                Cantidad
+                Número de parte
             </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="CantidadAccesorio" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadAccesorio" CssClass="text-danger" ErrorMessage="El campo es requerido" />
+                <asp:TextBox runat="server" ID="CantidadAccesorio" CssClass="form-control" placeholder="Número de parte" />
             </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="NumeroDeIncidenciaAccesorio" CssClass="form-label">
-                Número de incidencia
-            </asp:Label>
             <div class="">
-                <asp:TextBox runat="server" ID="NumeroDeIncidenciaAccesorio" CssClass="form-control" />
-                </div>
+                <asp:TextBox runat="server" ID="NumeroDeIncidenciaAccesorio" CssClass="form-control" placeholder="Número de incidencia" />
+            </div>
         </div>
 
         <div class="form-group col-md-6 p-3">
-            <asp:Label runat="server" AssociatedControlID="ComentariosAccesorio" CssClass="form-label">
-                Comentarios
-            </asp:Label>
             <div class="">
                 <asp:TextBox runat="server" ID="ComentariosAccesorio" CssClass="form-control" placeholder="Comentarios" TextMode="MultiLine" Wrap="true" Rows="5" />
-                </div>
+            </div>
         </div>
     </div>
 
@@ -354,7 +326,6 @@
         <div class="form-group col-md-6 p-3">
             <div class="">
                 <asp:TextBox runat="server" ID="CantidadDeFotografias" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ValidationGroup="RecepcionValGroup" Display="Static" ControlToValidate="CantidadDeFotografias" CssClass="text-danger" ErrorMessage="El campo es requerido" />
             </div>
         </div>
 
@@ -377,4 +348,6 @@
             </div>
         </div>
     </div>
+
+
 </asp:Content>

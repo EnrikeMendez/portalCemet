@@ -14,5 +14,6 @@ namespace Cemetlib.Model
         public int UsuarioCargaId { get; set; }
         public DateTime FechaModificacion { get; set; }
         public int UsuarioModificaId { get; set; }
+        public int CantidadDeServiciosSolicitados { get; set; }
     }
 }
