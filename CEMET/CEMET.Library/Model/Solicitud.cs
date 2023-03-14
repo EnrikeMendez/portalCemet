@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Model
 {
-    public abstract class AltaSolicitud
+    public abstract class Solicitud
     {
         public string Norma { get; set; }
         public string TipoServicio { get; set; }

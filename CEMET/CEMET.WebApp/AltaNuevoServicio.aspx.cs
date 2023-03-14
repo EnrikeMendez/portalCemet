@@ -45,25 +45,25 @@ namespace CEMET.WebApp
         }
         private void FillCatalogs()
         {
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            List<Catalog> serviceTypeItems = CatalogoService.GetCatTipoDeServicio();
             FillDropDownList(TipoDeServicio, serviceTypeItems);
-            List<Catalog> catNorma = CatalogService.GetCatNorma();
+            List<Catalog> catNorma = CatalogoService.GetCatNorma();
             FillDropDownList(Norma, catNorma);
-            List<Catalog> catCategoria = CatalogService.GetCatCategoria();
+            List<Catalog> catCategoria = CatalogoService.GetCatCategoria();
             FillDropDownList(Categoria, catCategoria);
-            List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
+            List<Catalog> catPaisOrigen = CatalogoService.GetCatPaisDeOrigen();
             FillDropDownList(PaisDeOrigen, catPaisOrigen);
-            List<Catalog> catModalidadRecoleccion = CatalogService.GetCatModalidadDeRecoleccion();
+            List<Catalog> catModalidadRecoleccion = CatalogoService.GetCatModalidadDeRecoleccion();
             FillDropDownList(ModalidadDeRecoleccion, catModalidadRecoleccion);
-            List<Catalog> catModalidadEntrega = CatalogService.GetCatModalidadDeEntrega();
+            List<Catalog> catModalidadEntrega = CatalogoService.GetCatModalidadDeEntrega();
             FillDropDownList(ModalidadDeEntrega, catModalidadEntrega);
 
 
-            List<Catalog> catCorriente = CatalogService.GetCatCorriente();
+            List<Catalog> catCorriente = CatalogoService.GetCatCorriente();
             FillDropDownList(Corriente, catCorriente);
-            List<Catalog> catVoltaje = CatalogService.GetCatVoltaje();
+            List<Catalog> catVoltaje = CatalogoService.GetCatVoltaje();
             FillDropDownList(Voltaje, catVoltaje);
-            List<Catalog> catPotencia = CatalogService.GetCatPotencia();
+            List<Catalog> catPotencia = CatalogoService.GetCatPotencia();
             FillDropDownList(Potencia, catPotencia);
             
             //List<Catalog> catDiasHabiles = CatalogService.GetCatDiasHabiles();

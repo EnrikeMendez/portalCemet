@@ -28,7 +28,7 @@ namespace CEMET.WebApp.Views
             else
             {
                 //the page is being rendered for the first time
-                EvaluacionesLV_LoadData(datos: CatalogService.GetCatEvaluacion());
+                EvaluacionesLV_LoadData(datos: CatalogoService.GetCatEvaluacion());
             }
         }
 
@@ -37,7 +37,7 @@ namespace CEMET.WebApp.Views
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
                 var veredictoDL = (DropDownList)e.Item.FindControl("Veredicto");
-                Controles.FillDropDownList(veredictoDL, CatalogService.GetCatVeredicto());
+                Controles.FillDropDownList(veredictoDL, CatalogoService.GetCatVeredicto());
             }
         }
 
@@ -108,7 +108,7 @@ namespace CEMET.WebApp.Views
 
         private void ReiniciaCampos()
         {
-            EvaluacionesLV_LoadData(datos: CatalogService.GetCatEvaluacion());
+            EvaluacionesLV_LoadData(datos: CatalogoService.GetCatEvaluacion());
 
             //var solicitudesCtrl = (UserControls.Comun.PreSolicitudSelect)EvaluacionesLV.FindControl("PreSolicitudSelect");
             var noListDeEvalTxt = (TextBox)EvaluacionesLV.FindControl("NoDeListaDeEvaluacion");

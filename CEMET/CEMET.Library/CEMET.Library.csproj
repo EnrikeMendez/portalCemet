@@ -43,11 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\CatalogService.cs" />
-    <Compile Include="Business\ServicioAltaDeSolicitud.cs" />
+    <Compile Include="Business\CatalogoService.cs" />
     <Compile Include="Business\SolicitudService.cs" />
-    <Compile Include="Business\ServicioFolioSolicitud.cs" />
-    <Compile Include="Business\UserService.cs" />
+    <Compile Include="Business\FolioSolicitudService.cs" />
+    <Compile Include="Business\UsuarioService.cs" />
     <Compile Include="Common\Controles.cs" />
     <Compile Include="Common\DB.cs" />
     <Compile Include="Common\Log.cs" />
@@ -55,10 +54,10 @@
     <Compile Include="Data\ISolicitud.cs" />
     <Compile Include="Data\ICatalogo.cs" />
     <Compile Include="Data\IUser.cs" />
-    <Compile Include="Model\AltaSolicitud.cs" />
+    <Compile Include="Model\Solicitud.cs" />
     <Compile Include="Model\Catalog.cs" />
     <Compile Include="Model\Cotizacion.cs" />
-    <Compile Include="Model\DiagramaMarcado.cs" />
+    <Compile Include="Model\SolicitudDiagramaMarcado.cs" />
     <Compile Include="Model\EspecificacionElectrica.cs" />
     <Compile Include="Model\Evaluacion.cs" />
     <Compile Include="Model\EvaluacionPresolicitud.cs" />
@@ -66,8 +65,8 @@
     <Compile Include="Model\MetodoDePrueba.cs" />
     <Compile Include="Model\Norma.cs" />
     <Compile Include="Model\ProgramacionRecoleccion.cs" />
-    <Compile Include="Model\PruebasCompletas.cs" />
-    <Compile Include="Model\PruebasParciales.cs" />
+    <Compile Include="Model\SolicitudPruebasCompletas.cs" />
+    <Compile Include="Model\SolicitudPruebasParciales.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\ServicioAdicional.cs" />
     <Compile Include="Model\User.cs" />

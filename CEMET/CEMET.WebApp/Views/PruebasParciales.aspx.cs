@@ -22,7 +22,7 @@ namespace CEMET.WebApp.Views
                 FillCatalogs();
                 FillDummyData();
 
-                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
+                if (UsuarioService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -57,13 +57,13 @@ namespace CEMET.WebApp.Views
         }
         private void FillCatalogs()
         {
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            List<Catalog> serviceTypeItems = CatalogoService.GetCatTipoDeServicio();
             Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
-            List<Catalog> catNorma = CatalogService.GetCatNorma();
+            List<Catalog> catNorma = CatalogoService.GetCatNorma();
             Controles.FillDropDownList(Norma, catNorma);
-            List<Catalog> catNormaParticular = CatalogService.GetCatNormaParticular();
+            List<Catalog> catNormaParticular = CatalogoService.GetCatNormaParticular();
             Controles.FillDropDownList(NormaParticular, catNormaParticular);
-            List<Catalog> catMetodoPrueba = CatalogService.GetCatMetodoDePrueba();
+            List<Catalog> catMetodoPrueba = CatalogoService.GetCatMetodoDePrueba();
             Controles.FillDropDownList(MetodoDePrueba, catMetodoPrueba);
 
         }
@@ -76,7 +76,7 @@ namespace CEMET.WebApp.Views
         }
         private void CrearDto()
         {
-            PruebasParciales solicitudPruebasParciales = new PruebasParciales();
+            SolicitudPruebasParciales solicitudPruebasParciales = new SolicitudPruebasParciales();
             solicitudPruebasParciales.Norma = Norma.SelectedValue;
             solicitudPruebasParciales.NormaParticular = NormaParticular.SelectedValue;
             solicitudPruebasParciales.MetodoPrueba = MetodoDePrueba.SelectedValue;
@@ -148,7 +148,7 @@ namespace CEMET.WebApp.Views
             }
 
             List<string> errores = new List<string>();
-            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasParciales);
+            SolicitudService servicioAltaDeSolicitud = new SolicitudService(solicitudPruebasParciales);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             FolioActual = idFolio.ToString();
 

@@ -27,7 +27,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                EvaluacionesLV_LoadData(datos: CatalogService.GetCatEvaluacion());
+                EvaluacionesLV_LoadData(datos: CatalogoService.GetCatEvaluacion());
 
                 Fecha.FechaSeleccionadaDT = DateTime.Now;
                 Fecha.FechaInicio = DateTime.Now;
@@ -40,7 +40,7 @@ namespace CEMET.WebApp.Views
             if (e.Item.ItemType == ListViewItemType.DataItem)
             {
                 var hallazgSle = (DropDownList)e.Item.FindControl("Veredicto");
-                Controles.FillDropDownList(hallazgSle, CatalogService.GetCatVeredicto());
+                Controles.FillDropDownList(hallazgSle, CatalogoService.GetCatVeredicto());
             }
         }
 

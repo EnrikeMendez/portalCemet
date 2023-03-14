@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Business
 {
-    public class ServicioFolioSolicitud
+    public class FolioSolicitudService
     {
         private FolioSolicitud FolioSolicitud;
-        public ServicioFolioSolicitud(FolioSolicitud folioSolicitud)
+        public FolioSolicitudService(FolioSolicitud folioSolicitud)
         {
             FolioSolicitud = folioSolicitud;
         }

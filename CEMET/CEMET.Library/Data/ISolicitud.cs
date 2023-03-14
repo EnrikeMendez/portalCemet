@@ -67,7 +67,7 @@ namespace Cemetlib.Data
             return catalogo;
         }
 
-        public static int GuardaSolicitudPruebaCompleta(PruebasCompletas solicitudPruebasCompletas, out int solicitudId)
+        public static int GuardaSolicitudPruebaCompleta(SolicitudPruebasCompletas solicitudPruebasCompletas, out int solicitudId)
         {
             int folio;
             solicitudId = 0;
@@ -125,7 +125,7 @@ namespace Cemetlib.Data
             return folio;
         }
 
-        public static int GuardaSolicitudPruebaParcial(PruebasParciales solicitudPruebaParcial)
+        public static int GuardaSolicitudPruebaParcial(SolicitudPruebasParciales solicitudPruebaParcial)
         {
             int folio;
             try
@@ -172,7 +172,7 @@ namespace Cemetlib.Data
             return folio;
         }
 
-        public static int GuardaSolicitudDiagrama(DiagramaMarcado solicitud)
+        public static int GuardaSolicitudDiagrama(SolicitudDiagramaMarcado solicitud)
         {
             int folioSolicitud;
             try
@@ -228,7 +228,7 @@ namespace Cemetlib.Data
             return folioSolicitud;
         }
 
-        public static int GuardaSolicitudMarcado(DiagramaMarcado solicitud)
+        public static int GuardaSolicitudMarcado(SolicitudDiagramaMarcado solicitud)
         {
             int folioSolicitud;
             try

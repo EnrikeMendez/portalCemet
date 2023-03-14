@@ -26,7 +26,7 @@ namespace CEMET.WebApp.Views
         {
             FolioSolicitud folioSolicitud = new FolioSolicitud();
             folioSolicitud.Folio = int.Parse(FolioActual);
-            ServicioFolioSolicitud servicioFolioSolicitud = new ServicioFolioSolicitud(folioSolicitud);
+            FolioSolicitudService servicioFolioSolicitud = new FolioSolicitudService(folioSolicitud);
             servicioFolioSolicitud.EliminarSolicitudesAsociadas();
 
             Response.Redirect("/Views/Solicitudes.aspx");

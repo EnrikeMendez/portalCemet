@@ -12,7 +12,7 @@ namespace CEMET.WebApp.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
+            if (UsuarioService.ValidaFolio(folio: FolioActual, out var redirect))
             {
                 frmTipoServicio.Visible = false;
                 MsgSolicitudCreada.Visible = true;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Business
 {
-    public static class UserService
+    public static class UsuarioService
     {
         public static void CreateUser(string username, string password, string salt)
         {

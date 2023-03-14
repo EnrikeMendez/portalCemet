@@ -37,11 +37,11 @@ namespace CEMET.WebApp.UserControls.Comun
             }
             else
             {
-                Controles.FillDropDownList(Voltaje, CatalogService.GetCatVoltaje());
+                Controles.FillDropDownList(Voltaje, CatalogoService.GetCatVoltaje());
 
-                Controles.FillDropDownList(Corriente, CatalogService.GetCatVoltaje());
+                Controles.FillDropDownList(Corriente, CatalogoService.GetCatVoltaje());
 
-                Controles.FillDropDownList(Potencia, CatalogService.GetCatVoltaje());
+                Controles.FillDropDownList(Potencia, CatalogoService.GetCatVoltaje());
 
                 if (EsRequerido)
                 {

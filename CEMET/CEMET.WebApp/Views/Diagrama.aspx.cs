@@ -20,7 +20,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
+                if (UsuarioService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -34,7 +34,7 @@ namespace CEMET.WebApp.Views
                 }
 
                 //the page is being rendered for the first time
-                Controles.FillDropDownList(TipoDeServicio, CatalogService.GetCatTipoDeServicio(), agregarOpcionSeleccionar: true);
+                Controles.FillDropDownList(TipoDeServicio, CatalogoService.GetCatTipoDeServicio(), agregarOpcionSeleccionar: true);
 
                 TipoDeServicio.SelectedValue = "T3";
 
@@ -63,7 +63,7 @@ namespace CEMET.WebApp.Views
 
         protected void CreaDTO(string folio)
         {
-            var diagrama = new DiagramaMarcado();
+            var diagrama = new SolicitudDiagramaMarcado();
 
             diagrama.TipoServicio = TipoDeServicio.SelectedValue;
             diagrama.Descripcion = CamposComunes.DescripcionDelProducto_Text;
@@ -107,7 +107,7 @@ namespace CEMET.WebApp.Views
             }
 
             List<string> errores = new List<string>();
-            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(diagrama);
+            SolicitudService servicioAltaDeSolicitud = new SolicitudService(diagrama);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             FolioActual = idFolio.ToString();
 

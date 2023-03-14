@@ -2,9 +2,9 @@
 
 namespace Cemetlib.Model
 {
-    public class PruebasCompletas : AltaSolicitud
+    public class SolicitudPruebasCompletas : Solicitud
     {
-        public PruebasCompletas()
+        public SolicitudPruebasCompletas()
         {
             EspecificacionesElectricas = new List<EspecificacionElectrica>();
             Normas = new List<Norma>();

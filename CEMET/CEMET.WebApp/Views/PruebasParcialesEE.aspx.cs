@@ -27,7 +27,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
+                if (UsuarioService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -65,17 +65,17 @@ namespace CEMET.WebApp.Views
 
         private void FillCatalogs()
         {
-            Controles.FillDropDownList(ServicioAdicional, CatalogService.GetCatServicioAdicional());
-            Controles.FillDropDownList(NormaParticular, CatalogService.GetCatNormaParticular());
+            Controles.FillDropDownList(ServicioAdicional, CatalogoService.GetCatServicioAdicional());
+            Controles.FillDropDownList(NormaParticular, CatalogoService.GetCatNormaParticular());
 
-            MetodoDePrueba.DataSource = CatalogService.GetCatMetodoDePrueba().Select(x => new ListItem(text: x.Text, value: x.Value));
+            MetodoDePrueba.DataSource = CatalogoService.GetCatMetodoDePrueba().Select(x => new ListItem(text: x.Text, value: x.Value));
             MetodoDePrueba.DataBind();
 
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            List<Catalog> serviceTypeItems = CatalogoService.GetCatTipoDeServicio();
             Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
-            List<Catalog> catNorma = CatalogService.GetCatNorma();
+            List<Catalog> catNorma = CatalogoService.GetCatNorma();
             Controles.FillDropDownList(Norma, catNorma);
-            List<Catalog> catCategoria = CatalogService.GetCatCategoria();
+            List<Catalog> catCategoria = CatalogoService.GetCatCategoria();
             Controles.FillDropDownList(Categoria, catCategoria);
         }
 
@@ -90,7 +90,7 @@ namespace CEMET.WebApp.Views
 
         private void CrearDto()
         {
-            var pruebasParcialesEE = new PruebasParciales();
+            var pruebasParcialesEE = new SolicitudPruebasParciales();
             pruebasParcialesEE.TipoServicio = TipoDeServicio.SelectedValue;
             pruebasParcialesEE.Norma = Norma.SelectedValue;
 
@@ -204,7 +204,7 @@ namespace CEMET.WebApp.Views
             }
 
             List<string> errores = new List<string>();
-            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(pruebasParcialesEE);
+            SolicitudService servicioAltaDeSolicitud = new SolicitudService(pruebasParcialesEE);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             FolioActual = idFolio.ToString();
 

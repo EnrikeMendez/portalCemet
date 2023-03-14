@@ -185,7 +185,7 @@ namespace CEMET.WebApp.UserControls.Comun
                     }
                 }
 
-                Controles.FillDropDownList(PaisDeOrigen, CatalogService.GetCatPaisDeOrigen(), true);
+                Controles.FillDropDownList(PaisDeOrigen, CatalogoService.GetCatPaisDeOrigen(), true);
 
                 //bugfix: pruebas completas -> diagrama -> pruebas completas
                 if (!string.IsNullOrWhiteSpace(PaisDeOrigen_SelectedValue))

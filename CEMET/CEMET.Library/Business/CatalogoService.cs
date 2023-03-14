@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Business
 {
-    public static class CatalogService
+    public static class CatalogoService
     {
         public static List<Catalog> GetCatTipoDeServicio()
         {

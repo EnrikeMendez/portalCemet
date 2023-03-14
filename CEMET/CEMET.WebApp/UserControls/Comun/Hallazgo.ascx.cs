@@ -30,7 +30,7 @@ namespace CEMET.WebApp.UserControls.Comun
             }
             else
             {
-                Controles.FillDropDownList(HallazgoSl, CatalogService.GetCatHallazgo(idEvaluacion: IdEvaluacion));
+                Controles.FillDropDownList(HallazgoSl, CatalogoService.GetCatHallazgo(idEvaluacion: IdEvaluacion));
 
                 //if (!string.IsNullOrEmpty(ValidationGroupForm) && EsRequerido)
                 //{

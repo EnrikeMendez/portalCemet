@@ -16,7 +16,7 @@ namespace CEMET.WebApp.UserControls.Comun
     {
         public int Folio { get; set; }
 
-        public IEnumerable<PruebasCompletas> Solicitudes { get; set; }
+        public IEnumerable<SolicitudPruebasCompletas> Solicitudes { get; set; }
 
         public string CantidadDeServiciosSolicitados { get; set; }
         protected void Page_Load(object sender, EventArgs e)

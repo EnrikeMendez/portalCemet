@@ -100,9 +100,9 @@ namespace CEMET.WebApp.UserControls.Comun
             {
                 Cotizaciones = new List<CotizacionModel>();
 
-                Controles.FillDropDownList(ServicioSolicitado, CatalogService.GetCatServiciosSolicitados(), agregarOpcionSeleccionar: true);
+                Controles.FillDropDownList(ServicioSolicitado, CatalogoService.GetCatServiciosSolicitados(), agregarOpcionSeleccionar: true);
 
-                Controles.FillDropDownList(Tarifa, CatalogService.GetCatTarifas(), agregarOpcionSeleccionar: true);
+                Controles.FillDropDownList(Tarifa, CatalogoService.GetCatTarifas(), agregarOpcionSeleccionar: true);
 
                 cotizacionList.DataSource = Cotizaciones;
                 cotizacionList.DataBind();

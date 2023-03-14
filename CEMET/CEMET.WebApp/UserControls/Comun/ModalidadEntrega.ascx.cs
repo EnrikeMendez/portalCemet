@@ -61,13 +61,13 @@ namespace CEMET.WebApp.UserControls.Comun
         private void FillCatalogs()
         {
 
-            Controles.FillDropDownList(modalidadDeRecoleccion, CatalogService.GetCatModalidadDeRecoleccion());
+            Controles.FillDropDownList(modalidadDeRecoleccion, CatalogoService.GetCatModalidadDeRecoleccion());
 
 
-            List<Catalog> catDiasHabiles = CatalogService.GetCatDiasHabiles();
+            List<Catalog> catDiasHabiles = CatalogoService.GetCatDiasHabiles();
             Controles.FillDropDownList(diasHabiles, catDiasHabiles);
 
-            List<Catalog> catModalidadEntrega = CatalogService.GetCatModalidadDeEntrega();
+            List<Catalog> catModalidadEntrega = CatalogoService.GetCatModalidadDeEntrega();
             Controles.FillDropDownList(modalidadDeEntrega, catModalidadEntrega);
         }
     }

@@ -34,7 +34,7 @@ namespace CEMET.WebApp.Views
         }
         private void FillCatalogs()
         {
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            List<Catalog> serviceTypeItems = CatalogoService.GetCatTipoDeServicio();
             Controles.FillDropDownList(TipoDeConsulta, serviceTypeItems,true);
         }
 

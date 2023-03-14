@@ -27,7 +27,7 @@ namespace CEMET.WebApp.Views
             }
             else
             {
-                if (UserService.ValidaFolio(folio: FolioActual, out var redirect))
+                if (UsuarioService.ValidaFolio(folio: FolioActual, out var redirect))
                 {
                     if (redirect)
                     {
@@ -61,11 +61,11 @@ namespace CEMET.WebApp.Views
 
         private void FillCatalogs()
         {
-            List<Catalog> serviceTypeItems = CatalogService.GetCatTipoDeServicio();
+            List<Catalog> serviceTypeItems = CatalogoService.GetCatTipoDeServicio();
             Controles.FillDropDownList(TipoDeServicio, serviceTypeItems);
-            List<Catalog> catNorma = CatalogService.GetCatNorma();
+            List<Catalog> catNorma = CatalogoService.GetCatNorma();
             Controles.FillDropDownList(Norma, catNorma);
-            List<Catalog> catCategoria = CatalogService.GetCatCategoria();
+            List<Catalog> catCategoria = CatalogoService.GetCatCategoria();
             Controles.FillDropDownList(Categoria, catCategoria);
             //List<Catalog> catPaisOrigen = CatalogService.GetCatPaisDeOrigen();
             ////Controles.FillDropDownList(PaisDeOrigen, catPaisOrigen);
@@ -86,7 +86,7 @@ namespace CEMET.WebApp.Views
         }
         private void CrearDto()
         {
-            PruebasCompletas solicitudPruebasCompletas = new PruebasCompletas();
+            SolicitudPruebasCompletas solicitudPruebasCompletas = new SolicitudPruebasCompletas();
             solicitudPruebasCompletas.Norma = Norma.SelectedValue;
             solicitudPruebasCompletas.TipoServicio = TipoDeServicio.SelectedValue;
             solicitudPruebasCompletas.Descripcion = CamposComunes.DescripcionDelProducto_Text;
@@ -154,7 +154,7 @@ namespace CEMET.WebApp.Views
             }
 
             List<string> errores = new List<string>();
-            ServicioAltaDeSolicitud servicioAltaDeSolicitud = new ServicioAltaDeSolicitud(solicitudPruebasCompletas);
+            SolicitudService servicioAltaDeSolicitud = new SolicitudService(solicitudPruebasCompletas);
             int idFolio = servicioAltaDeSolicitud.GuardarSolicitud(out errores);
             FolioActual = idFolio.ToString();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cemetlib.Model
 {
-    public class DiagramaMarcado : AltaSolicitud
+    public class SolicitudDiagramaMarcado : Solicitud
     {
         public List<EspecificacionElectrica> EspecificacionesElectricas { get; set; }
 
