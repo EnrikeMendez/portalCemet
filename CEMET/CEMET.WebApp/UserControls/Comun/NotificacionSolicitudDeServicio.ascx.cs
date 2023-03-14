@@ -16,19 +16,18 @@ namespace CEMET.WebApp.UserControls.Comun
     {
         public int Folio { get; set; }
 
-        public IEnumerable<SolicitudPruebasCompletas> Solicitudes { get; set; }
+        public string DescripcionSolicitud { get; set; }
+        public string MarcaSolicitud { get; set; }
+        public string ModeloSolicitud { get; set; }
 
-        public string CantidadDeServiciosSolicitados { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                Solicitudes = new SolicitudService().GetSolicitudes(folio: Folio);
-                CantidadDeServiciosSolicitados = Solicitudes.Count().ToString();
 
-                Producto.Text = Solicitudes.ElementAt(0).Descripcion;
-                Marca.Text = Solicitudes.ElementAt(0).Marca;
-                Modelo.Text = Solicitudes.ElementAt(0).Modelo;
+                Producto.Text = DescripcionSolicitud;
+                Marca.Text = MarcaSolicitud;
+                Modelo.Text = ModeloSolicitud;
             }
         }
     }

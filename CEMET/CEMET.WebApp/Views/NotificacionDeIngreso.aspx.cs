@@ -15,7 +15,7 @@ namespace CEMET.WebApp.Views
 {
     public partial class NotificacionDeIngreso : SetupPage
     {
-        
+        protected IEnumerable<SolicitudPruebasCompletas> Solicitudes { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -25,14 +25,29 @@ namespace CEMET.WebApp.Views
 
                 //Obtiene la información del folio
                 FolioSolicitud infoFolio = new SolicitudService().ObtenerFolioSolicitud(folio: folio);
+                Solicitudes = new SolicitudService().GetSolicitudes(folio: folio);
                 FechaDeIngreso.Text = infoFolio.FechaCarga.ToString("dd/MM/yyyy");
-                CantidadDeServiciosSolicitados.Text =infoFolio.CantidadDeServiciosSolicitados.ToString();   
+                CantidadDeServiciosSolicitados.Text =infoFolio.CantidadDeServiciosSolicitados.ToString();
 
-                NotificacionSolicitudDeServicio.Folio = folio;
+
+                Repeater1.DataSource = Solicitudes;
+                Repeater1.DataBind();
 
             }
         }
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item ||
+                e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var solicitud = e.Item.DataItem as SolicitudPruebasCompletas;
 
+                var control = e.Item.FindControl("NotificacionSolicitudDeServicio") as NotificacionSolicitudDeServicio;
+                control.DescripcionSolicitud = solicitud.Descripcion;
+                control.MarcaSolicitud = solicitud.Marca;
+                control.ModeloSolicitud = solicitud.Modelo;
+            }
+        }
         private void FillDummyData()
         {
             FolioActual = "121";

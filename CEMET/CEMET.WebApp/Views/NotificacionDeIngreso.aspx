@@ -52,9 +52,15 @@
     <hr />
     <%--For each de entidades de solicitud de servicio--%>
 
-   
+    
+    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
+        <ItemTemplate>
+              <uc1:NotificacionSolicitudDeServicio runat="server" ID="NotificacionSolicitudDeServicio"/>
+        </ItemTemplate>
+    </asp:Repeater>
 
-    <uc1:NotificacionSolicitudDeServicio runat="server" ID="NotificacionSolicitudDeServicio" />
+      
+    
 
     <div class="row">
         <div class="col-md-6">
